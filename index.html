@@ -11,23 +11,37 @@
         :root {
             --apple-gray: #f5f5f7;
             --apple-blue: #0066cc;
+            --bg-color: #ffffff;
+            --text-color: #1d1d1f;
+            --secondary-text: #86868b;
+            --card-bg: #ffffff;
+            --border-color: #f2f2f2;
+            --nav-bg: rgba(255, 255, 255, 0.72);
+        }
+
+        body.dark {
+            --bg-color: #0f0f12;
+            --text-color: #f5f5f7;
+            --secondary-text: #a1a1aa;
+            --card-bg: #16161a;
+            --border-color: #2a2a30;
+            --nav-bg: rgba(20, 20, 24, 0.72);
         }
 
         body {
             font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #fff;
-            color: #1d1d1f;
-            -webkit-font-smoothing: antialiased;
-            scroll-behavior: smooth;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background 0.4s ease, color 0.4s ease;
         }
 
         .mono { font-family: 'JetBrains Mono', monospace; }
 
         /* Apple-style Glassmorphism */
         .glass-nav {
-            background: rgba(255, 255, 255, 0.72);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
+           background: var(--nav-bg);
+           backdrop-filter: saturate(180%) blur(20px);
+           -webkit-backdrop-filter: saturate(180%) blur(20px);
         }
 
         /* Subtle Fade In Animation */
@@ -45,8 +59,8 @@
         /* Hover Transitions */
         .project-card, .stack-card {
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            background: #fff;
-            border: 1px solid #f2f2f2;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
         }
 
         .project-card:hover, .stack-card:hover {
@@ -68,7 +82,7 @@
         .section-label {
             letter-spacing: 0.1em;
             font-size: 0.75rem;
-            color: #86868b;
+            color: var(--secondary-text);
         }
 
         /* Photo styling */
@@ -124,6 +138,61 @@
         .stack-card:hover .tech-icon {
             filter: grayscale(0);
         }
+
+        @keyframes subtlePulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.05);
+            }
+        }
+
+        .top-project-badge {
+            animation: subtlePulse 2s ease-in-out infinite;
+            color: #30cc00;
+        }
+
+        .top-project-badge {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .top-project-badge::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(0, 204, 75, 0.4),
+                transparent
+            );
+            animation: shimmer 2.5s infinite;
+        }
+
+        @keyframes shimmer {
+            100% {
+                left: 100%;
+            }
+        }
+
+        .typing-badge::after {
+            content: '|';
+            margin-left: 4px;
+            animation: blinkCursor 1s infinite;
+        }
+
+        @keyframes blinkCursor {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0; }
+        }
     </style>
 </head>
 <body class="selection:bg-blue-100 selection:text-blue-900">
@@ -139,6 +208,7 @@
                 <a href="#contact" class="hover:text-black transition-colors">Contact</a>
             </div>
         </div>
+        <button id="themeToggle" class="text-xs px-3 py-1 border rounded-full hover:opacity-70 transition">🌙</button>
     </nav>
 
     <main class="max-w-5xl mx-auto px-6">
@@ -148,7 +218,7 @@
             <div class="flex-1 order-2 md:order-1 text-left">
                 <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">Software Engineer</h1>
                 <p class="text-xl text-[#555] max-w-lg leading-relaxed mb-8">
-                    Hi, I'm <span class="text-black font-semibold">Nathaniel Coronacion</span>. A passionate Software Engineer building high-performance systems and intuitive digital experiences. Based in Manila, PH. 📍
+                    Hi, I'm <span class="text-black font-semibold">Nathaniel Coronacion</span>. A passionate Software Engineer building high-performance systems and intuitive digital experiences. Based in Cavite, PH. 📍
                 </p>
                 <div class="flex items-center gap-6 text-[#1d1d1f]">
                     <a href="#" class="hover:scale-110 transition-transform">
@@ -168,7 +238,7 @@
                                 transition-transform duration-500">
 
                         <img 
-                            src="image/pfp.jpg" 
+                            src="image/my profile.png" 
                             alt="Nathaniel Coronacion"
                             class="w-full h-full object-cover"
                         />
@@ -186,7 +256,7 @@
                     <div class="md:col-span-4">
                         <p class="text-xl font-medium">Software Engineer Intern</p>
                         <p class="text-[#86868b] mt-1">The Thomas Aquinas Institute of Learning, Inc.</p>
-                        <p class="text-sm mono text-[#86868b] mt-4">2026 — Present</p>
+                        <p class="text-sm mono text-[#86868b] mt-4">February 2026 — Present</p>
                     </div>
                     <div class="md:col-span-8 text-[#1d1d1f]/80 text-lg leading-relaxed">
                         Leading the development of the school's official website in collaboration with a co-developer.
@@ -199,15 +269,28 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                     <div class="md:col-span-4">
-                        <p class="text-xl font-medium">Software Engineer</p>
+                        <p class="text-xl font-medium">Software Developer</p>
                         <p class="text-[#86868b] mt-1">Coronacion Refrigeration and Airconditioning Services</p>
-                        <p class="text-sm mono text-[#86868b] mt-4">2025 — 2026</p>
+                        <p class="text-sm mono text-[#86868b] mt-4">June 2025 — Present</p>
                     </div>
                     <div class="md:col-span-8 text-[#1d1d1f]/80 text-lg leading-relaxed">
                         Designed and built project-based software solutions to automate service operations, 
                         reduce manual workflows, and centralize business data, 
                         including customer-facing platforms and internal tools for service booking, 
                         job tracking, payroll and quotation automation, email notifications, and an IoT-based AC control system.
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                    <div class="md:col-span-4">
+                        <p class="text-xl font-medium">Full Stack Web Developer</p>
+                        <p class="text-[#86868b] mt-1">Freelance</p>
+                        <p class="text-sm mono text-[#86868b] mt-4">October 2025 — December 2025</p>
+                    </div>
+                    <div class="md:col-span-8 text-[#1d1d1f]/80 text-lg leading-relaxed">
+                        Developed an early version of ExamiQ+, confidence-based mathematics examination system for 
+                        4th-year Computer Science students, implementing timed exam workflows, RESTful APIs, 
+                        admin CRUD management, exam history tracking, and data-driven performance analytics.
                     </div>
                 </div>
             </div>
@@ -221,34 +304,39 @@
                     <span class="section-label uppercase font-semibold">Toolbox</span>
                     <h2 class="text-4xl font-semibold mt-4 mb-10">Tech Stack</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <!-- Java + Spring Boot -->
                         <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
-                            <span class="text-xs mono text-[#86868b]">BACKEND</span>
+                            <span class="text-xs mono text-[#86868b]">PROGRAMMING LANGUAGES</span>
                             <div class="flex items-center gap-3 mt-4">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="tech-icon" alt="Java">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" class="tech-icon" alt="Spring Boot">
-                            </div>
-                            <span class="text-sm font-medium mt-2">Java & Spring Boot</span>
-                        </div>
-                        
-                        <!-- C# + .NET -->
-                        <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
-                            <span class="text-xs mono text-[#86868b]">ENTERPRISE</span>
-                            <div class="flex items-center gap-3 mt-4">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" class="tech-icon" alt="C#">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" class="tech-icon" alt=".NET">
-                            </div>
-                            <span class="text-sm font-medium mt-2">C# & .NET</span>
-                        </div>
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" 
+                                    class="tech-icon" 
+                                    alt="Java" 
+                                    title="Java" 
+                                    loading="lazy">
 
-                        <!-- C / C++ -->
-                        <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
-                            <span class="text-xs mono text-[#86868b]">SYSTEMS</span>
-                            <div class="flex items-center gap-3 mt-4">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" 
+                                    class="tech-icon" 
+                                    alt="C#" 
+                                    title="C#" 
+                                    loading="lazy">
+
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
+                                    class="tech-icon" 
+                                    alt="JavaScript" 
+                                    title="JavaScript" 
+                                    loading="lazy">
+
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="tech-icon" alt="C">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="tech-icon" alt="C++">
                             </div>
-                            <span class="text-sm font-medium mt-2">C / C++</span>
+                        </div>
+                        <!-- Java + Spring Boot -->
+                        <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
+                            <span class="text-xs mono text-[#86868b]">BACKEND FRAMEWORKS</span>
+                            <div class="flex items-center gap-3 mt-4">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" class="tech-icon" alt="Spring Boot">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" class="tech-icon" alt=".NET">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="tech-icon" alt="Node.js">
+                            </div>
                         </div>
 
                         <!-- Python -->
@@ -257,16 +345,6 @@
                             <div class="flex items-center gap-3 mt-4">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="tech-icon" alt="Python">
                             </div>
-                            <span class="text-sm font-medium mt-2">Python</span>
-                        </div>
-
-                        <!-- JS -->
-                        <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
-                            <span class="text-xs mono text-[#86868b]">WEB</span>
-                            <div class="flex items-center gap-3 mt-4">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="tech-icon" alt="JavaScript">
-                            </div>
-                            <span class="text-sm font-medium mt-2">JavaScript</span>
                         </div>
 
                         <!-- DBs -->
@@ -275,27 +353,35 @@
                             <div class="flex items-center gap-3 mt-4">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="tech-icon" alt="MySQL">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="tech-icon" alt="PostgreSQL">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" 
+                                class="tech-icon" 
+                                alt="SQLite" 
+                                title="SQLite" 
+                                loading="lazy">
                             </div>
-                            <span class="text-sm font-medium mt-2">SQL Systems</span>
                         </div>
 
                         <!-- Game Dev -->
                         <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
-                            <span class="text-xs mono text-[#86868b]">ENGINES</span>
+                            <span class="text-xs mono text-[#86868b]">GAME ENGINES</span>
                             <div class="flex items-center gap-3 mt-4">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" class="tech-icon" alt="Unity">
                             </div>
-                            <span class="text-sm font-medium mt-2">Unity</span>
                         </div>
 
                         <!-- Tools -->
                         <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
                             <span class="text-xs mono text-[#86868b]">HARDWARE & TOOLS</span>
                             <div class="flex items-center gap-3 mt-4">
-                                <img src="https://www.vectorlogo.zone/logos/postman/postman-icon.svg" class="tech-icon" alt="Postman">
+                                <img 
+                                src="image/postman.png" 
+                                class="tech-icon" 
+                                alt="Git logo" 
+                                loading="lazy"
+                                >
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" class="tech-icon" alt="Arduino">
+                                <img src="image/social.png" class="tech-icon" alt="Git">
                             </div>
-                            <span class="text-sm font-medium mt-2">Tools & Hardware</span>
                         </div>
                     </div>
                 </div>
@@ -329,12 +415,12 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="project-card p-12 rounded-[2rem]">
-                    <span class="text-xs mono text-[#86868b]">TOP PROJECT</span>
-                    <h3 class="text-2xl font-semibold mt-4 mb-4">Airconditioning Official Website with E-Commerce Platform</h3>
+                    <span class="text-xs mono top-project-badge">TOP PROJECT</span>
+                    <h3 class="text-2xl font-semibold mt-4 mb-4">Airconditioning Company's Official Website with E-Commerce Platform</h3>
                     <p class="text-[#86868b] text-lg mb-8 leading-relaxed">
                         A fully responsive, all-in-one digital platform that integrates a service showcase and smart appointment booking with a complete e-commerce storefront and centralized admin dashboard.
                     </p>
-                    <div class="flex items-center gap-4">
+                    <div class="flex flex-wrap gap-4 mt-4">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="tech-icon" title="HTML5">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="tech-icon" title="CSS3">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="tech-icon" title="JavaScript">
@@ -344,14 +430,34 @@
                 </div>
 
                 <div class="project-card p-12 rounded-[2rem]">
-                    <span class="text-xs mono text-[#86868b]">DATA VISUALIZATION</span>
-                    <h3 class="text-2xl font-semibold mt-4 mb-4">DataViz Engine</h3>
+                    <span class="text-xs mono text-[#86868b]">PROJECT 2</span>
+                    <h3 class="text-2xl font-semibold mt-4 mb-4">AC Controller Web Application</h3>
+                    <p class="text-[#86868b] text-lg mb-8 leading-relaxed">
+                        A web application to control air conditioner temperature and power state, using an ESP32 microcontroller with C++ for hardware control, Spring Boot for backend services, and React.js for the frontend interface.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mt-4">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" class="tech-icon" title="Arduino" alt="Arduino logo" loading="lazy">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="tech-icon" title="C++" alt="C++ logo" loading="lazy">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" class="tech-icon" title="Spring Boot" alt="Spring Boot logo" loading="lazy">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="tech-icon" title="MySQL">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="tech-icon" title="React.js" alt="React.js logo" loading="lazy">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" class="tech-icon" title="Postman" alt="Postman logo" loading="lazy">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/embeddedc/embeddedc-original.svg" class="tech-icon" title="ESP32" alt="ESP32 logo" loading="lazy">
+                    </div>
+                </div>
+
+                <div class="project-card p-12 rounded-[2rem]">
+                    <span class="text-xs mono text-[#86868b] typing-badge" data-text="FREELANCE THESIS PROJECT"></span>
+                    <h3 class="text-2xl font-semibold mt-4 mb-4">ExamiQ+</h3>
                     <p class="text-[#86868b] text-lg mb-8 leading-relaxed">
                         Developed an early version of ExamiQ+, confidence-based mathematics examination system for 4th-year Computer Science students, implementing timed exam workflows, RESTful APIs, admin CRUD management, exam history tracking, and data-driven performance analytics.
                     </p>
                     <div class="flex gap-4">
-                        <span class="text-xs font-medium px-3 py-1 bg-gray-100 rounded-md">React</span>
-                        <span class="text-xs font-medium px-3 py-1 bg-gray-100 rounded-md">D3.js</span>
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="tech-icon" title="HTML5">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="tech-icon" title="CSS3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="tech-icon" title="JavaScript">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="tech-icon" title="PHP">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="tech-icon" title="MySQL">
                     </div>
                 </div>
             </div>
@@ -361,14 +467,14 @@
         <section id="contact" class="py-48 text-center reveal">
             <h2 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 italic">Available for impact.</h2>
             <p class="text-xl text-[#86868b] mb-12 max-w-xl mx-auto">Currently seeking opportunities to solve complex engineering problems.</p>
-            <a href="mailto:hello@nathaniel.com" class="text-3xl font-medium hover:text-[#0066cc] transition-colors border-b-2 border-transparent hover:border-[#0066cc]">hello@nathaniel.com</a>
+            <a href="mailto:hello@nathaniel.com" class="text-3xl font-medium hover:text-[#0066cc] transition-colors border-b-2 border-transparent hover:border-[#0066cc]">nathanielcoronacion3@gmail.com</a>
         </section>
 
     </main>
 
     <footer class="py-20 border-t border-gray-100">
         <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 text-[#86868b] text-xs mono uppercase tracking-widest">
-            <div>&copy; 2024 NATHANIEL CORONACION</div>
+            <div>&copy; 2026 NATHANIEL CORONACION</div>
             <div class="flex gap-8 text-black font-semibold">
                 <a href="#" class="hover:underline">LinkedIn</a>
                 <a href="#" class="hover:underline">GitHub</a>
@@ -388,6 +494,40 @@
         }, observerOptions);
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const typingEl = document.querySelector(".typing-badge");
+            const text = typingEl.getAttribute("data-text");
+            let index = 0;
+
+            function typeEffect() {
+                if (index < text.length) {
+                    typingEl.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(typeEffect, 50); // typing speed
+                }
+            }
+
+            typeEffect();
+        });
+
+        const themeToggle = document.getElementById("themeToggle");
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark");
+            themeToggle.textContent = "☀️";
+        }
+
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark");
+
+            if (document.body.classList.contains("dark")) {
+                localStorage.setItem("theme", "dark");
+                themeToggle.textContent = "☀️";
+            } else {
+                localStorage.setItem("theme", "light");
+                themeToggle.textContent = "🌙";
+            }
+        });
     </script>
 </body>
 </html>
