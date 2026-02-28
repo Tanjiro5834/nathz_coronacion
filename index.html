@@ -192,6 +192,56 @@
         @keyframes blinkCursor {
             0%, 50%, 100% { opacity: 1; }
             25%, 75% { opacity: 0; }
+                }
+
+                @keyframes slideGlowIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+                letter-spacing: 0.3em;
+            }
+            60% {
+                opacity: 1;
+                transform: translateX(5px);
+            }
+            100% {
+                transform: translateX(0);
+                letter-spacing: 0.1em;
+            }
+        }
+
+        .internship-badge {
+            position: relative;
+            display: inline-block;
+            animation: slideGlowIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            color: #0066cc;
+        }
+
+        .internship-badge::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(90deg, #0066cc, transparent);
+            transition: width 0.6s ease;
+        }
+
+        .internship-badge:hover::after {
+            width: 100%;
+        }
+
+        .text-primary {
+            color: var(--text-color);
+        }
+
+        .text-secondary {
+            color: var(--secondary-text);
+        }
+
+        .hover-primary:hover {
+            color: var(--text-color);
         }
     </style>
 </head>
@@ -200,15 +250,23 @@
     <!-- Global Navigation -->
     <nav class="fixed top-0 w-full glass-nav z-50 border-b border-gray-200/40">
         <div class="max-w-5xl mx-auto px-6 h-12 flex items-center justify-between">
-            <a href="#" class="font-semibold text-lg tracking-tight">Nathaniel Coronacion</a>
-            <div class="flex space-x-8 text-xs font-normal text-[#1d1d1f]/80">
-                <a href="#experience" class="hover:text-black transition-colors">Experience</a>
-                <a href="#stack" class="hover:text-black transition-colors">Stack</a>
-                <a href="#projects" class="hover:text-black transition-colors">Projects</a>
-                <a href="#contact" class="hover:text-black transition-colors">Contact</a>
+            <a href="#" class="font-semibold text-lg tracking-tight">
+                Nathaniel Coronacion
+            </a>
+
+            <div class="flex items-center space-x-8 text-xs font-normal text-secondary">
+                <a href="#experience" class="hover-primary transition-colors">Experience</a>
+                <a href="#stack" class="hover-primary transition-colors">Stack</a>
+                <a href="#projects" class="hover-primary transition-colors">Projects</a>
+                <a href="#contact" class="hover-primary transition-colors">Contact</a>
+
+                <!-- Theme Toggle -->
+                <button id="themeToggle"
+                    class="ml-4 text-xs px-3 py-1 border rounded-full hover:opacity-70 transition">
+                    🌙
+                </button>
             </div>
         </div>
-        <button id="themeToggle" class="text-xs px-3 py-1 border rounded-full hover:opacity-70 transition">🌙</button>
     </nav>
 
     <main class="max-w-5xl mx-auto px-6">
@@ -217,8 +275,8 @@
         <header class="min-h-screen flex flex-col md:flex-row items-center justify-center gap-16 pt-24 reveal">
             <div class="flex-1 order-2 md:order-1 text-left">
                 <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">Software Engineer</h1>
-                <p class="text-xl text-[#555] max-w-lg leading-relaxed mb-8">
-                    Hi, I'm <span class="text-black font-semibold">Nathaniel Coronacion</span>. A passionate Software Engineer building high-performance systems and intuitive digital experiences. Based in Cavite, PH. 📍
+                <p class="text-xl text-secondary max-w-lg leading-relaxed mb-8">
+                    Hi, I'm <span class="text-primary font-semibold">Nathaniel Coronacion</span>. A passionate Software Engineer building high-performance systems and intuitive digital experiences. Based in Cavite, PH. 📍
                 </p>
                 <div class="flex items-center gap-6 text-[#1d1d1f]">
                     <a href="#" class="hover:scale-110 transition-transform">
@@ -238,7 +296,7 @@
                                 transition-transform duration-500">
 
                         <img 
-                            src="image/my profile.png" 
+                            src="image/pfp.jpg" 
                             alt="Nathaniel Coronacion"
                             class="w-full h-full object-cover"
                         />
@@ -255,10 +313,10 @@
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                     <div class="md:col-span-4">
                         <p class="text-xl font-medium">Software Engineer Intern</p>
-                        <p class="text-[#86868b] mt-1">The Thomas Aquinas Institute of Learning, Inc.</p>
-                        <p class="text-sm mono text-[#86868b] mt-4">February 2026 — Present</p>
+                        <p class="text-primary mt-1">The Thomas Aquinas Institute of Learning, Inc.</p>
+                        <p class="text-sm mono text-secondary mt-4">February 2026 — Present</p>
                     </div>
-                    <div class="md:col-span-8 text-[#1d1d1f]/80 text-lg leading-relaxed">
+                    <div class="md:col-span-8 text-primary text-lg leading-relaxed">
                         Leading the development of the school's official website in collaboration with a co-developer.
                         Responsible for system architecture, database design, and backend development. 
                         Designing and implementing a relational database schemas with proper foreign key relationships Designing and coding RESTful APIs.
@@ -269,11 +327,11 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                     <div class="md:col-span-4">
-                        <p class="text-xl font-medium">Software Developer</p>
-                        <p class="text-[#86868b] mt-1">Coronacion Refrigeration and Airconditioning Services</p>
-                        <p class="text-sm mono text-[#86868b] mt-4">June 2025 — Present</p>
+                        <p class="text-xl font-medium">Software Engineer</p>
+                        <p class="text-secondary mt-1">Coronacion Refrigeration and Airconditioning Services</p>
+                        <p class="text-sm mono text-secondary mt-4">June 2025 — Present</p>
                     </div>
-                    <div class="md:col-span-8 text-[#1d1d1f]/80 text-lg leading-relaxed">
+                    <div class="md:col-span-8 text-primary text-lg leading-relaxed">
                         Designed and built project-based software solutions to automate service operations, 
                         reduce manual workflows, and centralize business data, 
                         including customer-facing platforms and internal tools for service booking, 
@@ -284,10 +342,10 @@
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                     <div class="md:col-span-4">
                         <p class="text-xl font-medium">Full Stack Web Developer</p>
-                        <p class="text-[#86868b] mt-1">Freelance</p>
-                        <p class="text-sm mono text-[#86868b] mt-4">October 2025 — December 2025</p>
+                        <p class="text-secondary mt-1">Freelance</p>
+                        <p class="text-sm mono text-secondary mt-4">October 2025 — December 2025</p>
                     </div>
-                    <div class="md:col-span-8 text-[#1d1d1f]/80 text-lg leading-relaxed">
+                    <div class="md:col-span-8 text-primary text-lg leading-relaxed">
                         Developed an early version of ExamiQ+, confidence-based mathematics examination system for 
                         4th-year Computer Science students, implementing timed exam workflows, RESTful APIs, 
                         admin CRUD management, exam history tracking, and data-driven performance analytics.
@@ -305,7 +363,7 @@
                     <h2 class="text-4xl font-semibold mt-4 mb-10">Tech Stack</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
-                            <span class="text-xs mono text-[#86868b]">PROGRAMMING LANGUAGES</span>
+                            <span class="text-xs mono text-secondary">PROGRAMMING LANGUAGES</span>
                             <div class="flex items-center gap-3 mt-4">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" 
                                     class="tech-icon" 
@@ -331,7 +389,7 @@
                         </div>
                         <!-- Java + Spring Boot -->
                         <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
-                            <span class="text-xs mono text-[#86868b]">BACKEND FRAMEWORKS</span>
+                            <span class="text-xs mono text-secondary">BACKEND FRAMEWORKS</span>
                             <div class="flex items-center gap-3 mt-4">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" class="tech-icon" alt="Spring Boot">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" class="tech-icon" alt=".NET">
@@ -341,7 +399,7 @@
 
                         <!-- Python -->
                         <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
-                            <span class="text-xs mono text-[#86868b]">SCRIPTING</span>
+                            <span class="text-xs mono text-secondary">SCRIPTING</span>
                             <div class="flex items-center gap-3 mt-4">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="tech-icon" alt="Python">
                             </div>
@@ -349,7 +407,7 @@
 
                         <!-- DBs -->
                         <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
-                            <span class="text-xs mono text-[#86868b]">DATABASE</span>
+                            <span class="text-xs mono text-secondary">DATABASE</span>
                             <div class="flex items-center gap-3 mt-4">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="tech-icon" alt="MySQL">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="tech-icon" alt="PostgreSQL">
@@ -363,7 +421,7 @@
 
                         <!-- Game Dev -->
                         <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
-                            <span class="text-xs mono text-[#86868b]">GAME ENGINES</span>
+                            <span class="text-xs mono text-secondary">GAME ENGINES</span>
                             <div class="flex items-center gap-3 mt-4">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" class="tech-icon" alt="Unity">
                             </div>
@@ -371,7 +429,7 @@
 
                         <!-- Tools -->
                         <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
-                            <span class="text-xs mono text-[#86868b]">HARDWARE & TOOLS</span>
+                            <span class="text-xs mono text-secondary">HARDWARE & TOOLS</span>
                             <div class="flex items-center gap-3 mt-4">
                                 <img 
                                 src="image/postman.png" 
@@ -417,7 +475,7 @@
                 <div class="project-card p-12 rounded-[2rem]">
                     <span class="text-xs mono top-project-badge">TOP PROJECT</span>
                     <h3 class="text-2xl font-semibold mt-4 mb-4">Airconditioning Company's Official Website with E-Commerce Platform</h3>
-                    <p class="text-[#86868b] text-lg mb-8 leading-relaxed">
+                    <p class="text-secondary text-lg mb-8 leading-relaxed">
                         A fully responsive, all-in-one digital platform that integrates a service showcase and smart appointment booking with a complete e-commerce storefront and centralized admin dashboard.
                     </p>
                     <div class="flex flex-wrap gap-4 mt-4">
@@ -430,9 +488,9 @@
                 </div>
 
                 <div class="project-card p-12 rounded-[2rem]">
-                    <span class="text-xs mono text-[#86868b]">PROJECT 2</span>
+                    <span class="text-xs mono text-secondary">PROJECT 2</span>
                     <h3 class="text-2xl font-semibold mt-4 mb-4">AC Controller Web Application</h3>
-                    <p class="text-[#86868b] text-lg mb-8 leading-relaxed">
+                    <p class="text-secondary text-lg mb-8 leading-relaxed">
                         A web application to control air conditioner temperature and power state, using an ESP32 microcontroller with C++ for hardware control, Spring Boot for backend services, and React.js for the frontend interface.
                     </p>
                     <div class="flex flex-wrap gap-4 mt-4">
@@ -447,10 +505,27 @@
                 </div>
 
                 <div class="project-card p-12 rounded-[2rem]">
-                    <span class="text-xs mono text-[#86868b] typing-badge" data-text="FREELANCE THESIS PROJECT"></span>
+                    <span class="text-xs mono text-secondary typing-badge" data-text="FREELANCE THESIS PROJECT"></span>
                     <h3 class="text-2xl font-semibold mt-4 mb-4">ExamiQ+</h3>
-                    <p class="text-[#86868b] text-lg mb-8 leading-relaxed">
+                    <p class="text-secondary text-lg mb-8 leading-relaxed">
                         Developed an early version of ExamiQ+, confidence-based mathematics examination system for 4th-year Computer Science students, implementing timed exam workflows, RESTful APIs, admin CRUD management, exam history tracking, and data-driven performance analytics.
+                    </p>
+                    <div class="flex gap-4">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="tech-icon" title="HTML5">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="tech-icon" title="CSS3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="tech-icon" title="JavaScript">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="tech-icon" title="PHP">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="tech-icon" title="MySQL">
+                    </div>
+                </div>
+
+                <div class="project-card p-12 rounded-[2rem]">
+                    <span class="text-xs mono internship-badge">INTERNSHIP PROJECT</span>
+                    <h3 class="text-2xl font-semibold mt-4 mb-4">Thomas Aquinas Institute of Learning Official Website</h3>
+                    <p class="text-secondary text-lg mb-8 leading-relaxed">
+                        Developed and deployed the official website of Thomas Aquinas Institute of Learning, a secure and scalable 
+                        PHP–MySQL web platform featuring a responsive public site and authenticated admin dashboard with dynamic content management, 
+                        announcements, academic programs, tuition handling, and structured data architecture built for maintainability and future scalability.
                     </p>
                     <div class="flex gap-4">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="tech-icon" title="HTML5">
@@ -466,14 +541,14 @@
         <!-- Contact Section -->
         <section id="contact" class="py-48 text-center reveal">
             <h2 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 italic">Available for impact.</h2>
-            <p class="text-xl text-[#86868b] mb-12 max-w-xl mx-auto">Currently seeking opportunities to solve complex engineering problems.</p>
+            <p class="text-xl text-secondary mb-12 max-w-xl mx-auto">Currently seeking opportunities to solve complex engineering problems.</p>
             <a href="mailto:hello@nathaniel.com" class="text-3xl font-medium hover:text-[#0066cc] transition-colors border-b-2 border-transparent hover:border-[#0066cc]">nathanielcoronacion3@gmail.com</a>
         </section>
 
     </main>
 
     <footer class="py-20 border-t border-gray-100">
-        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 text-[#86868b] text-xs mono uppercase tracking-widest">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 text-secondary text-xs mono uppercase tracking-widest">
             <div>&copy; 2026 NATHANIEL CORONACION</div>
             <div class="flex gap-8 text-black font-semibold">
                 <a href="#" class="hover:underline">LinkedIn</a>
@@ -528,6 +603,8 @@
                 themeToggle.textContent = "🌙";
             }
         });
+
+        
     </script>
 </body>
 </html>
