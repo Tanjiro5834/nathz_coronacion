@@ -3,748 +3,475 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nathaniel Coronacion — Software Engineer</title>
+    <title>NATHANIEL CORONACION // BACKEND_ENGINEER</title>
+    <!-- Modern Fonts: JetBrains Mono for that IDE feel, Inter for clean UI -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@400;500&display=swap');
-        
         :root {
-            --apple-gray: #f5f5f7;
-            --apple-blue: #0066cc;
-            --bg-color: #ffffff;
-            --text-color: #1d1d1f;
-            --secondary-text: #86868b;
-            --card-bg: #ffffff;
-            --border-color: #f2f2f2;
-            --nav-bg: rgba(255, 255, 255, 0.72);
-        }
-
-        body.dark {
-            --bg-color: #0f0f12;
-            --text-color: #f5f5f7;
-            --secondary-text: #a1a1aa;
-            --card-bg: #16161a;
-            --border-color: #2a2a30;
-            --nav-bg: rgba(20, 20, 24, 0.72);
+            --neon-purple: #bc13fe;
+            --neon-blue: #00d2ff;
+            --bg-black: #050505;
+            --terminal-gray: #121212;
+            --text-dim: #94a3b8;
+            --text-main: #e2e8f0;
         }
 
         body {
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: background 0.4s ease, color 0.4s ease;
+            background-color: var(--bg-black);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: var(--neon-purple) transparent;
         }
 
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Apple-style Glassmorphism */
-        .glass-nav {
-           background: var(--nav-bg);
-           backdrop-filter: saturate(180%) blur(20px);
-           -webkit-backdrop-filter: saturate(180%) blur(20px);
+        /* Scanning Line Effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 9999;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            opacity: 0.12;
         }
 
-        /* Subtle Fade In Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Hover Transitions */
-        .project-card, .stack-card {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-        }
-
-        .project-card:hover, .stack-card:hover {
-            border-color: #d2d2d7;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
-            transform: scale(1.01);
-        }
-
-        .btn-primary {
-            background-color: #1d1d1f;
-            color: #fff;
-            transition: background 0.3s;
-        }
-
-        .btn-primary:hover {
-            background-color: #424245;
-        }
-
-        .section-label {
-            letter-spacing: 0.1em;
-            font-size: 0.75rem;
-            color: var(--secondary-text);
-        }
-
-        /* Photo styling */
-        .profile-blob {
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            border: 3px solid #2d2e32;
-            background-image: url('/image/pfp.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-
-        @keyframes wave {
-            0% { transform: rotate( 0.0deg) }
-            10% { transform: rotate(14.0deg) }
-            20% { transform: rotate(-8.0deg) }
-            30% { transform: rotate(14.0deg) }
-            40% { transform: rotate(-4.0deg) }
-            50% { transform: rotate(10.0deg) }
-            60% { transform: rotate( 0.0deg) }
-            100% { transform: rotate( 0.0deg) }
-        }
-
-        .waving-hand {
-            display: inline-block;
-            animation: wave 2.5s infinite;
-            transform-origin: 70% 70%;
-        }
-
-        .skill-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.5rem 1.25rem;
-            background: #f5f5f7;
-            border-radius: 100px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #1d1d1f;
+        .neon-border {
+            border: 1px solid rgba(188, 19, 254, 0.3);
+            box-shadow: 0 0 15px rgba(188, 19, 254, 0.1);
             transition: all 0.3s ease;
         }
-        
-        .skill-badge:hover {
-            background: #1d1d1f;
-            color: #fff;
+
+        .neon-border:hover {
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 20px rgba(188, 19, 254, 0.3);
         }
 
-        .tech-icon {
-            width: 24px;
-            height: 24px;
-            transition: filter 0.3s ease;
-        }
-        .stack-card:hover .tech-icon {
-            filter: grayscale(0);
+        .neon-text-purple { text-shadow: 0 0 8px var(--neon-purple); }
+        .neon-text-blue { text-shadow: 0 0 8px var(--neon-blue); }
+
+        .terminal-window {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        @keyframes subtlePulse {
-            0%, 100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.6;
-                transform: scale(1.05);
-            }
-        }
-
-        .top-project-badge {
-            animation: subtlePulse 2s ease-in-out infinite;
-            color: #30cc00;
-        }
-
-        .top-project-badge {
-            position: relative;
-            display: inline-block;
-            overflow: hidden;
-        }
-
-        .top-project-badge::after {
+        .section-node::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
+            left: -20px;
+            top: 50%;
+            width: 12px;
+            height: 1px;
+            background: var(--neon-blue);
+        }
+
+        /* Profile HUD Style */
+        .profile-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin-bottom: 2rem;
+        }
+        .profile-img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(0, 204, 75, 0.4),
-                transparent
-            );
-            animation: shimmer 2.5s infinite;
+            object-fit: cover;
+            border-radius: 4px;
+            filter: grayscale(20%) contrast(110%);
+            border: 1px solid var(--neon-blue);
         }
-
-        @keyframes shimmer {
-            100% {
-                left: 100%;
-            }
-        }
-
-        .typing-badge::after {
-            content: '|';
-            margin-left: 4px;
-            animation: blinkCursor 1s infinite;
-        }
-
-        @keyframes blinkCursor {
-            0%, 50%, 100% { opacity: 1; }
-            25%, 75% { opacity: 0; }
-                }
-
-                @keyframes slideGlowIn {
-            0% {
-                opacity: 0;
-                transform: translateX(-20px);
-                letter-spacing: 0.3em;
-            }
-            60% {
-                opacity: 1;
-                transform: translateX(5px);
-            }
-            100% {
-                transform: translateX(0);
-                letter-spacing: 0.1em;
-            }
-        }
-
-        .internship-badge {
-            position: relative;
-            display: inline-block;
-            animation: slideGlowIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-            color: #0066cc;
-        }
-
-        .internship-badge::after {
-            content: '';
+        .profile-hud {
             position: absolute;
-            left: 0;
-            bottom: -4px;
-            width: 0%;
-            height: 2px;
-            background: linear-gradient(90deg, #0066cc, transparent);
-            transition: width 0.6s ease;
+            top: -5px; left: -5px; right: -5px; bottom: -5px;
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            pointer-events: none;
+            animation: pulse-hud 4s infinite linear;
+        }
+        @keyframes pulse-hud {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.03); }
         }
 
-        .internship-badge:hover::after {
-            width: 100%;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--neon-purple); border-radius: 10px; }
+
+        .grid-bg {
+            background-image: linear-gradient(rgba(188, 19, 254, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(188, 19, 254, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
         }
 
-        .text-primary {
-            color: var(--text-color);
-        }
-
-        .text-secondary {
-            color: var(--secondary-text);
-        }
-
-        .hover-primary:hover {
-            color: var(--text-color);
-        }
-
-        @keyframes thesisShimmer {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
-        }
-
-        .thesis-badge {
-            position: relative;
+        .cursor-blink {
             display: inline-block;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            background: linear-gradient(
-                90deg,
-                var(--secondary-text),
-                var(--text-color),
-                var(--secondary-text)
-            );
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: thesisShimmer 4s linear infinite;
+            width: 8px;
+            height: 1.2em;
+            background: var(--neon-blue);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+            margin-left: 4px;
         }
 
-        .project-card {
-            cursor: pointer;
-            overflow: hidden;
-        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        .project-details {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                        opacity 0.4s ease,
-                        margin-top 0.4s ease;
+        .terminal-log {
+            font-size: 0.75rem;
+            color: #4ade80;
+            opacity: 0.7;
         }
-
-        .project-card.expanded .project-details {
-            max-height: 1000px; /* enough for content */
-            opacity: 1;
-            margin-top: 1.5rem;
+        
+        .skill-tag {
+            background: rgba(188, 19, 254, 0.05);
+            border: 1px solid rgba(188, 19, 254, 0.2);
+            color: var(--text-dim);
+            transition: all 0.2s ease;
         }
-
-        .project-card.expanded {
-            transform: scale(1.02);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.08);
-        }
-
-        @media (max-width: 768px) {
-            .project-card.expanded {
-                transform: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            p {
-                text-align: left !important;
-            }
+        .skill-tag:hover {
+            background: rgba(188, 19, 254, 0.15);
+            border-color: var(--neon-purple);
+            color: white;
         }
     </style>
 </head>
-<body class="selection:bg-blue-100 selection:text-blue-900">
+<body class="grid-bg min-h-screen">
 
-    <!-- Global Navigation -->
-    <nav class="fixed top-0 w-full glass-nav z-50 border-b border-gray-200/40">
-        <div class="max-w-5xl mx-auto px-6 h-12 flex items-center justify-between">
-            <a href="#" class="font-semibold text-lg tracking-tight">
-                Nathaniel Coronacion
-            </a>
-
-            <div class="hidden md:flex items-center space-x-8 text-xs font-normal text-secondary">
-                <a href="#experience" class="hover-primary transition-colors">Experience</a>
-                <a href="#stack" class="hover-primary transition-colors">Stack</a>
-                <a href="#projects" class="hover-primary transition-colors">Projects</a>
-                <a href="#contact" class="hover-primary transition-colors">Contact</a>
-
-                <!-- Theme Toggle -->
-                <button id="themeToggle"
-                    class="ml-4 text-xs px-3 py-1 border rounded-full hover:opacity-70 transition">
-                    🌙
-                </button>
-            </div>
+    <!-- HUD / Navigation Overlay -->
+    <header class="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center pointer-events-none">
+        <div class="pointer-events-auto">
+            <h1 class="mono font-bold text-xl tracking-tighter neon-text-purple">
+                NC_SYS.v2.5 <span class="text-xs font-normal text-slate-500">[STATUS: ACTIVE]</span>
+            </h1>
         </div>
-    </nav>
+        <nav class="hidden md:flex gap-8 pointer-events-auto mono text-xs uppercase tracking-widest text-slate-400">
+            <a href="#about" class="hover:text-[var(--neon-blue)] transition-colors">01_Identity</a>
+            <a href="#experience" class="hover:text-[var(--neon-blue)] transition-colors">02_Logs</a>
+            <a href="#stack" class="hover:text-[var(--neon-blue)] transition-colors">03_Modules</a>
+            <a href="#projects" class="hover:text-[var(--neon-blue)] transition-colors">04_Builds</a>
+        </nav>
+    </header>
 
-    <main class="w-full max-w-5xl mx-auto px-4 sm:px-6">
+    <main class="max-w-7xl mx-auto px-6 pt-32 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12">
         
-        <!-- Hero Section -->
-        <header class="min-h-[90vh] md:min-h-screen flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 pt-20 md:pt-24 mb-16 md:mb-24 reveal">
-            <div class="flex-1 order-2 md:order-1 text-left">
-                <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">Software Engineer</h1>
-                <p class="text-xl text-secondary mb-6 md:mb-8 max-w-lg leading-relaxed mb-8">
-                    Hi, I'm <span class="text-primary font-semibold">Nathaniel Coronacion</span>. A passionate Software Engineer building high-performance systems and intuitive digital experiences. Based in Cavite, PH. 📍
+        <!-- Left Column: Identity & Terminal -->
+        <aside class="lg:col-span-4 lg:sticky lg:top-32 h-fit space-y-8">
+            <!-- Profile Section -->
+            <div class="flex flex-col items-start">
+                <div class="profile-container">
+                    <!-- Updated with user image from context -->
+                    <img src="/image/pfp.jpg" alt="Nathaniel Coronacion" class="profile-img" onerror="this.src='https://via.placeholder.com/256/050505/00d2ff?text=NC_USER'">
+                    <div class="profile-hud"></div>
+                    <div class="absolute -bottom-2 -right-2 bg-blue-500 text-[8px] mono px-1 py-0.5">BIO_AUTH</div>
+                </div>
+                <div class="mono">
+                    <h2 class="text-white font-bold text-lg uppercase">Nathaniel Coronacion</h2>
+                    <p class="text-blue-400 text-xs tracking-widest mb-4">SOFTWARE ENGINEER</p>
+                </div>
+            </div>
+
+            <!-- Terminal Window -->
+            <div class="terminal-window rounded-lg overflow-hidden border border-purple-500/20 shadow-2xl">
+                <div class="bg-zinc-900 px-4 py-2 flex items-center justify-between border-b border-white/5">
+                    <div class="flex gap-1.5">
+                        <div class="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/50"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
+                    </div>
+                    <span class="mono text-[10px] text-zinc-500 uppercase">bash — kernel_shell</span>
+                </div>
+                <div id="terminal-content" class="p-6 mono text-sm h-[320px] overflow-y-auto space-y-2">
+                    <p class="text-zinc-500">Initializing socket connection...</p>
+                    <p class="text-emerald-400">Handshake complete. Terminal ready.</p>
+                    <p class="text-zinc-300">$ fetch --profile info</p>
+                    <div class="pl-4 border-l border-zinc-800 my-2 space-y-1 text-xs text-zinc-400">
+                        <p><span class="text-zinc-500">NAME:</span> nathaniel_coronacion</p>
+                        <p><span class="text-zinc-500">ROLE:</span> backend_dev</p>
+                        <p><span class="text-zinc-500">BASE:</span> cavite.ph</p>
+                        <p><span class="text-zinc-500">EXP:</span> 2_years_active</p>
+                    </div>
+                    <div id="dynamic-logs" class="space-y-1"></div>
+                    <p class="text-zinc-300 mt-4">$ <span class="cursor-blink"></span></p>
+                </div>
+            </div>
+
+            <div class="p-4 rounded border border-white/5 bg-black/40">
+                <h3 class="mono text-[10px] text-zinc-500 mb-2 uppercase">Core Directive</h3>
+                <p class="text-sm leading-relaxed text-slate-400">
+                    Designing and engineering high-performance digital systems. Bridging user experience with robust backend architecture.
                 </p>
-                <div class="flex items-center gap-6 mt-4 md:mt-6">
-                    <a href="#" class="hover:scale-110 transition-transform">
-                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    </a>
-                    <a href="#" class="hover:scale-110 transition-transform">
-                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    </a>
-                </div>
             </div>
-            <div class="flex-shrink-0 order-1 md:order-2">
-                <div class="flex-shrink-0 order-1 md:order-2">
-                    <div class="relative w-64 h-64 md:w-80 md:h-80 
-                                rounded-full overflow-hidden 
-                                shadow-2xl 
-                                hover:scale-105 
-                                transition-transform duration-500">
+        </aside>
 
-                        <img 
-                            src="image/pfp.jpg" 
-                            alt="Nathaniel Coronacion"
-                            class="w-full h-full object-cover"
-                        />
+        <!-- Right Column: Content -->
+        <div class="lg:col-span-8 space-y-32">
+            
+            <!-- Hero / Intro -->
+            <section id="about" class="space-y-8">
+                <div class="space-y-4">
+                    <div class="inline-block px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/5 text-[10px] mono text-blue-400 uppercase tracking-widest">
+                        System User: Administrator
                     </div>
+                    <h2 class="text-6xl md:text-8xl font-black tracking-tighter leading-none">
+                        SOFTWARE <br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-400 to-emerald-400 italic">ENGINEER</span>
+                    </h2>
                 </div>
-            </div>
-        </header>
+                <p class="text-xl text-slate-400 max-w-2xl leading-relaxed">
+                    I am <span class="text-white font-semibold">Nathaniel Coronacion</span>, a Software Engineer dedicated to crafting clean, scalable, and efficient code. I specialize in <span class="text-white">Fullstack Development</span> with a heavy focus on robust backend logic.
+                </p>
+            </section>
 
-        <!-- Experience Section -->
-        <section id="experience" class="py-32 border-t border-gray-100 reveal">
-            <span class="section-label uppercase font-semibold">Experience</span>
-            <div class="mt-16 space-y-24">
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                    <div class="md:col-span-4">
-                        <p class="text-xl font-medium">Software Engineer Intern</p>
-                        <p class="text-primary mt-1">The Thomas Aquinas Institute of Learning, Inc.</p>
-                        <p class="text-sm mono text-secondary mt-4">February 2026 — Present</p>
-                    </div>
-                    <div class="md:col-span-8 text-primary text-lg leading-relaxed text-justify">
-                        Leading the development of the school's official website in collaboration with a co-developer.
-                        Responsible for system architecture, database design, and backend development. 
-                        Designing and implementing a relational database schemas with proper foreign key relationships Designing and coding RESTful APIs.
-                        Implementing CRUD operations for users, announcements, pre-registration form, and content management. 
-                        Collaborated using Git for version control. 
-                    </div>
+            <!-- Experience -->
+            <section id="experience" class="space-y-12">
+                <div class="flex items-center gap-4">
+                    <h3 class="mono text-2xl font-bold uppercase tracking-widest text-white">02. Logs_Experience</h3>
+                    <div class="h-px flex-1 bg-gradient-to-r from-purple-500/50 to-transparent"></div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                    <div class="md:col-span-4">
-                        <p class="text-xl font-medium">Software Engineer</p>
-                        <p class="text-secondary mt-1">Coronacion Refrigeration and Airconditioning Services</p>
-                        <p class="text-sm mono text-secondary mt-4">June 2025 — Present</p>
+                <div class="space-y-16 border-l border-zinc-800 ml-4">
+                    <!-- tail -->
+                    <div class="relative pl-10 section-node">
+                        <span class="mono text-xs text-purple-400 mb-1 block">FEBRUARY — APRIL 2026</span>
+                        <h4 class="text-2xl font-bold text-white uppercase tracking-tight">Backend Software Engineer</h4>
+                        <p class="text-sm text-blue-400 mono mb-4">The Thomas Aquinas Institute of Learning, Inc.</p>
+                        <ul class="text-slate-400 max-w-xl leading-relaxed list-disc list-outside space-y-2 ml-4">
+                            <li>Designed high-fidelity UI components for payment processing systems.</li>
+                            <li>Implemented state management patterns for complex financial workflows.</li>
+                            <li>Optimized web performance and cross-browser compatibility.</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-6">
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Git</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Tailwind</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Node.js</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">HTML5</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">CSS3</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">JavaScript</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">PHP</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Express.js</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Electron</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">MySQL</span>
+                        </div>
                     </div>
-                    <div class="md:col-span-8 text-primary text-lg leading-relaxed text-justify">
-                        Designed and built project-based software solutions to automate service operations, 
-                        reduce manual workflows, and centralize business data, 
-                        including customer-facing platforms and internal tools for service booking, 
-                        job tracking, payroll and quotation automation, email notifications, and an IoT-based AC control system.
+
+
+                    <!-- cras -->
+                    <div class="relative pl-10 section-node">
+                        <span class="mono text-xs text-purple-400 mb-1 block">June 2035 - Present</span>
+                        <h4 class="text-2xl font-bold text-white uppercase tracking-tight">Software Engineer</h4>
+                        <p class="text-sm text-blue-400 mono mb-4">Coronacion Refrigeration and Airconditioning Services</p>
+                        <ul class="text-slate-400 max-w-xl leading-relaxed list-disc list-outside space-y-2 ml-4">
+                            <li>Developed a full stack business platform for an Airconditioning & Refrigeration / HVAC company serving institutional clients (De La Salle University, UP Diliman, Megaworld Corporation, Cavite State University, etc.)</li>
+                            <li>Developed an e-commerce storefront with cart management, appliance ordering, and real-time service order tracking</li>
+                            <li>Implemented a capacity-limited appointment booking system optimizing scheduling and technician allocation</li>
+                            <li>Built internal tools for payroll processing, quotation automation, technician/service job management, and customer list management</li>
+                            <li>Digitized manual operations, reducing administrative overhead and enabling the business to scale client capacity</li>
+                            <li>Drove direct online customer acquisition — platform recorded 5 bookings and multiple appliance sales within the first month of launch</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-6">
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Java</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">PHP</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">MySQL</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Git</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">HTML5</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">CSS3</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">JavaScript</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">React.js</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">SQLite</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Electron</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Spring Boot</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Spring Framework</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Spring MVC</span>
+                        </div>
+                    </div>
+
+                    <!-- freelance -->
+                    <div class="relative pl-10 section-node">
+                        <span class="mono text-xs text-purple-400 mb-1 block">May 2023 — December 2025</span>
+                        <h4 class="text-2xl font-bold text-white uppercase tracking-tight">Freelance Full Stack Developer</h4>
+                        <p class="text-sm text-blue-400 mono mb-4">Aide System // Fullstack</p>
+                        <ul class="text-slate-400 max-w-xl leading-relaxed list-disc list-outside space-y-2 ml-4">
+                            <li>Completed commissioned thesis projects for college students covering web and game development</li>
+                            <li>Delivered fully functional systems meeting client specifications and academic requirements</li>
+                            <li>Trusted by peers for technical execution across multiple independent projects</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-6">
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Java</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Node.js</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Vue.js</span>
+                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">MySQL</span>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                    <div class="md:col-span-4">
-                        <p class="text-xl font-medium">Full Stack Web Developer</p>
-                        <p class="text-secondary mt-1">Freelance</p>
-                        <p class="text-sm mono text-secondary mt-4">October 2025 - December 2025</p>
-                    </div>
-                    <div class="md:col-span-8 text-primary text-lg leading-relaxed text-justify">
-                        Developed an early version of ExamiQ+, a confidence-based mathematics examination platform designed for 
-                        4th-year Computer Science students. The system supports timed assessment workflows, structured RESTful API 
-                        integration, and administrative CRUD management for exam content and users. It also implements exam history 
-                        tracking and data-driven performance analytics to evaluate student accuracy and confidence patterns, 
-                        enabling more informed academic insights.
-                    </div>
+            <!-- Tech Stack & Skills -->
+            <section id="stack" class="space-y-12">
+                <div class="flex items-center gap-4">
+                    <h3 class="mono text-2xl font-bold uppercase tracking-widest text-white">03. System_Modules</h3>
+                    <div class="h-px flex-1 bg-gradient-to-r from-blue-500/50 to-transparent"></div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Tech Stack & Skills Section -->
-        <section id="stack" class="py-32 border-t border-gray-100 reveal">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
-                <!-- Tech Stack -->
-                <div>
-                    <span class="section-label uppercase font-semibold">Toolbox</span>
-                    <h2 class="text-4xl font-semibold mt-4 mb-10">Tech Stack</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
-                            <span class="text-xs mono text-secondary">PROGRAMMING LANGUAGES</span>
-                            <div class="flex items-center gap-3 mt-4">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" 
-                                    class="tech-icon" 
-                                    alt="Java" 
-                                    title="Java" 
-                                    loading="lazy">
-
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" 
-                                    class="tech-icon" 
-                                    alt="C#" 
-                                    title="C#" 
-                                    loading="lazy">
-
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
-                                    class="tech-icon" 
-                                    alt="JavaScript" 
-                                    title="JavaScript" 
-                                    loading="lazy">
-
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="tech-icon" alt="C">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="tech-icon" alt="C++">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Stack Categories -->
+                    <div class="space-y-8">
+                        <div>
+                            <h5 class="mono text-xs text-zinc-500 uppercase mb-4 tracking-widest">Backend Systems</h5>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="p-4 rounded border border-white/5 bg-zinc-900/40">
+                                    <div class="text-lg font-bold">Java / PHP / Node.js / .NET</div>
+                                    <div class="text-[10px] mono text-blue-400">Backend Language</div>
+                                </div>
+                                <div class="p-4 rounded border border-white/5 bg-zinc-900/40">
+                                    <div class="text-lg font-bold">Unity</div>
+                                    <div class="text-[10px] mono text-purple-400">Game Engines</div>
+                                </div>
                             </div>
                         </div>
-                        <!-- Java + Spring Boot -->
-                        <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
-                            <span class="text-xs mono text-secondary">BACKEND FRAMEWORKS</span>
-                            <div class="flex items-center gap-3 mt-4">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" class="tech-icon" alt="Spring Boot">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" class="tech-icon" alt=".NET">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="tech-icon" alt="Node.js">
-                            </div>
-                        </div>
-
-                        <!-- DBs -->
-                        <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
-                            <span class="text-xs mono text-secondary">DATABASE</span>
-                            <div class="flex items-center gap-3 mt-4">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="tech-icon" alt="MySQL">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="tech-icon" alt="PostgreSQL">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" 
-                                class="tech-icon" 
-                                alt="SQLite" 
-                                title="SQLite" 
-                                loading="lazy">
-                            </div>
-                        </div>
-
-                        <!-- Game Dev -->
-                        <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
-                            <span class="text-xs mono text-secondary">GAME ENGINES</span>
-                            <div class="flex items-center gap-3 mt-4">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" class="tech-icon" alt="Unity">
-                            </div>
-                        </div>
-
-                        <!-- Tools -->
-                        <div class="stack-card p-6 rounded-2xl flex flex-col justify-between min-h-[140px]">
-                            <span class="text-xs mono text-secondary">HARDWARE & TOOLS</span>
-                            <div class="flex items-center gap-3 mt-4">
-                                <img 
-                                src="image/postman.png" 
-                                class="tech-icon" 
-                                alt="Git logo" 
-                                loading="lazy"
-                                >
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" class="tech-icon" alt="Arduino">
-                                <img src="image/social.png" class="tech-icon" alt="Git">
+                        <div>
+                            <h5 class="mono text-xs text-zinc-500 uppercase mb-4 tracking-widest">Frontend Interfaces</h5>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="p-4 rounded border border-white/5 bg-zinc-900/40">
+                                    <div class="text-lg font-bold">React / Vue</div>
+                                    <div class="text-[10px] mono text-emerald-400">Frameworks</div>
+                                </div>
+                                <div class="p-4 rounded border border-white/5 bg-zinc-900/40">
+                                    <div class="text-lg font-bold">Tailwind / Bootstrap</div>
+                                    <div class="text-[10px] mono text-orange-400">Styling</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Skills -->
-                <div>
-                    <span class="section-label uppercase font-semibold">Expertise</span>
-                    <h2 class="text-4xl font-semibold mt-4 mb-10">Skills</h2>
-                    <div class="flex flex-wrap gap-3">
-                        <div class="skill-badge">Software Engineering</div>
-                        <div class="skill-badge">Backend Web Development</div>
-                        <div class="skill-badge">Game Development</div>
-                        <div class="skill-badge">System Architecture</div>
-                        <div class="skill-badge">Embedded Systems</div>
-                        <div class="skill-badge">API Design</div>
-                        <div class="skill-badge">Unit Testing</div>
-                        <div class="skill-badge">Database Design</div>
+                    <!-- Skills Matrix -->
+                    <div class="p-8 border border-white/5 bg-zinc-900/20 rounded-lg">
+                        <h5 class="mono text-xs text-zinc-500 uppercase mb-6 tracking-widest flex items-center gap-2">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Core_Skills
+                        </h5>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">RESTful APIs</span>
+                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">MySQL / PostgreSQL</span>
+                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Software Engineering</span>
+                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Git / Version Control</span>
+                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Docker</span>
+                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Redis</span>
+                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Game Development</span>
+                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Unit Testing</span>
+                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Problem Solving</span>
+                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Backend Development</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Projects Grid -->
-        <section id="projects" class="py-32 border-t border-gray-100 reveal">
-            <div class="flex items-end justify-between mb-16">
-                <div>
-                    <span class="section-label uppercase font-semibold">Selected Work</span>
-                    <h2 class="text-4xl font-semibold mt-4">Featured Projects</h2>
+            <!-- Projects -->
+            <section id="projects" class="space-y-12 pb-32">
+                <div class="flex items-center gap-4">
+                    <h3 class="mono text-2xl font-bold uppercase tracking-widest text-white">04. Build_Manifest</h3>
+                    <div class="h-px flex-1 bg-gradient-to-r from-emerald-500/50 to-transparent"></div>
                 </div>
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                <div class="project-card p-6 md:p-12 rounded-3xl">
-                    <span class="text-xs mono top-project-badge">TOP PROJECT</span>
-                    <h3 class="text-2xl font-semibold mt-4 mb-4">Airconditioning Company's Official Website with E-Commerce Platform</h3>
-                    <p class="text-secondary text-base md:text-lg mb-6 md:mb-8 leading-relaxed text-justify">
-                        A fully responsive, all-in-one digital platform that integrates a service showcase and smart appointment booking with a complete e-commerce storefront and centralized admin dashboard.
-                    </p>
-                    <div class="flex flex-wrap gap-4 mt-4">
-                        <div class="mono text-xs md:text-sm text-secondary mt-3 md:mt-4">
-                            HTML5 · CSS3 · JavaScript · PHP · MySQL · Project Management
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="neon-border bg-black/60 p-8 group relative overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-2xl font-black italic uppercase mb-2 tracking-tighter">FINTECH_WALLET_V1</h4>
+                            <p class="text-sm text-slate-400 mb-8 leading-relaxed">
+                                A secure payment gateway interface and wallet management system built during tenure at Konek 2 Pay.
+                            </p>
+                        </div>
+                        <div class="flex justify-between items-end border-t border-white/5 pt-4">
+                            <div class="flex gap-3 mono text-[10px] text-zinc-500">
+                                <span>REACT</span>
+                                <span>REDUX</span>
+                            </div>
+                            <span class="text-[10px] mono text-blue-400">COMPLETED</span>
                         </div>
                     </div>
 
-                    <div class="project-details text-secondary text-sm leading-relaxed mono">
-                        <p><span class="text-primary font-medium">Why PHP & MySQL:</span> Selected for rapid backend development, relational data handling, and cost-effective deployment for a small-to-medium business.</p>
-                        <p class="mt-3"><span class="text-primary font-medium">Architecture:</span> Implemented modular CRUD operations for products, bookings, users, and transactions using structured MVC principles.</p>
-                        <p class="mt-3"><span class="text-primary font-medium">E-Commerce Logic:</span> Designed cart state management, order tracking workflows, and admin-side content control to centralize operations.</p>
-                        <p class="mt-3"><span class="text-primary font-medium">Optimization:</span> Reduced redundant database queries and structured indexing for faster product retrieval and booking searches.</p>
-                    </div>
-                </div>
-
-                <div class="project-card p-6 md:p-12 rounded-3xl">
-                    <span class="text-xs mono text-secondary">PROJECT 2</span>
-                    <h3 class="text-2xl font-semibold mt-4 mb-4">AC Controller Web Application</h3>
-                    <p class="text-secondary text-base md:text-lg mb-6 md:mb-8 leading-relaxed text-justify">
-                        A web application to control air conditioner temperature and power state, 
-                        using an ESP32 microcontroller with C++ for hardware control, Spring Boot 
-                        for backend services, and React.js for the frontend interface.
-                    </p>
-                    <div class="flex flex-wrap gap-4 mt-4">
-                        <div class="mono text-xs md:text-sm text-secondary mt-3 md:mt-4">
-                            Arduino · C++ · Spring Boot · MySQL · React.js · Postman · ESP32 · Embedded Software Engineering
+                    <div class="neon-border bg-black/60 p-8 group relative overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-2xl font-black italic uppercase mb-2 tracking-tighter">LMS_CORE_ARCH</h4>
+                            <p class="text-sm text-slate-400 mb-8 leading-relaxed">
+                                Backend infrastructure for a learning management system featuring complex role-based access control.
+                            </p>
+                        </div>
+                        <div class="flex justify-between items-end border-t border-white/5 pt-4">
+                            <div class="flex gap-3 mono text-[10px] text-zinc-500">
+                                <span>JAVA</span>
+                                <span>MYSQL</span>
+                            </div>
+                            <span class="text-[10px] mono text-purple-400">IN_PROG</span>
                         </div>
                     </div>
-
-                    <div class="project-details text-secondary text-sm leading-relaxed mono">
-                        <p><span class="text-primary font-medium">Why ESP32 + C++:</span> Chosen for low-level hardware control, real-time device communication, and efficient memory management.</p>
-                        <p class="mt-3"><span class="text-primary font-medium">Backend Design:</span> Built RESTful APIs using Spring Boot to handle device state synchronization and command routing.</p>
-                        <p class="mt-3"><span class="text-primary font-medium">Frontend Logic:</span> Implemented reactive UI updates using API polling and asynchronous requests for real-time control feedback.</p>
-                        <p class="mt-3"><span class="text-primary font-medium">System Flow:</span> Structured communication pipeline from user → backend → microcontroller → device state → response loop.</p>
-                    </div>
                 </div>
-
-                
-                <div class="project-card p-6 md:p-12 rounded-3xl">
-                    <span class="text-xs mono thesis-badge">
-                        THESIS PROJECT
-                    </span>
-                    <h3 class="text-2xl font-semibold mt-4 mb-4">Mitolohiya</h3>
-                    <p class="text-secondary text-base md:text-lg mb-6 md:mb-8 leading-relaxed text-justify">
-                        Mitolohiya is a turn-based card game developed with structured stat systems and role-based combat mechanics. The game implements dynamic stat allocation, 
-                        staged progression logic, unlockable character pipelines, and AI-driven enemy encounters based on Filipino mythological entities such as aswangs and 
-                        manananggals. Designed to emphasize strategic resource management, team synergy, and scalable progression architecture.
-                    </p>
-                    <div class="flex gap-4">
-                        <div class="mono text-xs md:text-sm text-secondary mt-3 md:mt-4">
-                            C# · Unity Engine · Game Development · Object-Oriented Programming · Project Management
-                        </div>
-                    </div>
-
-                    <div class="project-details text-secondary text-sm leading-relaxed mono text-justify">
-                        <p><span class="text-primary font-medium">Why Unity:</span> Chosen for its built-in physics system, scene management, and rapid prototyping capabilities.</p>
-                        <p class="mt-3">
-                            <span class="text-primary font-medium">Core Contributions:</span> Focused on game programming, implementing combat logic, stat progression systems, enemy AI behavior, and turn-based mechanics using object-oriented design principles.
-                        </p>
-                        <p class="mt-3"><span class="text-primary font-medium">Architecture:</span> Implemented object-oriented character models with stat scaling logic and modular combat handlers.</p>
-                        <p class="mt-3"><span class="text-primary font-medium">Design Focus:</span> Balanced stat allocation system to ensure strategic depth without overpowering single builds.</p>
-                    </div>
-                </div>
-
-                <div class="project-card p-6 md:p-12 rounded-3xl">
-                    <span class="text-xs mono text-secondary">PROJECT 4</span>
-                    <h3 class="text-2xl font-semibold mt-4 mb-4">VYBE</h3>
-                    <p class="text-secondary text-base md:text-lg mb-6 md:mb-8 leading-relaxed text-justify">
-                        Developed VYBE, a music streaming and artist platform featuring secure authentication, real-time audio playback, and dynamic track management.
-                        Built with a performance-focused and scalable backend system to support smooth streaming and future expansion.
-                    </p>
-                    <div class="flex gap-4">
-                        <div class="mono text-xs md:text-sm text-secondary mt-3 md:mt-4">
-                            HTML · CSS · JavaScript · Java · Spring Boot · MySQL · Maven
-                        </div>
-                    </div>
-
-                    <div class="project-details text-secondary text-sm leading-relaxed mono text-justify">
-                        <p><span class="text-primary font-medium">Why Spring Boot:</span> Selected for secure authentication handling, modular service layers, and scalable REST API architecture.</p>
-                        <p class="mt-3"><span class="text-primary font-medium">Streaming Logic:</span> Implemented optimized media retrieval and structured track metadata handling to ensure smooth playback.</p>
-                        <p class="mt-3"><span class="text-primary font-medium">Database Design:</span> Designed normalized relational schemas for users, artists, tracks, and playlists.</p>
-                        <p class="mt-3"><span class="text-primary font-medium">Performance Focus:</span> Structured backend services to reduce response latency and support scalable media expansion.</p>
-                    </div>
-                </div>
-
-                <div class="project-card p-6 md:p-12 rounded-3xl">
-                    <span class="text-xs mono text-secondary typing-badge" data-text="FREELANCE THESIS PROJECT"></span>
-                    <h3 class="text-2xl font-semibold mt-4 mb-4">ExamiQ+</h3>
-                    <p class="text-secondary text-base md:text-lg mb-6 md:mb-8 leading-relaxed text-justify">
-                        Developed an early version of ExamiQ+, confidence-based mathematics examination system for 4th-year Computer Science students, implementing timed exam workflows, RESTful APIs, admin CRUD management, exam history tracking, and data-driven performance analytics.
-                    </p>
-                    <div class="flex gap-4">
-                        <div class="mono text-xs md:text-sm text-secondary mt-3 md:mt-4">
-                            HTML5 · CSS3 · JavaScript · PHP · MySQL · Prototyping
-                        </div>
-                    </div>
-
-                    <div class="project-details text-secondary text-sm leading-relaxed mono text-justify">
-                        <p><span class="text-primary font-medium">Why PHP Stack:</span> Chosen for rapid prototyping and structured server-side validation for timed examination workflows.</p>
-                        <p class="mt-3"><span class="text-primary font-medium">Core Logic:</span> Implemented timer-bound exam sessions with controlled submission states and attempt tracking.</p>
-                        <p class="mt-3"><span class="text-primary font-medium">Data Modeling:</span> Designed relational tables for students, exams, questions, responses, and performance analytics.</p>
-                        <p class="mt-3"><span class="text-primary font-medium">Analytics Layer:</span> Generated performance insights using aggregated scoring and confidence-weighted evaluation logic.</p>
-                    </div>
-                </div>
-
-                <div class="project-card p-6 md:p-12 rounded-3xl">
-                    <span class="text-xs mono internship-badge">INTERNSHIP PROJECT</span>
-                    <h3 class="text-2xl font-semibold mt-4 mb-4">Thomas Aquinas Institute of Learning Official Website</h3>
-                    <p class="text-secondary text-base md:text-lg mb-6 md:mb-8 leading-relaxed text-justify">
-                        Designed and implemented the backend architecture of the Thomas Aquinas Institute of Learning web platform, 
-                        building a secure PHP application with normalized MySQL schema design, authentication handling, modular CRUD services, 
-                        and database-driven content management engineered for scalability, maintainability, and data consistency.
-                    </p>
-                    <div class="flex gap-4">
-                        <div class="mono text-xs md:text-sm text-secondary mt-3 md:mt-4">
-                            PHP · MySQL · Object-Oriented Programming · Model-View-Controller · Software Engineering
-                        </div>
-                    </div>
-
-                    <div class="project-details text-secondary text-sm leading-relaxed mono text-justify">
-                        <p><span class="text-primary font-medium">Backend Architecture:</span> Designed normalized relational database schemas with foreign key constraints to maintain data integrity.</p>
-                        <p class="mt-3"><span class="text-primary font-medium">Authentication:</span> Implemented secure login handling with password hashing and role-based content access.</p>
-                        <p class="mt-3"><span class="text-primary font-medium">Content Management:</span> Built modular CRUD services for announcements, tuition data, and academic programs.</p>
-                        <p class="mt-3"><span class="text-primary font-medium">Scalability Consideration:</span> Structured codebase using MVC principles to support future API expansion and feature growth.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-24 md:py-48 text-center reveal">
-            <h2 class="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 md:mb-8 italic">Available for impact.</h2>
-            <p class="text-base sm:text-lg md:text-xl text-secondary mb-8 md:mb-12 max-w-xl mx-auto">Currently seeking opportunities to solve complex engineering problems.</p>
-            <a href="mailto:nathanielcoronacion3@gmail.com"
-            class="text-lg sm:text-2xl md:text-3xl font-medium break-all hover:text-[#0066cc] transition-colors border-b-2 border-transparent hover:border-[#0066cc]">
-            nathanielcoronacion3@gmail.com
-            </a>
-        </section>
-
+            </section>
+        </div>
     </main>
 
-    <footer class="py-20 border-t border-gray-100">
-        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 text-secondary text-xs mono uppercase tracking-widest">
-            <div>&copy; 2026 NATHANIEL CORONACION</div>
-            <div class="flex gap-8 text-black font-semibold">
-                <a href="#" class="hover:underline">LinkedIn</a>
-                <a href="#" class="hover:underline">GitHub</a>
-            </div>
-            <div>Built with Precision</div>
+    <!-- Footer Stats -->
+    <footer class="fixed bottom-0 left-0 w-full bg-black/80 backdrop-blur-md border-t border-white/5 p-2 px-6 flex justify-between items-center mono text-[10px] text-zinc-500 z-50">
+        <div class="flex gap-6">
+            <span class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div> SYS_UPTIME: 99.9%</span>
+            <span class="hidden md:inline">KERNEL: 6.2.0-stable</span>
+        </div>
+        <div>
+            BUILD: 0xNATH_24 | &copy; 2024 NC_ENGINEERING
         </div>
     </footer>
 
     <script>
-        const observerOptions = { threshold: 0.1 };
+        // Terminal Dynamic Logs Simulation
+        const logs = [
+            "Initializing Java Runtime...",
+            "Connecting to MySQL Cluster...",
+            "Tracing Node.js event loop...",
+            "VUE_COMPILER: Success",
+            "API /v1/auth: 200 OK",
+            "Establishing handshake...",
+            "Resource alloc: Optimized",
+            "Deploying to staging...",
+            "Docker container: Up",
+            "Kernel check: Normal"
+        ];
+
+        const logContainer = document.getElementById('dynamic-logs');
+        
+        function addLog() {
+            const p = document.createElement('p');
+            p.className = 'terminal-log';
+            p.textContent = `[${new Date().toLocaleTimeString('en-GB', { hour12: false })}] ${logs[Math.floor(Math.random() * logs.length)]}`;
+            logContainer.appendChild(p);
+            
+            if (logContainer.children.length > 8) {
+                logContainer.removeChild(logContainer.firstChild);
+            }
+            
+            const terminal = document.getElementById('terminal-content');
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        setInterval(addLog, 2500);
+
+        // Intersection Observer for section revealing
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const typingEl = document.querySelector(".typing-badge");
-            const text = typingEl.getAttribute("data-text");
-            let index = 0;
-
-            function typeEffect() {
-                if (index < text.length) {
-                    typingEl.textContent += text.charAt(index);
-                    index++;
-                    setTimeout(typeEffect, 50); // typing speed
-                }
-            }
-
-            typeEffect();
-        });
-
-        const themeToggle = document.getElementById("themeToggle");
-        if (localStorage.getItem("theme") === "dark") {
-            document.body.classList.add("dark");
-            themeToggle.textContent = "☀️";
-        }
-
-        themeToggle.addEventListener("click", () => {
-            document.body.classList.toggle("dark");
-
-            if (document.body.classList.contains("dark")) {
-                localStorage.setItem("theme", "dark");
-                themeToggle.textContent = "☀️";
-            } else {
-                localStorage.setItem("theme", "light");
-                themeToggle.textContent = "🌙";
-            }
-        });
-
-        document.querySelectorAll(".project-card").forEach(card => {
-            card.addEventListener("click", () => {
-                const alreadyExpanded = card.classList.contains("expanded");
-
-                // Close all cards
-                document.querySelectorAll(".project-card").forEach(c => {
-                    c.classList.remove("expanded");
-                });
-
-                // Open clicked card (if it wasn't already open)
-                if (!alreadyExpanded) {
-                    card.classList.add("expanded");
-                }
-            });
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+            observer.observe(section);
         });
     </script>
 </body>
