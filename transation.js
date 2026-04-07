@@ -73,8 +73,8 @@ const translations = {
       "Adapted the stack and system design approach depending on the demands of each project.",
 
     "stack.sectionLabel": "Tech Stack & Skills",
-    "stack.backend": "Backend",
-    "stack.frontend": "Frontend",
+    "stack.backend": "Backend and Programming Languages",
+    "stack.frontend": "Frontend Technologies",
     "stack.databases": "Databases",
     "stack.coreSkills": "Core Skills",
 
@@ -92,7 +92,7 @@ const translations = {
       "Unity-based 2D turn-based card game inspired by Filipino mythology, focused on gameplay systems and battle flow.",
     "projects.vybe.description":
       "Music web application with recommendation-driven direction, dashboard views, and future monetization potential.",
-    "projects.esp32.title": "Airconditioning Controller (ESP32)",
+    "projects.esp32.title": "Airconditioning Controller",
     "projects.esp32.description":
       "Web and IoT-integrated system for controlling airconditioning unit state and temperature using ESP32-based hardware interaction.",
     "projects.verdant.description":
@@ -209,7 +209,7 @@ const translations = {
       "フィリピン神話に着想を得た、ゲームプレイシステムとバトルフローに焦点を当てたUnity製2Dターン制カードゲーム。",
     "projects.vybe.description":
       "推薦機能を軸にした方向性、ダッシュボード表示、将来的な収益化可能性を備えた音楽Webアプリ。",
-    "projects.esp32.title": "空調コントローラー（ESP32）",
+    "projects.esp32.title": "空調コントローラー",
     "projects.esp32.description":
       "ESP32ハードウェア連携により空調ユニットの状態と温度を制御するWeb・IoT統合システム。",
     "projects.verdant.description":
@@ -326,7 +326,7 @@ const translations = {
       "필리핀 신화를 모티브로 한 Unity 기반 2D 턴제 카드 게임으로, 게임플레이 시스템과 전투 흐름에 초점을 맞췄습니다.",
     "projects.vybe.description":
       "추천 중심 방향성, 대시보드 뷰, 향후 수익화 가능성을 갖춘 음악 웹 애플리케이션.",
-    "projects.esp32.title": "에어컨 컨트롤러 (ESP32)",
+    "projects.esp32.title": "에어컨 컨트롤러",
     "projects.esp32.description":
       "ESP32 하드웨어 연동을 통해 에어컨 장치의 상태와 온도를 제어하는 웹 및 IoT 통합 시스템.",
     "projects.verdant.description":
@@ -440,7 +440,7 @@ const translations = {
       "基于 Unity 的 2D 回合制卡牌游戏，灵感来自菲律宾神话，专注于游戏系统与战斗流程。",
     "projects.vybe.description":
       "音乐 Web 应用，具备推荐驱动方向、仪表盘视图以及未来变现潜力。",
-    "projects.esp32.title": "空调控制器（ESP32）",
+    "projects.esp32.title": "空调控制器",
     "projects.esp32.description":
       "通过 ESP32 硬件交互控制空调设备状态和温度的 Web 与 IoT 集成系统。",
     "projects.verdant.description":

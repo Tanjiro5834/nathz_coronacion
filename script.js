@@ -144,3 +144,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   typeLine();
 });
+
+document.querySelectorAll(".stack-list").forEach(list => {
+  const items = Array.from(list.children);
+
+  if (items.length < 4) return;
+
+  const splitIndex = 4; // first 3 stay left, 4th starts right
+
+  const left = document.createElement("div");
+  const right = document.createElement("div");
+
+  left.className = "space-y-1";
+  right.className = "space-y-1";
+
+  items.slice(0, splitIndex).forEach(el => left.appendChild(el));
+  items.slice(splitIndex).forEach(el => right.appendChild(el));
+
+  list.innerHTML = "";
+  list.className = "mt-5 grid grid-cols-2 gap-x-12 text-sm text-white/90 items-start";
+
+  list.appendChild(left);
+  list.appendChild(right);
+});
