@@ -61,7 +61,7 @@ const translations = {
     "experience.intern.li7":
       "Built and deployed internal desktop tools for school operations: Tardy Slip, Gate Pass, and Lost & Found.",
 
-    "experience.freelance.title": "Software Engineer",
+    "experience.freelance.title": "Full-Stack Developer",
     "experience.freelance.company": "Freelance",
     "experience.freelance.li1":
       "Delivered client systems across web, desktop, and game development projects.",

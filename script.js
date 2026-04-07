@@ -1,11 +1,16 @@
 const reveals = document.querySelectorAll(".section-reveal");
+
+reveals.forEach((el, index) => {
+  el.style.setProperty("--reveal-delay", `${Math.min(index * 70, 280)}ms`);
+});
+
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) entry.target.classList.add("visible");
     });
   },
-  { threshold: 0.12 },
+  { threshold: 0.1, rootMargin: "0px 0px -8% 0px" },
 );
 
 reveals.forEach((el) => {
@@ -22,6 +27,50 @@ menuButton?.addEventListener("click", () => {
 
 mobileLinks.forEach((link) => {
   link.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+});
+
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const internalLinks = document.querySelectorAll('a[href^="#"]');
+
+const easeOutExpo = (progress) =>
+  progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+
+function ultraSmoothScrollTo(targetY, duration = 980) {
+  if (prefersReducedMotion.matches) {
+    window.scrollTo(0, targetY);
+    return;
+  }
+
+  const startY = window.scrollY;
+  const distance = targetY - startY;
+  const startTime = performance.now();
+
+  function step(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    window.scrollTo(0, startY + distance * easeOutExpo(progress));
+
+    if (progress < 1) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
+}
+
+internalLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const hash = link.getAttribute("href");
+    if (!hash || hash === "#") return;
+
+    const target = document.querySelector(hash);
+    if (!target) return;
+
+    event.preventDefault();
+    const offset = 104;
+    const targetY = target.getBoundingClientRect().top + window.scrollY - offset;
+
+    ultraSmoothScrollTo(targetY);
+    history.pushState(null, "", hash);
+  });
 });
 
 const sections = document.querySelectorAll("section[id]");
