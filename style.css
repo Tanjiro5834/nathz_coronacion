@@ -131,3 +131,12 @@ body {
 .text-balance {
   text-wrap: balance;
 }
+
+@keyframes blinkCursor {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+#typingCursor {
+  animation: blinkCursor 0.9s step-end infinite;
+}

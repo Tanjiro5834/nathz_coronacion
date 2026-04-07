@@ -46,3 +46,52 @@ const setActiveNav = () => {
 
 window.addEventListener("scroll", setActiveNav, { passive: true });
 window.addEventListener("load", setActiveNav);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const typingConsole = document.getElementById("typingConsole");
+  const typingCursor = document.getElementById("typingCursor");
+
+  if (!typingConsole || !typingCursor) return;
+
+  const lines = [
+    'System.out.println("Thank you for visiting");',
+    'echo "Software Engineer, Backend Developer";',
+    'Console.WriteLine("Open for commissions and collaborations");',
+    'cout << "Visit my github and linkedin for more information (Tanjiro5834, nathaniel-coronacion-dev901278/)"'
+  ];
+
+  const typeSpeed = 36;
+  const linePause = 700;
+  const restartDelay = 1800;
+
+  let lineIndex = 0;
+  let charIndex = 0;
+
+  function typeLine() {
+    if (lineIndex >= lines.length) {
+      setTimeout(() => {
+        typingConsole.textContent = "";
+        lineIndex = 0;
+        charIndex = 0;
+        typeLine();
+      }, restartDelay);
+      return;
+    }
+
+    const currentLine = lines[lineIndex];
+
+    if (charIndex < currentLine.length) {
+      typingConsole.textContent += currentLine.charAt(charIndex);
+      charIndex++;
+      setTimeout(typeLine, typeSpeed);
+      return;
+    }
+
+    typingConsole.textContent += "\n";
+    lineIndex++;
+    charIndex = 0;
+    setTimeout(typeLine, linePause);
+  }
+
+  typeLine();
+});
