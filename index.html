@@ -9,12 +9,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --neon-purple: #bc13fe;
-            --neon-blue: #00d2ff;
+            --dandelion: #facc15;
+            --neutral-blue: #38bdf8;
             --bg-black: #050505;
-            --terminal-gray: #121212;
+            --card-bg: #111113;
+            --terminal-gray: #111113;
             --text-dim: #94a3b8;
-            --text-main: #e2e8f0;
+            --text-main: #f8fafc;
         }
 
         body {
@@ -23,44 +24,55 @@
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             scrollbar-width: thin;
-            scrollbar-color: var(--neon-purple) transparent;
+            scrollbar-color: var(--dandelion) transparent;
         }
 
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Scanning Line Effect */
-        body::before {
-            content: " ";
-            display: block;
-            position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 9999;
-            background-size: 100% 4px, 3px 100%;
-            pointer-events: none;
-            opacity: 0.12;
+        /* Premium subtle card styling */
+        .premium-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .neon-border {
-            border: 1px solid rgba(188, 19, 254, 0.3);
-            box-shadow: 0 0 15px rgba(188, 19, 254, 0.1);
-            transition: all 0.3s ease;
+        .premium-card:hover {
+            border-color: var(--dandelion);
+            box-shadow: 0 25px 50px -12px rgb(250 204 21 / 0.15);
+            transform: translateY(-2px);
         }
 
-        .neon-border:hover {
-            border-color: var(--neon-purple);
-            box-shadow: 0 0 20px rgba(188, 19, 254, 0.3);
+        /* Clean border with hover accent */
+        .premium-border {
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .neon-text-purple { text-shadow: 0 0 8px var(--neon-purple); }
-        .neon-text-blue { text-shadow: 0 0 8px var(--neon-blue); }
+        .premium-border:hover {
+            border-color: var(--dandelion);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        .accent-glow {
+            color: var(--dandelion);
+        }
+
+        .secondary-glow {
+            color: var(--neutral-blue);
+        }
 
         .terminal-window {
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--terminal-gray);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2);
         }
 
+        /* Refined timeline */
+        .section-node {
+            position: relative;
+        }
+        
         .section-node::before {
             content: '';
             position: absolute;
@@ -68,140 +80,175 @@
             top: 50%;
             width: 12px;
             height: 1px;
-            background: var(--neon-blue);
+            background: var(--neutral-blue);
+        }
+        
+        .section-node::after {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: calc(50% - 4px);
+            width: 8px;
+            height: 8px;
+            background: var(--dandelion);
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.15);
         }
 
-        /* Profile HUD Style */
+        /* Profile HUD - refined, less aggressive */
         .profile-container {
             position: relative;
-            width: 140px;
-            height: 140px;
+            width: 148px;
+            height: 148px;
             margin-bottom: 2rem;
         }
+        
         .profile-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 4px;
-            filter: grayscale(20%) contrast(110%);
-            border: 1px solid var(--neon-blue);
+            border-radius: 8px;
+            border: 2px solid var(--neutral-blue);
+            filter: brightness(1.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        
+        .profile-container:hover .profile-img {
+            border-color: var(--dandelion);
+            transform: scale(1.03);
+        }
+        
         .profile-hud {
             position: absolute;
-            top: -5px; left: -5px; right: -5px; bottom: -5px;
-            border: 1px solid rgba(0, 210, 255, 0.3);
+            top: -8px; 
+            left: -8px; 
+            right: -8px; 
+            bottom: -8px;
+            border: 2px solid rgba(56, 189, 248, 0.25);
+            border-radius: 12px;
             pointer-events: none;
-            animation: pulse-hud 4s infinite linear;
+            animation: pulse-hud 6s infinite cubic-bezier(0.4, 0, 0.6, 1);
         }
+        
         @keyframes pulse-hud {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.03); }
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.04); }
+        }
+
+        /* Clean typography */
+        .section-header {
+            font-size: 1.75rem;
+            letter-spacing: -0.04em;
         }
 
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--neon-purple); border-radius: 10px; }
-
-        .grid-bg {
-            background-image: linear-gradient(rgba(188, 19, 254, 0.03) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(188, 19, 254, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
+        ::-webkit-scrollbar-thumb { 
+            background: var(--dandelion); 
+            border-radius: 20px; 
         }
 
-        .cursor-blink {
-            display: inline-block;
-            width: 8px;
-            height: 1.2em;
-            background: var(--neon-blue);
-            animation: blink 1s infinite;
-            vertical-align: middle;
-            margin-left: 4px;
-        }
-
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-        .terminal-log {
-            font-size: 0.75rem;
-            color: #4ade80;
-            opacity: 0.7;
+        .skill-tag {
+            background: rgba(250, 204, 21, 0.08);
+            border: 1px solid rgba(250, 204, 21, 0.25);
+            color: var(--text-dim);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .skill-tag {
-            background: rgba(188, 19, 254, 0.05);
-            border: 1px solid rgba(188, 19, 254, 0.2);
-            color: var(--text-dim);
-            transition: all 0.2s ease;
-        }
         .skill-tag:hover {
-            background: rgba(188, 19, 254, 0.15);
-            border-color: var(--neon-purple);
-            color: white;
+            background: rgba(250, 204, 21, 0.15);
+            border-color: var(--dandelion);
+            color: #f8fafc;
+            transform: translateY(-1px);
+        }
+
+        /* Project slider improvements */
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Glass-like header */
+        .header-glass {
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(20px);
         }
     </style>
 </head>
-<body class="grid-bg min-h-screen">
+<body class="min-h-screen">
 
     <!-- HUD / Navigation Overlay -->
-    <header class="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center pointer-events-none">
-        <div class="pointer-events-auto">
-            <h1 class="mono font-bold text-xl tracking-tighter neon-text-purple">
-                NC_SYS.v2.5 <span class="text-xs font-normal text-slate-500">[STATUS: ACTIVE]</span>
+    <header class="header-glass fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center border-b border-white/5">
+        <div>
+            <h1 class="mono font-bold text-2xl tracking-[-0.05em] accent-glow">
+                NC<span class="text-white">.</span>SYS
+                <span class="text-xs font-normal text-slate-400 tracking-widest ml-1 align-super">v2.5</span>
             </h1>
         </div>
-        <nav class="hidden md:flex gap-8 pointer-events-auto mono text-xs uppercase tracking-widest text-slate-400">
-            <a href="#about" class="hover:text-[var(--neon-blue)] transition-colors">01_Identity</a>
-            <a href="#experience" class="hover:text-[var(--neon-blue)] transition-colors">02_Logs</a>
-            <a href="#stack" class="hover:text-[var(--neon-blue)] transition-colors">03_Modules</a>
-            <a href="#projects" class="hover:text-[var(--neon-blue)] transition-colors">04_Builds</a>
+        
+        <nav class="hidden md:flex gap-8 pointer-events-auto mono text-sm uppercase tracking-[0.125em] text-slate-400">
+            <a href="#about" class="hover:text-white hover:accent-glow transition-colors duration-200">01 IDENTITY</a>
+            <a href="#experience" class="hover:text-white hover:accent-glow transition-colors duration-200">02 LOGS</a>
+            <a href="#stack" class="hover:text-white hover:accent-glow transition-colors duration-200">03 MODULES</a>
+            <a href="#projects" class="hover:text-white hover:accent-glow transition-colors duration-200">04 BUILDS</a>
         </nav>
+        
+        <!-- Mobile hint -->
+        <div class="md:hidden mono text-xs text-slate-500 flex items-center gap-1.5">
+            <div class="w-2 h-2 rounded-full bg-[#facc15] animate-pulse"></div>
+            MENU
+        </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 pt-32 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12">
+    <main class="max-w-7xl mx-auto px-6 pt-28 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-14">
         
         <!-- Left Column: Identity & Terminal -->
-        <aside class="lg:col-span-4 lg:sticky lg:top-32 h-fit space-y-8">
+        <aside class="lg:col-span-4 lg:sticky lg:top-28 h-fit space-y-10">
+            
             <!-- Profile Section -->
             <div class="flex flex-col items-start">
                 <div class="profile-container">
-                    <!-- Updated with user image from context -->
                     <img src="/image/pfp.jpg" alt="Nathaniel Coronacion" class="profile-img" onerror="this.src='https://via.placeholder.com/256/050505/00d2ff?text=NC_USER'">
                     <div class="profile-hud"></div>
-                    <div class="absolute -bottom-2 -right-2 bg-blue-500 text-[8px] mono px-1 py-0.5">BIO_AUTH</div>
+                    <div class="absolute -bottom-1 -right-1 bg-[#38bdf8] text-[10px] mono px-2.5 py-px rounded text-white shadow-inner">BIO_AUTH</div>
                 </div>
                 <div class="mono">
-                    <h2 class="text-white font-bold text-lg uppercase">Nathaniel Coronacion</h2>
-                    <p class="text-blue-400 text-xs tracking-widest mb-4">SOFTWARE ENGINEER</p>
+                    <h2 class="text-white font-semibold text-3xl tracking-[-0.04em]">Nathaniel Coronacion</h2>
+                    <p class="secondary-glow text-sm tracking-[0.125em] mt-1">SOFTWARE ENGINEER</p>
                 </div>
             </div>
 
             <!-- Terminal Window -->
-            <div class="terminal-window rounded-lg overflow-hidden border border-purple-500/20 shadow-2xl">
-                <div class="bg-zinc-900 px-4 py-2 flex items-center justify-between border-b border-white/5">
+            <div class="terminal-window rounded-3xl overflow-hidden">
+                <div class="bg-[#1a1a1a] px-6 py-3 flex items-center justify-between border-b border-white/10">
                     <div class="flex gap-1.5">
-                        <div class="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
-                        <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/50"></div>
-                        <div class="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
                     </div>
-                    <span class="mono text-[10px] text-zinc-500 uppercase">bash — kernel_shell</span>
+                    <span class="mono text-xs text-slate-400 uppercase tracking-widest">kernel_shell • live</span>
                 </div>
-                <div id="terminal-content" class="p-6 mono text-sm h-[320px] overflow-y-auto space-y-2">
-                    <p class="text-zinc-500">Initializing socket connection...</p>
+                <div id="terminal-content" class="p-8 mono text-sm h-[340px] overflow-y-auto space-y-3 text-[#e2e8f0]">
+                    <p class="text-slate-400">Initializing socket connection...</p>
                     <p class="text-emerald-400">Handshake complete. Terminal ready.</p>
-                    <p class="text-zinc-300">$ fetch --profile info</p>
-                    <div class="pl-4 border-l border-zinc-800 my-2 space-y-1 text-xs text-zinc-400">
-                        <p><span class="text-zinc-500">NAME:</span> nathaniel_coronacion</p>
-                        <p><span class="text-zinc-500">ROLE:</span> backend_dev</p>
-                        <p><span class="text-zinc-500">BASE:</span> cavite.ph</p>
-                        <p><span class="text-zinc-500">EXP:</span> 2_years_active</p>
+                    <p class="text-[#f8fafc]">$ fetch --profile info</p>
+                    <div class="pl-6 border-l border-slate-700 my-3 space-y-1 text-xs text-slate-400">
+                        <p><span class="text-slate-500">NAME:</span> nathaniel_coronacion</p>
+                        <p><span class="text-slate-500">ROLE:</span> backend_dev</p>
+                        <p><span class="text-slate-500">BASE:</span> cavite.ph</p>
+                        <p><span class="text-slate-500">EXP:</span> 2_years_active</p>
                     </div>
                     <div id="dynamic-logs" class="space-y-1"></div>
-                    <p class="text-zinc-300 mt-4">$ <span class="cursor-blink"></span></p>
+                    <p class="text-[#f8fafc] mt-6 flex items-center">$ <span class="cursor-blink ml-1 w-2 h-4 bg-[#38bdf8] inline-block"></span></p>
                 </div>
             </div>
 
-            <div class="p-4 rounded border border-white/5 bg-black/40">
-                <h3 class="mono text-[10px] text-zinc-500 mb-2 uppercase">Core Directive</h3>
+            <div class="premium-card rounded-3xl p-7">
+                <h3 class="mono text-xs text-slate-400 mb-3 uppercase tracking-widest">Core Directive</h3>
                 <p class="text-sm leading-relaxed text-slate-400">
                     Designing and engineering high-performance digital systems. Bridging user experience with robust backend architecture.
                 </p>
@@ -209,19 +256,19 @@
         </aside>
 
         <!-- Right Column: Content -->
-        <div class="lg:col-span-8 space-y-32">
+        <div class="lg:col-span-8 space-y-24">
             
             <!-- Hero / Intro -->
-            <section id="about" class="space-y-8">
-                <div class="space-y-4">
-                    <div class="inline-block px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/5 text-[10px] mono text-blue-400 uppercase tracking-widest">
-                        System User: Administrator
-                    </div>
-                    <h2 class="text-6xl md:text-8xl font-black tracking-tighter leading-none">
-                        SOFTWARE <br/>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-400 to-emerald-400 italic">ENGINEER</span>
-                    </h2>
+            <section id="about" class="space-y-8 pt-4">
+                <div class="inline-flex items-center px-5 py-2 rounded-3xl border border-yellow-400/30 bg-yellow-400/5 text-xs mono text-yellow-400 uppercase tracking-[0.125em]">
+                    System User: Administrator
                 </div>
+                
+                <h2 class="text-6xl md:text-7xl font-black tracking-[-0.06em] leading-none">
+                    SOFTWARE <span class="block md:inline">ENGINEER</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-sky-400 to-cyan-400 italic font-light">Nathaniel Coronacion</span>
+                </h2>
+                
                 <p class="text-xl text-slate-400 max-w-2xl leading-relaxed">
                     I am <span class="text-white font-semibold">Nathaniel Coronacion</span>, a Software Engineer dedicated to crafting clean, scalable, and efficient code. I specialize in <span class="text-white">Fullstack Development</span> with a heavy focus on robust backend logic.
                 </p>
@@ -230,44 +277,44 @@
             <!-- Experience -->
             <section id="experience" class="space-y-12">
                 <div class="flex items-center gap-4">
-                    <h3 class="mono text-2xl font-bold uppercase tracking-widest text-white">02. Logs_Experience</h3>
-                    <div class="h-px flex-1 bg-gradient-to-r from-purple-500/50 to-transparent"></div>
+                    <h3 class="mono text-3xl font-semibold tracking-[-0.04em]">02. Logs_Experience</h3>
+                    <div class="h-px flex-1 bg-gradient-to-r from-yellow-400/30 to-transparent"></div>
                 </div>
 
-                <div class="space-y-16 border-l border-zinc-800 ml-4">
+                <div class="space-y-20 border-l border-slate-700 pl-8 ml-2">
+                    
                     <!-- tail -->
                     <div class="relative pl-10 section-node">
-                        <span class="mono text-xs text-purple-400 mb-1 block">FEBRUARY — APRIL 2026</span>
-                        <h4 class="text-2xl font-bold text-white uppercase tracking-tight">Backend Software Engineer</h4>
-                        <p class="text-sm text-blue-400 mono mb-4">The Thomas Aquinas Institute of Learning, Inc. | Internship</p>
-                        <ul class="text-slate-400 max-w-xl leading-relaxed list-disc list-outside space-y-2 ml-4">
+                        <span class="mono text-xs accent-glow mb-1 block">FEBRUARY — APRIL 2026</span>
+                        <h4 class="text-2xl font-semibold text-white tracking-tight">Backend Software Engineer</h4>
+                        <p class="text-sm secondary-glow mono mb-4">The Thomas Aquinas Institute of Learning, Inc. | Internship</p>
+                        <ul class="text-slate-400 max-w-xl leading-relaxed list-disc list-outside space-y-3 ml-4 text-[15px]">
                             <li>Developed RESTful APIs across the core modules (enrollments, pre-registrations, personnel, programs, news, events) with server-side pagination and a normalized relational schema.</li>
                             <li>Reduced database overhead by 10–30% by engineering a custom Cache-Aside layer using PHP Closures, JSON serialization, and MD5-hashed file storage</li>
                             <li>Implemented RBAC permission enforcement, password hashing, and secure dynamic asset handling</li>
                             <li>Deployed the application to production and authored full SDLC documentation, including requirements analysis,  system design, implementation details, testing strategies, and deployment procedures.</li>
                             <li>Collaborated with a frontend developer and shipped internal tools for daily school operations including tardy slip, early dismissal, and lost & found management</li>
                         </ul>
-                        <div class="flex flex-wrap gap-2 mt-6">
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Git</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Tailwind</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Node.js</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">HTML5</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">CSS3</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">JavaScript</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">PHP</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Express.js</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Electron</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">MySQL</span>
+                        <div class="flex flex-wrap gap-2 mt-8">
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Git</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Tailwind</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Node.js</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">HTML5</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">CSS3</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">JavaScript</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">PHP</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Express.js</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Electron</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">MySQL</span>
                         </div>
                     </div>
 
-
                     <!-- cras -->
                     <div class="relative pl-10 section-node">
-                        <span class="mono text-xs text-purple-400 mb-1 block">June 2035 - Present</span>
-                        <h4 class="text-2xl font-bold text-white uppercase tracking-tight">Software Engineer</h4>
-                        <p class="text-sm text-blue-400 mono mb-4">Coronacion Refrigeration and Airconditioning Services | Part-Time</p>
-                        <ul class="text-slate-400 max-w-xl leading-relaxed list-disc list-outside space-y-2 ml-4">
+                        <span class="mono text-xs accent-glow mb-1 block">June 2035 - Present</span>
+                        <h4 class="text-2xl font-semibold text-white tracking-tight">Software Engineer</h4>
+                        <p class="text-sm secondary-glow mono mb-4">Coronacion Refrigeration and Airconditioning Services | Part-Time</p>
+                        <ul class="text-slate-400 max-w-xl leading-relaxed list-disc list-outside space-y-3 ml-4 text-[15px]">
                             <li>Developed a full stack business platform for an Airconditioning & Refrigeration / HVAC company serving institutional clients (De La Salle University, UP Diliman, Megaworld Corporation, Cavite State University, etc.)</li>
                             <li>Developed an e-commerce storefront with cart management, appliance ordering, and real-time service order tracking</li>
                             <li>Implemented a capacity-limited appointment booking system optimizing scheduling and technician allocation</li>
@@ -275,38 +322,38 @@
                             <li>Digitized manual operations, reducing administrative overhead and enabling the business to scale client capacity</li>
                             <li>Drove direct online customer acquisition — platform recorded 5 bookings and multiple appliance sales within the first month of launch</li>
                         </ul>
-                        <div class="flex flex-wrap gap-2 mt-6">
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Java</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">PHP</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">MySQL</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Git</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">HTML5</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">CSS3</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">JavaScript</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">React.js</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">SQLite</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Electron</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Spring Boot</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Spring Framework</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Spring MVC</span>
+                        <div class="flex flex-wrap gap-2 mt-8">
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Java</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">PHP</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">MySQL</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Git</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">HTML5</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">CSS3</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">JavaScript</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">React.js</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">SQLite</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Electron</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Spring Boot</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Spring Framework</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Spring MVC</span>
                         </div>
                     </div>
 
                     <!-- freelance -->
                     <div class="relative pl-10 section-node">
-                        <span class="mono text-xs text-purple-400 mb-1 block">May 2023 — December 2025</span>
-                        <h4 class="text-2xl font-bold text-white uppercase tracking-tight">Full Stack Developer</h4>
-                        <p class="text-sm text-blue-400 mono mb-4">Freelance</p>
-                        <ul class="text-slate-400 max-w-xl leading-relaxed list-disc list-outside space-y-2 ml-4">
+                        <span class="mono text-xs accent-glow mb-1 block">May 2023 — December 2025</span>
+                        <h4 class="text-2xl font-semibold text-white tracking-tight">Full Stack Developer</h4>
+                        <p class="text-sm secondary-glow mono mb-4">Freelance</p>
+                        <ul class="text-slate-400 max-w-xl leading-relaxed list-disc list-outside space-y-3 ml-4 text-[15px]">
                             <li>Completed commissioned thesis projects for college students and other stakeholders covering web, desktop app, and game development</li>
                             <li>Delivered fully functional systems meeting client specifications and academic requirements</li>
                             <li>Trusted by peers for technical execution across multiple independent projects</li>
                         </ul>
-                        <div class="flex flex-wrap gap-2 mt-6">
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Web Development</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Game Development</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Desktop Application Development</span>
-                            <span class="px-2 py-1 bg-zinc-900 border border-zinc-700 rounded text-[10px] mono uppercase">Software Development</span>
+                        <div class="flex flex-wrap gap-2 mt-8">
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Web Development</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Game Development</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Desktop Application Development</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Software Development</span>
                         </div>
                     </div>
                 </div>
@@ -315,220 +362,216 @@
             <!-- Tech Stack & Skills -->
             <section id="stack" class="space-y-12">
                 <div class="flex items-center gap-4">
-                    <h3 class="mono text-2xl font-bold uppercase tracking-widest text-white">03. Tech Stack and Skills</h3>
-                    <div class="h-px flex-1 bg-gradient-to-r from-blue-500/50 to-transparent"></div>
+                    <h3 class="mono text-3xl font-semibold tracking-[-0.04em]">03. Tech Stack and Skills</h3>
+                    <div class="h-px flex-1 bg-gradient-to-r from-sky-400/30 to-transparent"></div>
                 </div>
 
-                <div class="max-w-3xl space-y-10">
+                <div class="max-w-3xl space-y-12">
                     
-                    <div class="space-y-4">
-                        <h5 class="mono text-xs text-zinc-500 uppercase tracking-widest flex items-center gap-2">
-                            <span class="w-1 h-1 bg-blue-500"></span> Backend Systems
+                    <div class="space-y-6">
+                        <h5 class="mono text-xs text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                            <span class="w-2 h-2 bg-yellow-400 rounded-full"></span> Backend Systems
                         </h5>
-                        <div class="grid grid-cols-1 gap-2">
-                            <div class="p-3 rounded border border-white/5 bg-zinc-900/40 flex justify-between items-center group hover:border-blue-500/50 transition-colors">
-                                <div class="text-sm font-bold text-white">Spring Boot</div>
-                                <div class="text-[9px] mono text-blue-400 uppercase">Java / Core Backend Language</div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
+                                <div class="text-lg font-medium">Spring Boot</div>
+                                <div class="mono text-xs bg-slate-800 text-sky-300 px-4 py-1 rounded-3xl">Java / Core Backend Language</div>
                             </div>
-                            <div class="p-3 rounded border border-white/5 bg-zinc-900/40 flex justify-between items-center group hover:border-blue-500/50 transition-colors">
-                                <div class="text-sm font-bold text-white">PHP</div>
-                                <div class="text-[9px] mono text-blue-400 uppercase">Server-Side / Modern</div>
+                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
+                                <div class="text-lg font-medium">PHP</div>
+                                <div class="mono text-xs bg-slate-800 text-sky-300 px-4 py-1 rounded-3xl">Server-Side / Modern</div>
                             </div>
-                            <div class="p-3 rounded border border-white/5 bg-zinc-900/40 flex justify-between items-center group hover:border-blue-500/50 transition-colors">
-                                <div class="text-sm font-bold text-white">Node.js</div>
-                                <div class="text-[9px] mono text-blue-400 uppercase">Runtime / Async</div>
+                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
+                                <div class="text-lg font-medium">Node.js</div>
+                                <div class="mono text-xs bg-slate-800 text-sky-300 px-4 py-1 rounded-3xl">Runtime / Async</div>
                             </div>
-                            <div class="p-3 rounded border border-white/5 bg-zinc-900/40 flex justify-between items-center group hover:border-blue-500/50 transition-colors">
-                                <div class="text-sm font-bold text-white">MySQL / PostgreSQL / SQLite</div>
-                                <div class="text-[9px] mono text-emerald-400 uppercase">Relational Databases</div>
+                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
+                                <div class="text-lg font-medium">MySQL / PostgreSQL / SQLite</div>
+                                <div class="mono text-xs bg-emerald-900/70 text-emerald-300 px-4 py-1 rounded-3xl">Relational Databases</div>
                             </div>
-                            <div class="p-3 rounded border border-white/5 bg-zinc-900/40 flex justify-between items-center group hover:border-blue-500/50 transition-colors">
-                                <div class="text-sm font-bold text-white">C / C++</div>
-                                <div class="text-[9px] mono text-emerald-400 uppercase">Low-Level Systems</div>
+                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
+                                <div class="text-lg font-medium">C / C++</div>
+                                <div class="mono text-xs bg-emerald-900/70 text-emerald-300 px-4 py-1 rounded-3xl">Low-Level Systems</div>
                             </div>
-                            <div class="p-3 rounded border border-white/5 bg-zinc-900/40 flex justify-between items-center group hover:border-blue-500/50 transition-colors">
-                                <div class="text-sm font-bold text-white">Unity | C#</div>
-                                <div class="text-[9px] mono text-purple-400 uppercase">Game Engine</div>
+                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
+                                <div class="text-lg font-medium">Unity | C#</div>
+                                <div class="mono text-xs bg-purple-900/70 text-purple-300 px-4 py-1 rounded-3xl">Game Engine</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="space-y-4">
-                        <h5 class="mono text-xs text-zinc-500 uppercase tracking-widest flex items-center gap-2">
-                            <span class="w-1 h-1 bg-emerald-500"></span> Frontend Interfaces
+                    <div class="space-y-6">
+                        <h5 class="mono text-xs text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                            <span class="w-2 h-2 bg-sky-400 rounded-full"></span> Frontend Interfaces
                         </h5>
-                        <div class="grid grid-cols-1 gap-2">
-                            <div class="p-3 rounded border border-white/5 bg-zinc-900/40 flex justify-between items-center group hover:border-emerald-500/50 transition-colors">
-                                <div class="text-sm font-bold text-white">React.js</div>
-                                <div class="text-[9px] mono text-emerald-400 uppercase">UI Library</div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
+                                <div class="text-lg font-medium">React.js</div>
+                                <div class="mono text-xs bg-emerald-900/70 text-emerald-300 px-4 py-1 rounded-3xl">UI Library</div>
                             </div>
-                            <div class="p-3 rounded border border-white/5 bg-zinc-900/40 flex justify-between items-center group hover:border-emerald-500/50 transition-colors">
-                                <div class="text-sm font-bold text-white">HTML / CSS / JavaScript</div>
-                                <div class="text-[9px] mono text-emerald-400 uppercase">Core Web</div>
+                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
+                                <div class="text-lg font-medium">HTML / CSS / JavaScript</div>
+                                <div class="mono text-xs bg-emerald-900/70 text-emerald-300 px-4 py-1 rounded-3xl">Core Web</div>
                             </div>
-                            <div class="p-3 rounded border border-white/5 bg-zinc-900/40 flex justify-between items-center group hover:border-emerald-500/50 transition-colors">
-                                <div class="text-sm font-bold text-white">Tailwind CSS</div>
-                                <div class="text-[9px] mono text-orange-400 uppercase">Utility-First CSS</div>
+                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
+                                <div class="text-lg font-medium">Tailwind CSS</div>
+                                <div class="mono text-xs bg-orange-900/70 text-orange-300 px-4 py-1 rounded-3xl">Utility-First CSS</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="pt-6 border-t border-white/5">
-                        <h5 class="mono text-xs text-zinc-500 uppercase mb-6 tracking-widest flex items-center gap-2">
-                            <span class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span> Skills
+                    <div class="pt-8 border-t border-white/10">
+                        <h5 class="mono text-xs text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-2">
+                            <span class="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span> Skills
                         </h5>
                         <div class="flex flex-wrap gap-3">
-                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">RESTful APIs</span>
-                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Microservices</span>
-                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Monolith</span>
-                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Software Engineering</span>
-                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Git / CI/CD</span>
-                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Docker</span>
-                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Redis</span>
-                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Unit Testing</span>
-                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Backend Development</span>
-                            <span class="skill-tag px-3 py-1.5 rounded mono text-xs uppercase">Game Development</span>
+                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">RESTful APIs</span>
+                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Microservices</span>
+                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Monolith</span>
+                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Software Engineering</span>
+                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Git / CI/CD</span>
+                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Docker</span>
+                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Redis</span>
+                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Unit Testing</span>
+                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Backend Development</span>
+                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Game Development</span>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Projects -->
-            <section id="projects" class="space-y-12 pb-32">
-                <div class="flex items-center justify-between gap-4">
+            <section id="projects" class="space-y-12">
+                <div class="flex items-center justify-between">
                     <div class="flex items-center gap-4 flex-1">
-                        <h3 class="mono text-2xl font-bold uppercase tracking-widest text-white">04. Build_Manifest</h3>
-                        <div class="h-px flex-1 bg-gradient-to-r from-emerald-500/50 to-transparent"></div>
+                        <h3 class="mono text-3xl font-semibold tracking-[-0.04em]">04. Build_Manifest</h3>
+                        <div class="h-px flex-1 bg-gradient-to-r from-cyan-400/30 to-transparent"></div>
                     </div>
                     
-                    <div class="flex gap-2">
-                        <button onclick="scrollProjects(-1)" class="p-2 border border-white/10 bg-zinc-900/50 hover:border-emerald-500/50 hover:text-emerald-400 transition-all mono text-xl group">
-                            <span class="block transform group-active:scale-90">&lt;</span>
-                        </button>
-                        <button onclick="scrollProjects(1)" class="p-2 border border-white/10 bg-zinc-900/50 hover:border-emerald-500/50 hover:text-emerald-400 transition-all mono text-xl group">
-                            <span class="block transform group-active:scale-90">&gt;</span>
-                        </button>
+                    <div class="flex gap-3">
+                        <button onclick="scrollProjects(-1)" class="premium-border w-10 h-10 flex items-center justify-center text-2xl rounded-2xl hover:text-yellow-400 transition-colors">‹</button>
+                        <button onclick="scrollProjects(1)" class="premium-border w-10 h-10 flex items-center justify-center text-2xl rounded-2xl hover:text-yellow-400 transition-colors">›</button>
                     </div>
                 </div>
 
-                <div id="project-slider" class="flex overflow-x-auto gap-8 pb-8 scrollbar-hide snap-x snap-mandatory scroll-smooth" style="scrollbar-width: none; -ms-overflow-style: none;">
+                <div id="project-slider" class="flex overflow-x-auto gap-8 pb-8 snap-x snap-mandatory scroll-smooth scrollbar-hide">
                     
-                    <div class="min-w-full md:min-w-[45%] snap-center">
-                        <div class="neon-border bg-black/60 p-8 h-full flex flex-col justify-between group relative overflow-hidden">
+                    <div class="min-w-full md:min-w-[420px] snap-center">
+                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
                             <div>
-                                <h4 class="text-2xl font-black italic uppercase mb-2 tracking-tighter">Airconditioning E-Commerce Platform</h4>
-                                <p class="text-sm text-slate-400 mb-8 leading-relaxed">
+                                <h4 class="text-3xl font-semibold tracking-tight mb-4">Airconditioning E-Commerce Platform</h4>
+                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
                                     A secure, full-stack HVAC marketplace engineered for high-concurrency procurement and seamless inventory management.
                                 </p>
                             </div>
-                            <div class="flex justify-between items-end border-t border-white/5 pt-4">
-                                <div class="flex flex-wrap gap-2 mono text-[9px] text-zinc-500">
+                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400">
                                     <span>PHP</span> 
                                     <span>MYSQL</span> 
                                     <span>HTML / CSS / JAVASCRIPT</span>
                                 </div>
-                                <span class="text-[10px] mono text-blue-400">COMPLETED</span>
+                                <span class="text-xs mono secondary-glow">COMPLETED</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="min-w-full md:min-w-[45%] snap-center">
-                        <div class="neon-border bg-black/60 p-8 h-full flex flex-col justify-between group relative overflow-hidden">
+                    <div class="min-w-full md:min-w-[420px] snap-center">
+                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
                             <div>
-                                <h4 class="text-2xl font-black italic uppercase mb-2 tracking-tighter">Catholic School Official Website</h4>
-                                <p class="text-sm text-slate-400 mb-8 leading-relaxed">
+                                <h4 class="text-3xl font-semibold tracking-tight mb-4">Catholic School Official Website</h4>
+                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
                                     A full-stack web application for the Thomas Aquinas Institute, featuring student pre-registration,
                                     list of tuition fees, intuitive UI and seamless UX, and full administrator dashboard control.
                                 </p>
                             </div>
-                            <div class="flex justify-between items-center border-t border-white/5 pt-4">
-                                <div class="flex flex-wrap gap-2 mono text-[9px] text-zinc-500 uppercase">
+                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400 uppercase">
                                     <span>PHP</span> 
                                     <span>Custom CACHE-ASIDE (I/O)</span> 
                                     <span>HTML / CSS / JAVASCRIPT</span>
                                     <span>MYSQL</span>
                                     <span>GIT</span> 
                                 </div>
-                                <span class="text-[10px] mono text-purple-400 border border-purple-500/30 px-1">IN_PROGRESS</span>
+                                <span class="text-xs mono accent-glow border border-yellow-400/30 px-3 py-1 rounded-3xl">IN_PROGRESS</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="min-w-full md:min-w-[45%] snap-center">
-                        <div class="neon-border bg-black/60 p-8 h-full flex flex-col justify-between group relative overflow-hidden">
+                    <div class="min-w-full md:min-w-[420px] snap-center">
+                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
                             <div>
-                                <h4 class="text-2xl font-black italic uppercase mb-2 tracking-tighter">TYPEDASH</h4>
-                                <p class="text-sm text-slate-400 mb-8 leading-relaxed">
+                                <h4 class="text-3xl font-semibold tracking-tight mb-4">TYPEDASH</h4>
+                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
                                     A full-stack typing speed test web application inspired by TypeMonkey, featured with real-time speedometer,
                                     WPM reader, modes, leaderboards, and analytics.
                                 </p>
                             </div>
-                            <div class="flex justify-between items-center border-t border-white/5 pt-4">
-                                <div class="flex flex-wrap gap-2 mono text-[9px] text-zinc-500 uppercase">
+                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400 uppercase">
                                     <span>JAVA</span> 
                                     <span>SPRING BOOT</span> 
                                     <span>MYSQL</span> 
                                     <span>HTML / CSS / JAVASCRIPT</span> 
                                     <span>GIT</span>
                                 </div>
-                                <span class="text-[10px] mono text-blue-400">COMPLETED</span>
+                                <span class="text-xs mono secondary-glow">COMPLETED</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="min-w-full md:min-w-[45%] snap-center">
-                        <div class="neon-border bg-black/60 p-8 h-full flex flex-col justify-between group relative overflow-hidden">
+                    <div class="min-w-full md:min-w-[420px] snap-center">
+                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
                             <div>
-                                <h4 class="text-2xl font-black italic uppercase mb-2 tracking-tighter">MITOLOHIYA</h4>
-                                <p class="text-sm text-slate-400 mb-8 leading-relaxed">
+                                <h4 class="text-3xl font-semibold tracking-tight mb-4">MITOLOHIYA</h4>
+                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
                                     A Unity-Based 2d turn-based card game inspired in a filipino mythology, features: turn-based combat,
                                     additional points per successive wins, synergy system (dual attack), three boss fights, endless modes.
                                 </p>
                             </div>
-                            <div class="flex justify-between items-center border-t border-white/5 pt-4">
-                                <div class="flex flex-wrap gap-2 mono text-[9px] text-zinc-500 uppercase">
+                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400 uppercase">
                                     <span>C#</span> 
                                     <span>UNITY</span>
                                     <span>UNITY VERSION CONTROL</span>
                                 </div>
-                                <span class="text-[10px] mono text-blue-400">COMPLETED</span>
+                                <span class="text-xs mono secondary-glow">COMPLETED</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="min-w-full md:min-w-[45%] snap-center">
-                        <div class="neon-border bg-black/60 p-8 h-full flex flex-col justify-between group relative overflow-hidden">
+                    <div class="min-w-full md:min-w-[420px] snap-center">
+                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
                             <div>
-                                <h4 class="text-2xl font-black italic uppercase mb-2 tracking-tighter">VYBE</h4>
-                                <p class="text-sm text-slate-400 mb-8 leading-relaxed">
+                                <h4 class="text-3xl font-semibold tracking-tight mb-4">VYBE</h4>
+                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
                                     A full-stack music web application designed to put listeners in the same rhythm. Focuses on distraction-free listening
                                     experience. Includes core music listening, vibe-based recommendations based on listener's mood, administrator feature,
                                     artist dashboard, and future monetization.
                                 </p>
                             </div>
-                            <div class="flex justify-between items-center border-t border-white/5 pt-4">
-                                <div class="flex flex-wrap gap-2 mono text-[9px] text-zinc-500 uppercase">
+                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400 uppercase">
                                     <span>HTML / CSS / JAVASCRIPT</span> 
                                     <span>MYSQL</span>
                                     <span>SPRING BOOT</span>
                                     <span>GIT</span>
                                 </div>
-                                <span class="text-[10px] mono text-purple-400 border border-purple-500/30 px-1">IN_PROGRESS</span>
+                                <span class="text-xs mono accent-glow border border-yellow-400/30 px-3 py-1 rounded-3xl">IN_PROGRESS</span>
                             </div>
                         </div>
                     </div>
 
-                     <div class="min-w-full md:min-w-[45%] snap-center">
-                        <div class="neon-border bg-black/60 p-8 h-full flex flex-col justify-between group relative overflow-hidden">
+                    <div class="min-w-full md:min-w-[420px] snap-center">
+                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
                             <div>
-                                <h4 class="text-2xl font-black italic uppercase mb-2 tracking-tighter">Airconditioning Unit Controller</h4>
-                                <p class="text-sm text-slate-400 mb-8 leading-relaxed">
+                                <h4 class="text-3xl font-semibold tracking-tight mb-4">Airconditioning Unit Controller</h4>
+                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
                                     Web application that controls the temperature and state (on and off) of 
                                     airconditioning unit that's supported with an IR blaster. It is equipped using an ESP32 microcontroller.
                                 </p>
                             </div>
-                            <div class="flex justify-between items-center border-t border-white/5 pt-4">
-                                <div class="flex flex-wrap gap-2 mono text-[9px] text-zinc-500 uppercase">
+                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400 uppercase">
                                     <span>HTML / CSS / JAVASCRIPT</span> 
                                     <span>MYSQL</span>
                                     <span>SPRING BOOT</span>
@@ -536,22 +579,22 @@
                                     <span>ESP32 MICROCONTROLLER</span>
                                     <span>C++ / ARDUINO</span>
                                 </div>
-                                <span class="text-[10px] mono text-purple-400 border border-purple-500/30 px-1">IN_PROGRESS</span>
+                                <span class="text-xs mono accent-glow border border-yellow-400/30 px-3 py-1 rounded-3xl">IN_PROGRESS</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="min-w-full md:min-w-[45%] snap-center">
-                        <div class="neon-border bg-black/60 p-8 h-full flex flex-col justify-between group relative overflow-hidden">
+                    <div class="min-w-full md:min-w-[420px] snap-center">
+                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
                             <div>
-                                <h4 class="text-2xl font-black italic uppercase mb-2 tracking-tighter">Verdant Seige</h4>
-                                <p class="text-sm text-slate-400 mb-8 leading-relaxed">
+                                <h4 class="text-3xl font-semibold tracking-tight mb-4">Verdant Seige</h4>
+                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
                                     A Tower Defense game inspired by Plants vs. Zombies with a twist of unique plants and zombies, and featured with 
                                     online multiplayer, in-game currency, chatting/adding people, anti-cheats, and different modes.
                                 </p>
                             </div>
-                            <div class="flex justify-between items-center border-t border-white/5 pt-4">
-                                <div class="flex flex-wrap gap-2 mono text-[9px] text-zinc-500 uppercase">
+                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400 uppercase">
                                     <span>JAVA</span> 
                                     <span>SPRING BOOT</span> 
                                     <span>POSTGRESQL</span>
@@ -564,43 +607,45 @@
                                     <span>DOCKER</span>
                                     <span>POSTMAN</span>
                                 </div>
-                                <span class="text-[10px] mono text-purple-400 border border-purple-500/30 px-1">IN_PROGRESS</span>
+                                <span class="text-xs mono accent-glow border border-yellow-400/30 px-3 py-1 rounded-3xl">IN_PROGRESS</span>
                             </div>
                         </div>
                     </div>
-                    <div class="min-w-full md:min-w-[45%] snap-center">
-                        <div class="neon-border bg-black/60 p-8 h-full flex flex-col justify-between group relative overflow-hidden">
+
+                    <div class="min-w-full md:min-w-[420px] snap-center">
+                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
                             <div>
-                                <h4 class="text-2xl font-black italic uppercase mb-2 tracking-tighter">MULTI-TENANT SAAS BACKEND</h4>
-                                <p class="text-sm text-slate-400 mb-8 leading-relaxed">
+                                <h4 class="text-3xl font-semibold tracking-tight mb-4">MULTI-TENANT SAAS BACKEND</h4>
+                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
                                     A full backend system composed of RESTful APIs regarding a multi-tenant saas, featuring security, scalability, login/signup,
                                     CRUD operations, and tenant handling.
                                 </p>
                             </div>
-                            <div class="flex justify-between items-center border-t border-white/5 pt-4">
-                                <div class="flex flex-wrap gap-2 mono text-[9px] text-zinc-500 uppercase">
+                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400 uppercase">
                                     <span>JAVA</span> 
                                     <span>SPRING BOOT</span> 
                                     <span>POSTGRESQL</span>
                                     <span>GIT</span> 
                                     <span>POSTMAN</span>
                                 </div>
-                                <span class="text-[10px] mono text-purple-400 border border-purple-500/30 px-1">IN_PROGRESS</span>
+                                <span class="text-xs mono accent-glow border border-yellow-400/30 px-3 py-1 rounded-3xl">IN_PROGRESS</span>
                             </div>
                         </div>
                     </div>
-                    <div class="min-w-full md:min-w-[45%] snap-center">
-                        <div class="neon-border bg-black/60 p-8 h-full flex flex-col justify-between group relative overflow-hidden">
+
+                    <div class="min-w-full md:min-w-[420px] snap-center">
+                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
                             <div>
-                                <h4 class="text-2xl font-black italic uppercase mb-2 tracking-tighter">BIBO E-Learning Web App</h4>
-                                <p class="text-sm text-slate-400 mb-8 leading-relaxed">
+                                <h4 class="text-3xl font-semibold tracking-tight mb-4">BIBO E-Learning Web App</h4>
+                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
                                     BIBO is an AI-powered, responsive e-learning system designed to provide foundational, gamified education in English, Filipino, 
                                     Math, and Science for out-of-school youth aged 7 to 12. Developed using an Agile Scrum methodology, the platform integrates 
                                     adaptive AI tutoring and real-time analytics to help parents and teachers track progress and bridge learning gaps.
                                 </p>
                             </div>
-                            <div class="flex justify-between items-center border-t border-white/5 pt-4">
-                                <div class="flex flex-wrap gap-2 mono text-[9px] text-zinc-500 uppercase">
+                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400 uppercase">
                                     <span>VUE.JS</span> 
                                     <span>LARAVEL</span> 
                                     <span>MYSQL / MARIA DB</span>
@@ -608,7 +653,7 @@
                                     <span>NGINX</span>
                                     <span>PYTHON (TENSORFLOW)</span>
                                 </div>
-                                <span class="text-[10px] mono text-purple-400 border border-purple-500/30 px-1">IN_PROGRESS</span>
+                                <span class="text-xs mono accent-glow border border-yellow-400/30 px-3 py-1 rounded-3xl">IN_PROGRESS</span>
                             </div>
                         </div>
                     </div>
@@ -618,13 +663,13 @@
     </main>
 
     <!-- Footer Stats -->
-    <footer class="fixed bottom-0 left-0 w-full bg-black/80 backdrop-blur-md border-t border-white/5 p-2 px-6 flex justify-between items-center mono text-[10px] text-zinc-500 z-50">
+    <footer class="fixed bottom-0 left-0 w-full bg-black/90 backdrop-blur-lg border-t border-white/10 p-4 px-6 flex justify-between items-center mono text-xs text-slate-400 z-50">
         <div class="flex gap-6">
-            <span class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div> SYS_UPTIME: 99.9%</span>
+            <span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></div> SYS_UPTIME: 99.9%</span>
             <span class="hidden md:inline">KERNEL: 6.2.0-stable</span>
         </div>
-        <div>
-            BUILD: 0xNATH_24 | &copy; 2024 NC_ENGINEERING
+        <div class="text-center">
+            BUILD: 0xNATH_24 | © 2024 NC_ENGINEERING
         </div>
     </footer>
 
@@ -646,7 +691,7 @@
         
         function addLog() {
             const p = document.createElement('p');
-            p.className = 'terminal-log';
+            p.className = 'terminal-log text-emerald-400 text-xs';
             p.textContent = `[${new Date().toLocaleTimeString('en-GB', { hour12: false })}] ${logs[Math.floor(Math.random() * logs.length)]}`;
             logContainer.appendChild(p);
             
@@ -658,7 +703,7 @@
             terminal.scrollTop = terminal.scrollHeight;
         }
 
-        setInterval(addLog, 2500);
+        setInterval(addLog, 2400);
 
         // Intersection Observer for section revealing
         const observer = new IntersectionObserver((entries) => {
@@ -679,12 +724,15 @@
 
         function scrollProjects(direction) {
             const slider = document.getElementById('project-slider');
-            const scrollAmount = slider.offsetWidth * 0.5; // Scrolls half the width to reveal next card
+            const scrollAmount = slider.offsetWidth * 0.65;
             slider.scrollBy({
                 left: direction * scrollAmount,
                 behavior: 'smooth'
             });
         }
+
+        // Tailwind script already loaded – ensure dark mode consistency
+        console.log('%cPortfolio ready — clean, modern, premium.', 'color:#facc15; font-family:monospace; font-size:10px;');
     </script>
 </body>
 </html>
