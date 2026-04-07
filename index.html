@@ -1,710 +1,528 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NATHANIEL CORONACION // BACKEND_ENGINEER</title>
-    <!-- Modern Fonts: JetBrains Mono for that IDE feel, Inter for clean UI -->
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        :root {
-            --dandelion: #facc15;
-            --neutral-blue: #38bdf8;
-            --bg-black: #050505;
-            --card-bg: #111113;
-            --terminal-gray: #111113;
-            --text-dim: #94a3b8;
-            --text-main: #f8fafc;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nathaniel Coronacion | Backend Software Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=SF+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#060608',
+            surface: '#111214',
+            surface2: '#17181c',
+            text: '#f5f7fb',
+            muted: '#a1aab8',
+            line: 'rgba(255,255,255,0.08)',
+            purplex: '#7c3aed',
+            bluex: '#60a5fa',
+            goldx: '#f4c95d'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['SF Mono', 'ui-monospace', 'monospace']
+          },
+          boxShadow: {
+            soft: '0 16px 40px rgba(0,0,0,0.25)',
+            premium: '0 30px 80px rgba(0,0,0,0.28)',
+            ringglow: '0 0 0 1px rgba(255,255,255,0.05), 0 20px 60px rgba(96,165,250,0.08)'
+          }
         }
-
-        body {
-            background-color: var(--bg-black);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            scrollbar-width: thin;
-            scrollbar-color: var(--dandelion) transparent;
-        }
-
-        .mono { font-family: 'JetBrains Mono', monospace; }
-
-        /* Premium subtle card styling */
-        .premium-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(56, 189, 248, 0.15);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .premium-card:hover {
-            border-color: var(--dandelion);
-            box-shadow: 0 25px 50px -12px rgb(250 204 21 / 0.15);
-            transform: translateY(-2px);
-        }
-
-        /* Clean border with hover accent */
-        .premium-border {
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .premium-border:hover {
-            border-color: var(--dandelion);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-        }
-
-        .accent-glow {
-            color: var(--dandelion);
-        }
-
-        .secondary-glow {
-            color: var(--neutral-blue);
-        }
-
-        .terminal-window {
-            background: var(--terminal-gray);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2);
-        }
-
-        /* Refined timeline */
-        .section-node {
-            position: relative;
-        }
-        
-        .section-node::before {
-            content: '';
-            position: absolute;
-            left: -20px;
-            top: 50%;
-            width: 12px;
-            height: 1px;
-            background: var(--neutral-blue);
-        }
-        
-        .section-node::after {
-            content: '';
-            position: absolute;
-            left: -26px;
-            top: calc(50% - 4px);
-            width: 8px;
-            height: 8px;
-            background: var(--dandelion);
-            border-radius: 50%;
-            box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.15);
-        }
-
-        /* Profile HUD - refined, less aggressive */
-        .profile-container {
-            position: relative;
-            width: 148px;
-            height: 148px;
-            margin-bottom: 2rem;
-        }
-        
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 2px solid var(--neutral-blue);
-            filter: brightness(1.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .profile-container:hover .profile-img {
-            border-color: var(--dandelion);
-            transform: scale(1.03);
-        }
-        
-        .profile-hud {
-            position: absolute;
-            top: -8px; 
-            left: -8px; 
-            right: -8px; 
-            bottom: -8px;
-            border: 2px solid rgba(56, 189, 248, 0.25);
-            border-radius: 12px;
-            pointer-events: none;
-            animation: pulse-hud 6s infinite cubic-bezier(0.4, 0, 0.6, 1);
-        }
-        
-        @keyframes pulse-hud {
-            0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.04); }
-        }
-
-        /* Clean typography */
-        .section-header {
-            font-size: 1.75rem;
-            letter-spacing: -0.04em;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { 
-            background: var(--dandelion); 
-            border-radius: 20px; 
-        }
-
-        .skill-tag {
-            background: rgba(250, 204, 21, 0.08);
-            border: 1px solid rgba(250, 204, 21, 0.25);
-            color: var(--text-dim);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .skill-tag:hover {
-            background: rgba(250, 204, 21, 0.15);
-            border-color: var(--dandelion);
-            color: #f8fafc;
-            transform: translateY(-1px);
-        }
-
-        /* Project slider improvements */
-        .project-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .project-card:hover {
-            transform: translateY(-4px);
-        }
-
-        /* Glass-like header */
-        .header-glass {
-            background: rgba(5, 5, 5, 0.85);
-            backdrop-filter: blur(20px);
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background:
+        radial-gradient(circle at 15% -5%, rgba(124,58,237,0.12), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(96,165,250,0.10), transparent 26%),
+        radial-gradient(circle at 50% 100%, rgba(244,201,93,0.06), transparent 20%),
+        linear-gradient(180deg, #060608 0%, #0a0b0e 100%);
+    }
+    .glass {
+      background: rgba(17,18,20,0.72);
+      backdrop-filter: blur(24px) saturate(130%);
+      -webkit-backdrop-filter: blur(24px) saturate(130%);
+    }
+    .premium-surface {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+      backdrop-filter: blur(24px) saturate(130%);
+      -webkit-backdrop-filter: blur(24px) saturate(130%);
+    }
+    .section-reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .9s var(--ease), transform .9s var(--ease);
+    }
+    .section-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card-hover {
+      transition: transform .45s var(--ease), border-color .45s var(--ease), box-shadow .45s var(--ease), background-color .45s var(--ease);
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,255,255,0.12);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,255,255,0.04);
+    }
+    .nav-link {
+      position: relative;
+      transition: color .35s var(--ease), opacity .35s var(--ease);
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+      width: 0;
+      height: 1.5px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(124,58,237,0.95), rgba(96,165,250,0.95), rgba(244,201,93,0.95));
+      transition: width .35s var(--ease);
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+    .hero-noise::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85), transparent 85%);
+    }
+    .metal-line {
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.22), rgba(255,255,255,0));
+    }
+    .shine {
+      position: relative;
+      overflow: hidden;
+    }
+    .shine::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(120deg, transparent 25%, rgba(255,255,255,0.08) 50%, transparent 75%);
+      transform: translateX(-120%);
+      transition: transform 1.1s var(--ease);
+      pointer-events: none;
+    }
+    .shine:hover::before {
+      transform: translateX(120%);
+    }
+    .text-balance {
+      text-wrap: balance;
+    }
+  </style>
 </head>
-<body class="min-h-screen">
+<body class="text-text font-sans antialiased selection:bg-white/15 selection:text-white">
+  <header class="fixed top-0 inset-x-0 z-50 border-b border-white/[0.06] glass">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="h-20 flex items-center justify-between">
+        <a href="#home" class="font-semibold tracking-[-0.04em] text-lg sm:text-xl">
+          Nathaniel <span class="text-white/50">/</span> <span class="text-white/80">Portfolio</span>
+        </a>
 
-    <!-- HUD / Navigation Overlay -->
-    <header class="header-glass fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center border-b border-white/5">
-        <div>
-            <h1 class="mono font-bold text-2xl tracking-[-0.05em] accent-glow">
-                NC<span class="text-white">.</span>SYS
-                <span class="text-xs font-normal text-slate-400 tracking-widest ml-1 align-super">v2.5</span>
-            </h1>
-        </div>
-        
-        <nav class="hidden md:flex gap-8 pointer-events-auto mono text-sm uppercase tracking-[0.125em] text-slate-400">
-            <a href="#about" class="hover:text-white hover:accent-glow transition-colors duration-200">ABOUT</a>
-            <a href="#experience" class="hover:text-white hover:accent-glow transition-colors duration-200">EXPERIENCE</a>
-            <a href="#stack" class="hover:text-white hover:accent-glow transition-colors duration-200">STACK</a>
-            <a href="#projects" class="hover:text-white hover:accent-glow transition-colors duration-200">PROJECTS</a>
+        <nav class="hidden md:flex items-center gap-8 text-sm text-slate-300">
+          <a href="#about" class="nav-link hover:text-white">About</a>
+          <a href="#experience" class="nav-link hover:text-white">Experience</a>
+          <a href="#stack" class="nav-link hover:text-white">Stack</a>
+          <a href="#projects" class="nav-link hover:text-white">Projects</a>
+          <a href="#contact" class="nav-link hover:text-white">Contact</a>
         </nav>
-        
-        <!-- Mobile hint -->
-        <div class="md:hidden mono text-xs text-slate-500 flex items-center gap-1.5">
-            <div class="w-2 h-2 rounded-full bg-[#facc15] animate-pulse"></div>
-            MENU
-        </div>
-    </header>
 
-    <main class="max-w-7xl mx-auto px-6 pt-28 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-14">
-        
-        <!-- Left Column: Identity & Terminal -->
-        <aside class="lg:col-span-4 lg:sticky lg:top-28 h-fit space-y-10">
-            
-            <!-- Profile Section -->
-            <div class="flex flex-col items-start">
-                <div class="profile-container">
-                    <img src="/image/pfp.jpg" alt="Nathaniel Coronacion" class="profile-img" onerror="this.src='https://via.placeholder.com/256/050505/00d2ff?text=NC_USER'">
-                    <div class="profile-hud"></div>
-                    <div class="absolute -bottom-1 -right-1 bg-[#38bdf8] text-[10px] mono px-2.5 py-px rounded text-white shadow-inner">BIO_AUTH</div>
-                </div>
-                <div class="mono">
-                    <h2 class="text-white font-semibold text-3xl tracking-[-0.04em]">Nathaniel Coronacion</h2>
-                    <p class="secondary-glow text-sm tracking-[0.125em] mt-1">SOFTWARE ENGINEER</p>
-                </div>
+        <button id="menuButton" class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border border-white/10 bg-white/[0.04] text-slate-200 transition hover:bg-white/[0.08]">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden border-t border-white/5 bg-[#0b0c10]/95 backdrop-blur-2xl">
+      <div class="px-6 py-4 flex flex-col gap-4 text-sm text-slate-300">
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#experience" class="mobile-link">Experience</a>
+        <a href="#stack" class="mobile-link">Stack</a>
+        <a href="#projects" class="mobile-link">Projects</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="home" class="pt-24">
+    <section class="relative overflow-hidden hero-noise">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 pt-14 pb-20 lg:pt-24 lg:pb-28 relative">
+        <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-10 xl:gap-16 items-center">
+          <div class="section-reveal visible">
+            <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[12px] text-white/75 mb-7 shadow-ringglow">
+              <span class="w-2 h-2 rounded-full bg-goldx"></span>
+              Backend Software Engineer
             </div>
 
-            <!-- Terminal Window -->
-            <div class="terminal-window rounded-3xl overflow-hidden">
-                <div class="bg-[#1a1a1a] px-6 py-3 flex items-center justify-between border-b border-white/10">
-                    <div class="flex gap-1.5">
-                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
-                    </div>
-                    <span class="mono text-xs text-slate-400 uppercase tracking-widest">kernel_shell • live</span>
-                </div>
-                <div id="terminal-content" class="p-8 mono text-sm h-[340px] overflow-y-auto space-y-3 text-[#e2e8f0]">
-                    <p class="text-slate-400">Initializing socket connection...</p>
-                    <p class="text-emerald-400">Handshake complete. Terminal ready.</p>
-                    <p class="text-[#f8fafc]">$ fetch --profile info</p>
-                    <div class="pl-6 border-l border-slate-700 my-3 space-y-1 text-xs text-slate-400">
-                        <p><span class="text-slate-500">NAME:</span> nathaniel_coronacion</p>
-                        <p><span class="text-slate-500">ROLE:</span> backend_dev</p>
-                        <p><span class="text-slate-500">BASE:</span> cavite.ph</p>
-                        <p><span class="text-slate-500">EXP:</span> 2_years_active</p>
-                    </div>
-                    <div id="dynamic-logs" class="space-y-1"></div>
-                    <p class="text-[#f8fafc] mt-6 flex items-center">$ <span class="cursor-blink ml-1 w-2 h-4 bg-[#38bdf8] inline-block"></span></p>
-                </div>
+            <h1 class="text-balance text-5xl sm:text-6xl lg:text-7xl xl:text-[5.35rem] font-semibold tracking-[-0.07em] leading-[0.93] max-w-5xl">
+              Clean systems.
+              <span class="block text-white/88">Scalable backend architecture.</span>
+              <span class="block bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">Built with precision.</span>
+            </h1>
+
+            <p class="mt-7 text-lg sm:text-xl text-slate-300 max-w-3xl leading-relaxed text-balance">
+              Nathaniel Coronacion — backend-heavy full-stack engineer focused on robust APIs, system design, performance, security, and maintainable code.
+            </p>
+
+            <div class="mt-10 flex flex-wrap gap-4">
+              <a href="#projects" class="shine inline-flex items-center justify-center rounded-full px-6 py-3.5 bg-white text-black font-semibold shadow-premium transition duration-300 hover:scale-[1.015]">View Projects</a>
+              <a href="#contact" class="inline-flex items-center justify-center rounded-full px-6 py-3.5 border border-white/10 bg-white/[0.04] text-slate-100 font-semibold transition duration-300 hover:bg-white/[0.08]">Contact Me</a>
             </div>
 
-            <div class="premium-card rounded-3xl p-7">
-                <h3 class="mono text-xs text-slate-400 mb-3 uppercase tracking-widest">Core Directive</h3>
-                <p class="text-sm leading-relaxed text-slate-400">
-                    Designing and engineering high-performance digital systems. Bridging user experience with robust backend architecture.
+            <div class="mt-14 grid sm:grid-cols-3 gap-4 max-w-4xl">
+              <div class="premium-surface rounded-[2rem] border border-white/10 p-5 card-hover">
+                <div class="text-[11px] uppercase tracking-[0.18em] text-white/40">Core Focus</div>
+                <div class="mt-3 text-base font-semibold">Backend Engineering</div>
+              </div>
+              <div class="premium-surface rounded-[2rem] border border-white/10 p-5 card-hover">
+                <div class="text-[11px] uppercase tracking-[0.18em] text-white/40">Strength</div>
+                <div class="mt-3 text-base font-semibold">Clean Architecture</div>
+              </div>
+              <div class="premium-surface rounded-[2rem] border border-white/10 p-5 card-hover">
+                <div class="text-[11px] uppercase tracking-[0.18em] text-white/40">Build Style</div>
+                <div class="mt-3 text-base font-semibold">Scalable Systems</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-reveal">
+            <div class="premium-surface rounded-[2.25rem] border border-white/10 shadow-premium p-6 lg:p-7 card-hover">
+              <div class="flex items-center justify-between pb-5 border-b border-white/10">
+                <div>
+                  <p class="text-sm text-white/45">Profile</p>
+                  <h2 class="mt-1 text-2xl font-semibold tracking-[-0.04em]">Nathaniel Coronacion</h2>
+                </div>
+                <div class="w-24 h-24 rounded-full border border-white/10 overflow-hidden shadow-premium">
+                  <img src="/image/my profile.png" alt="Nathaniel Coronacion" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/200/0a0b0e/f5f7fb?text=NC'">
+                </div>
+              </div>
+
+              <div class="pt-6 grid gap-4 text-sm">
+                <div class="flex items-start justify-between gap-6 py-3 border-b border-white/[0.06]"><span class="text-white/45">Role</span><span class="text-right text-white/90">Backend Software Engineer</span></div>
+                <div class="flex items-start justify-between gap-6 py-3 border-b border-white/[0.06]"><span class="text-white/45">Primary Stack</span><span class="text-right text-white/90">Java, Spring Boot, PHP, Node.js</span></div>
+                <div class="flex items-start justify-between gap-6 py-3 border-b border-white/[0.06]"><span class="text-white/45">Specialties</span><span class="text-right text-white/90">REST APIs, RBAC, Caching, Pagination</span></div>
+                <div class="flex items-start justify-between gap-6 py-3 border-b border-white/[0.06]"><span class="text-white/45">Databases</span><span class="text-right text-white/90">MySQL, PostgreSQL, SQLite</span></div>
+                <div class="flex items-start justify-between gap-6 py-3"><span class="text-white/45">Approach</span><span class="text-right text-goldx">Performance + Maintainability + Clarity</span></div>
+              </div>
+
+              <div class="mt-6 rounded-[1.5rem] border border-white/10 bg-black/20 p-5">
+                <p class="text-sm text-slate-300 leading-7 text-balance">
+                  Building production-ready systems with a backend-first mindset, while keeping interfaces elegant, restrained, and purposeful.
                 </p>
+              </div>
             </div>
-        </aside>
-
-        <!-- Right Column: Content -->
-        <div class="lg:col-span-8 space-y-24">
-            
-            <!-- Hero / Intro -->
-            <section id="about" class="space-y-8 pt-4">
-                <div class="inline-flex items-center px-5 py-2 rounded-3xl border border-yellow-400/30 bg-yellow-400/5 text-xs mono text-yellow-400 uppercase tracking-[0.125em]">
-                    System User: Administrator
-                </div>
-                
-                <h2 class="text-6xl md:text-7xl font-black tracking-[-0.06em] leading-none">
-                    SOFTWARE <span class="block md:inline">ENGINEER</span>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-sky-400 to-cyan-400 italic font-light">Nathaniel Coronacion</span>
-                </h2>
-                
-                <p class="text-xl text-slate-400 max-w-2xl leading-relaxed">
-                    I am <span class="text-white font-semibold">Nathaniel Coronacion</span>, a Software Engineer dedicated to crafting clean, scalable, and efficient code. I specialize in <span class="text-white">Fullstack Development</span> with a heavy focus on robust backend logic.
-                </p>
-            </section>
-
-            <!-- Experience -->
-            <section id="experience" class="space-y-12">
-                <div class="flex items-center gap-4">
-                    <h3 class="mono text-3xl font-semibold tracking-[-0.04em]">02. Logs_Experience</h3>
-                    <div class="h-px flex-1 bg-gradient-to-r from-yellow-400/30 to-transparent"></div>
-                </div>
-
-                <div class="space-y-20 border-l border-slate-700 pl-8 ml-2">
-                    
-                    <!-- tail -->
-                    <div class="relative pl-10 section-node">
-                        <span class="mono text-xs accent-glow mb-1 block">FEBRUARY — APRIL 2026</span>
-                        <h4 class="text-2xl font-semibold text-white tracking-tight">Software Engineer Intern</h4>
-                        <p class="text-sm secondary-glow mono mb-4">The Thomas Aquinas Institute of Learning, Inc. | Internship</p>
-                        <ul class="text-slate-400 max-w-xl leading-relaxed list-disc list-outside space-y-3 ml-4 text-[15px]">
-                            <li>Developed RESTful APIs across the core modules (enrollments, pre-registrations, personnel, programs, news, events) with server-side pagination and a normalized relational schema.</li>
-                            <li>Reduced database overhead by 10–30% by engineering a custom Cache-Aside layer using PHP Closures, JSON serialization, and MD5-hashed file storage</li>
-                            <li>Implemented RBAC permission enforcement, password hashing, and secure dynamic asset handling</li>
-                            <li>Deployed the application to production and authored full SDLC documentation, including requirements analysis,  system design, implementation details, testing strategies, and deployment procedures.</li>
-                            <li>Collaborated with a frontend developer and shipped internal tools for daily school operations including tardy slip, early dismissal, and lost & found management</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2 mt-8">
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Git</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Tailwind</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Node.js</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">HTML5</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">CSS3</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">JavaScript</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">PHP</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Express.js</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Electron</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">MySQL</span>
-                        </div>
-                    </div>
-
-                    <!-- freelance -->
-                    <div class="relative pl-10 section-node">
-                        <span class="mono text-xs accent-glow mb-1 block">May 2023 — December 2025</span>
-                        <h4 class="text-2xl font-semibold text-white tracking-tight">Software Engineer</h4>
-                        <p class="text-sm secondary-glow mono mb-4">Freelance</p>
-                        <ul class="text-slate-400 max-w-xl leading-relaxed list-disc list-outside space-y-3 ml-4 text-[15px]">
-                            <li>Completed commissioned thesis projects for college students and other stakeholders covering web, desktop app, and game development</li>
-                            <li>Delivered fully functional systems meeting client specifications and academic requirements</li>
-                            <li>Trusted by peers for technical execution across multiple independent projects</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2 mt-8">
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Web Development</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Game Development</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Desktop Application Development</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-2xl text-xs mono uppercase text-slate-300">Software Development</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Tech Stack & Skills -->
-            <section id="stack" class="space-y-12">
-                <div class="flex items-center gap-4">
-                    <h3 class="mono text-3xl font-semibold tracking-[-0.04em]">03. Tech Stack and Skills</h3>
-                    <div class="h-px flex-1 bg-gradient-to-r from-sky-400/30 to-transparent"></div>
-                </div>
-
-                <div class="max-w-3xl space-y-12">
-                    
-                    <div class="space-y-6">
-                        <h5 class="mono text-xs text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                            <span class="w-2 h-2 bg-yellow-400 rounded-full"></span> Backend Systems
-                        </h5>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
-                                <div class="text-lg font-medium">Spring Boot</div>
-                                <div class="mono text-xs bg-slate-800 text-sky-300 px-4 py-1 rounded-3xl">Java / Core Backend Language</div>
-                            </div>
-                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
-                                <div class="text-lg font-medium">PHP</div>
-                                <div class="mono text-xs bg-slate-800 text-sky-300 px-4 py-1 rounded-3xl">Server-Side / Modern</div>
-                            </div>
-                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
-                                <div class="text-lg font-medium">Node.js</div>
-                                <div class="mono text-xs bg-slate-800 text-sky-300 px-4 py-1 rounded-3xl">Runtime / Async</div>
-                            </div>
-                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
-                                <div class="text-lg font-medium">MySQL / PostgreSQL / SQLite</div>
-                                <div class="mono text-xs bg-emerald-900/70 text-emerald-300 px-4 py-1 rounded-3xl">Relational Databases</div>
-                            </div>
-                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
-                                <div class="text-lg font-medium">C / C++</div>
-                                <div class="mono text-xs bg-emerald-900/70 text-emerald-300 px-4 py-1 rounded-3xl">Low-Level Systems</div>
-                            </div>
-                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
-                                <div class="text-lg font-medium">Unity | C#</div>
-                                <div class="mono text-xs bg-purple-900/70 text-purple-300 px-4 py-1 rounded-3xl">Game Engine</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-6">
-                        <h5 class="mono text-xs text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                            <span class="w-2 h-2 bg-sky-400 rounded-full"></span> Frontend Interfaces
-                        </h5>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
-                                <div class="text-lg font-medium">React.js</div>
-                                <div class="mono text-xs bg-emerald-900/70 text-emerald-300 px-4 py-1 rounded-3xl">UI Library</div>
-                            </div>
-                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
-                                <div class="text-lg font-medium">HTML / CSS / JavaScript</div>
-                                <div class="mono text-xs bg-emerald-900/70 text-emerald-300 px-4 py-1 rounded-3xl">Core Web</div>
-                            </div>
-                            <div class="premium-card rounded-3xl p-5 flex justify-between items-center">
-                                <div class="text-lg font-medium">Tailwind CSS</div>
-                                <div class="mono text-xs bg-orange-900/70 text-orange-300 px-4 py-1 rounded-3xl">Utility-First CSS</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pt-8 border-t border-white/10">
-                        <h5 class="mono text-xs text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-2">
-                            <span class="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span> Skills
-                        </h5>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">RESTful APIs</span>
-                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Microservices</span>
-                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Monolith</span>
-                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Software Engineering</span>
-                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Git / CI/CD</span>
-                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Docker</span>
-                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Redis</span>
-                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Unit Testing</span>
-                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Backend Development</span>
-                            <span class="skill-tag px-5 py-3 rounded-3xl mono text-xs uppercase">Game Development</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Projects -->
-            <section id="projects" class="space-y-12">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-4 flex-1">
-                        <h3 class="mono text-3xl font-semibold tracking-[-0.04em]">04. Build_Manifest</h3>
-                        <div class="h-px flex-1 bg-gradient-to-r from-cyan-400/30 to-transparent"></div>
-                    </div>
-                    
-                    <div class="flex gap-3">
-                        <button onclick="scrollProjects(-1)" class="premium-border w-10 h-10 flex items-center justify-center text-2xl rounded-2xl hover:text-yellow-400 transition-colors">‹</button>
-                        <button onclick="scrollProjects(1)" class="premium-border w-10 h-10 flex items-center justify-center text-2xl rounded-2xl hover:text-yellow-400 transition-colors">›</button>
-                    </div>
-                </div>
-
-                <div id="project-slider" class="flex overflow-x-auto gap-8 pb-8 snap-x snap-mandatory scroll-smooth scrollbar-hide">
-                    
-                    <div class="min-w-full md:min-w-[420px] snap-center">
-                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
-                            <div>
-                                <h4 class="text-3xl font-semibold tracking-tight mb-4">Airconditioning E-Commerce Platform</h4>
-                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
-                                    A secure, full-stack HVAC marketplace engineered for high-concurrency procurement and seamless inventory management.
-                                </p>
-                            </div>
-                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
-                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400">
-                                    <span>PHP</span> 
-                                    <span>MYSQL</span> 
-                                    <span>HTML / CSS / JAVASCRIPT</span>
-                                </div>
-                                <span class="text-xs mono secondary-glow">COMPLETED</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="min-w-full md:min-w-[420px] snap-center">
-                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
-                            <div>
-                                <h4 class="text-3xl font-semibold tracking-tight mb-4">Catholic School Official Website</h4>
-                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
-                                    A full-stack web application for the Thomas Aquinas Institute, featuring student pre-registration,
-                                    list of tuition fees, intuitive UI and seamless UX, and full administrator dashboard control.
-                                </p>
-                            </div>
-                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
-                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400 uppercase">
-                                    <span>PHP</span> 
-                                    <span>Custom CACHE-ASIDE (I/O)</span> 
-                                    <span>HTML / CSS / JAVASCRIPT</span>
-                                    <span>MYSQL</span>
-                                    <span>GIT</span> 
-                                </div>
-                                <span class="text-xs mono accent-glow border border-yellow-400/30 px-3 py-1 rounded-3xl">IN_PROGRESS</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="min-w-full md:min-w-[420px] snap-center">
-                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
-                            <div>
-                                <h4 class="text-3xl font-semibold tracking-tight mb-4">TYPEDASH</h4>
-                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
-                                    A full-stack typing speed test web application inspired by TypeMonkey, featured with real-time speedometer,
-                                    WPM reader, modes, leaderboards, and analytics.
-                                </p>
-                            </div>
-                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
-                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400 uppercase">
-                                    <span>JAVA</span> 
-                                    <span>SPRING BOOT</span> 
-                                    <span>MYSQL</span> 
-                                    <span>HTML / CSS / JAVASCRIPT</span> 
-                                    <span>GIT</span>
-                                </div>
-                                <span class="text-xs mono secondary-glow">COMPLETED</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="min-w-full md:min-w-[420px] snap-center">
-                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
-                            <div>
-                                <h4 class="text-3xl font-semibold tracking-tight mb-4">MITOLOHIYA</h4>
-                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
-                                    A Unity-Based 2d turn-based card game inspired in a filipino mythology, features: turn-based combat,
-                                    additional points per successive wins, synergy system (dual attack), three boss fights, endless modes.
-                                </p>
-                            </div>
-                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
-                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400 uppercase">
-                                    <span>C#</span> 
-                                    <span>UNITY</span>
-                                    <span>UNITY VERSION CONTROL</span>
-                                </div>
-                                <span class="text-xs mono secondary-glow">COMPLETED</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="min-w-full md:min-w-[420px] snap-center">
-                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
-                            <div>
-                                <h4 class="text-3xl font-semibold tracking-tight mb-4">VYBE</h4>
-                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
-                                    A full-stack music web application designed to put listeners in the same rhythm. Focuses on distraction-free listening
-                                    experience. Includes core music listening, vibe-based recommendations based on listener's mood, administrator feature,
-                                    artist dashboard, and future monetization.
-                                </p>
-                            </div>
-                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
-                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400 uppercase">
-                                    <span>HTML / CSS / JAVASCRIPT</span> 
-                                    <span>MYSQL</span>
-                                    <span>SPRING BOOT</span>
-                                    <span>GIT</span>
-                                </div>
-                                <span class="text-xs mono accent-glow border border-yellow-400/30 px-3 py-1 rounded-3xl">IN_PROGRESS</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="min-w-full md:min-w-[420px] snap-center">
-                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
-                            <div>
-                                <h4 class="text-3xl font-semibold tracking-tight mb-4">Airconditioning Unit Controller</h4>
-                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
-                                    Web application that controls the temperature and state (on and off) of 
-                                    airconditioning unit that's supported with an IR blaster. It is equipped using an ESP32 microcontroller.
-                                </p>
-                            </div>
-                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
-                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400 uppercase">
-                                    <span>HTML / CSS / JAVASCRIPT</span> 
-                                    <span>MYSQL</span>
-                                    <span>SPRING BOOT</span>
-                                    <span>GIT</span>
-                                    <span>ESP32 MICROCONTROLLER</span>
-                                    <span>C++ / ARDUINO</span>
-                                </div>
-                                <span class="text-xs mono accent-glow border border-yellow-400/30 px-3 py-1 rounded-3xl">IN_PROGRESS</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="min-w-full md:min-w-[420px] snap-center">
-                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
-                            <div>
-                                <h4 class="text-3xl font-semibold tracking-tight mb-4">Verdant Seige</h4>
-                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
-                                    A Tower Defense game inspired by Plants vs. Zombies with a twist of unique plants and zombies, and featured with 
-                                    online multiplayer, in-game currency, chatting/adding people, anti-cheats, and different modes.
-                                </p>
-                            </div>
-                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
-                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400 uppercase">
-                                    <span>JAVA</span> 
-                                    <span>SPRING BOOT</span> 
-                                    <span>POSTGRESQL</span>
-                                    <span>REACT.JS</span>
-                                    <span>PHASER.JS</span>
-                                    <span>JAVASCRIPT</span>
-                                    <span>GIT</span> 
-                                    <span>REDIS</span>
-                                    <span>WEBSOCKET</span>
-                                    <span>DOCKER</span>
-                                    <span>POSTMAN</span>
-                                </div>
-                                <span class="text-xs mono accent-glow border border-yellow-400/30 px-3 py-1 rounded-3xl">IN_PROGRESS</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="min-w-full md:min-w-[420px] snap-center">
-                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
-                            <div>
-                                <h4 class="text-3xl font-semibold tracking-tight mb-4">MULTI-TENANT SAAS BACKEND</h4>
-                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
-                                    A full backend system composed of RESTful APIs regarding a multi-tenant saas, featuring security, scalability, login/signup,
-                                    CRUD operations, and tenant handling.
-                                </p>
-                            </div>
-                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
-                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400 uppercase">
-                                    <span>JAVA</span> 
-                                    <span>SPRING BOOT</span> 
-                                    <span>POSTGRESQL</span>
-                                    <span>GIT</span> 
-                                    <span>POSTMAN</span>
-                                </div>
-                                <span class="text-xs mono accent-glow border border-yellow-400/30 px-3 py-1 rounded-3xl">IN_PROGRESS</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="min-w-full md:min-w-[420px] snap-center">
-                        <div class="project-card premium-card rounded-3xl p-8 h-full flex flex-col justify-between">
-                            <div>
-                                <h4 class="text-3xl font-semibold tracking-tight mb-4">BIBO E-Learning Web App</h4>
-                                <p class="text-slate-400 leading-relaxed text-[15.2px]">
-                                    BIBO is an AI-powered, responsive e-learning system designed to provide foundational, gamified education in English, Filipino, 
-                                    Math, and Science for out-of-school youth aged 7 to 12. Developed using an Agile Scrum methodology, the platform integrates 
-                                    adaptive AI tutoring and real-time analytics to help parents and teachers track progress and bridge learning gaps.
-                                </p>
-                            </div>
-                            <div class="flex justify-between items-end pt-8 border-t border-white/10 mt-auto">
-                                <div class="flex flex-wrap gap-x-4 gap-y-1 mono text-xs text-slate-400 uppercase">
-                                    <span>SPRING BOOT</span> 
-                                    <span>JAVA</span> 
-                                    <span>MYSQL</span>
-                                    <span>HTML</span> 
-                                    <span>CSS</span>
-                                    <span>JAVASCRIPT</span>
-                                    <span>POSTMAN</span>
-                                    <span>APACHE</span>
-                                </div>
-                                <span class="text-xs mono accent-glow border border-yellow-400/30 px-3 py-1 rounded-3xl">IN_PROGRESS</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+          </div>
         </div>
-    </main>
+      </div>
+    </section>
 
-    <!-- Footer Stats -->
-    <footer class="fixed bottom-0 left-0 w-full bg-black/90 backdrop-blur-lg border-t border-white/10 p-4 px-6 flex justify-between items-center mono text-xs text-slate-400 z-50">
-        <div class="flex gap-6">
-            <span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></div> SYS_UPTIME: 99.9%</span>
-            <span class="hidden md:inline">KERNEL: 6.2.0-stable</span>
+    <section id="about" class="section-reveal max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+      <div class="flex items-center gap-4 mb-10">
+        <p class="text-[11px] uppercase tracking-[0.22em] text-white/45">About</p>
+        <div class="h-px flex-1 metal-line"></div>
+      </div>
+      <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-14 items-start">
+        <div>
+          <h2 class="text-3xl sm:text-4xl lg:text-[2.7rem] font-semibold tracking-[-0.05em] leading-tight text-balance">Backend-first engineering with a premium, disciplined build philosophy.</h2>
         </div>
-        <div class="text-center">
-            BUILD: 0xNATH_24 | © 2024 NC_ENGINEERING
+        <div class="premium-surface rounded-[2.25rem] border border-white/10 p-7 sm:p-9 card-hover">
+          <p class="text-slate-300 leading-8 text-balance">
+            I build applications with a strong focus on backend logic, maintainability, and clean structure. My core stack revolves around <span class="text-white font-semibold">Java with Spring Boot</span>, <span class="text-white font-semibold">PHP using MVC + PDO</span>, and <span class="text-white font-semibold">Node.js</span>. I work comfortably with REST APIs, RBAC, caching strategies, pagination, and normalized database design.
+          </p>
+          <p class="mt-5 text-slate-400 leading-8 text-balance">
+            I care about code that scales, stays readable, and remains practical to maintain. Whether building a school platform, an e-commerce system, internal tooling, or a game backend, I lean toward architecture that is structured, secure, and performance-aware.
+          </p>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script>
-        const logs = [
-            "Initializing Java Runtime...",
-            "Connecting to MySQL Cluster...",
-            "Tracing Node.js event loop...",
-            "VUE_COMPILER: Success",
-            "API /v1/auth: 200 OK",
-            "Establishing handshake...",
-            "Resource alloc: Optimized",
-            "Deploying to staging...",
-            "Docker container: Up",
-            "Kernel check: Normal"
-        ];
+    <section id="experience" class="section-reveal max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+      <div class="flex items-center gap-4 mb-10">
+        <p class="text-[11px] uppercase tracking-[0.22em] text-white/45">Experience</p>
+        <div class="h-px flex-1 metal-line"></div>
+      </div>
 
-        const logContainer = document.getElementById('dynamic-logs');
-        
-        function addLog() {
-            const p = document.createElement('p');
-            p.className = 'terminal-log text-emerald-400 text-xs';
-            p.textContent = `[${new Date().toLocaleTimeString('en-GB', { hour12: false })}] ${logs[Math.floor(Math.random() * logs.length)]}`;
-            logContainer.appendChild(p);
-            
-            if (logContainer.children.length > 8) {
-                logContainer.removeChild(logContainer.firstChild);
-            }
-            
-            const terminal = document.getElementById('terminal-content');
-            terminal.scrollTop = terminal.scrollHeight;
-        }
+      <div class="space-y-6">
+        <article class="premium-surface rounded-[2.25rem] border border-white/10 p-7 sm:p-9 card-hover">
+          <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+            <div>
+              <h3 class="text-2xl font-semibold tracking-[-0.04em]">Software Engineer Intern</h3>
+              <p class="mt-1 text-white/62">Thomas Aquinas Institute of Learning, Inc.</p>
+            </div>
+            <span class="inline-flex w-fit rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs text-white/80">Feb 2026 – Apr 2026</span>
+          </div>
 
-        setInterval(addLog, 2400);
+          <ul class="mt-6 space-y-3 text-slate-300 leading-7 list-disc pl-5">
+            <li>Built the school website and admin dashboard for core operational and content-management workflows.</li>
+            <li>Developed RESTful APIs for pre-registrations, personnel, news, events, and other core modules.</li>
+            <li>Implemented RBAC-based access control and secure backend logic across protected admin features.</li>
+            <li>Built a custom file-based cache-aside strategy using JSON serialization and MD5-based cache keys.</li>
+            <li>Reduced database overhead by around 10–30% through targeted caching and backend optimizations.</li>
+            <li>Used pagination and normalized relational database design for maintainable and scalable data handling.</li>
+            <li>Built and deployed internal desktop tools for school operations: Tardy Slip, Gate Pass, and Lost &amp; Found.</li>
+          </ul>
 
-        // Intersection Observer for section revealing
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-white/80">PHP</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-white/80">MVC</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-white/80">PDO</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-white/80">MySQL</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-white/80">JavaScript</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-white/80">Tailwind CSS</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-white/80">Node.js</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-white/80">Electron</span>
+          </div>
+        </article>
 
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-            observer.observe(section);
-        });
+        <article class="premium-surface rounded-[2.25rem] border border-white/10 p-7 sm:p-9 card-hover">
+          <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+            <div>
+              <h3 class="text-2xl font-semibold tracking-[-0.04em]">Software Engineer</h3>
+              <p class="mt-1 text-white/62">Freelance</p>
+            </div>
+            <span class="inline-flex w-fit rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs text-white/80">May 2023 – Dec 2025</span>
+          </div>
 
-        function scrollProjects(direction) {
-            const slider = document.getElementById('project-slider');
-            const scrollAmount = slider.offsetWidth * 0.65;
-            slider.scrollBy({
-                left: direction * scrollAmount,
-                behavior: 'smooth'
-            });
-        }
+          <ul class="mt-6 space-y-3 text-slate-300 leading-7 list-disc pl-5">
+            <li>Delivered client systems across web, desktop, and game development projects.</li>
+            <li>Worked across the full development lifecycle, from requirements gathering to implementation and delivery.</li>
+            <li>Built production-oriented solutions based on project scope, technical constraints, and client needs.</li>
+            <li>Adapted the stack and system design approach depending on the demands of each project.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-        // Tailwind script already loaded – ensure dark mode consistency
-        console.log('%cPortfolio ready — clean, modern, premium.', 'color:#facc15; font-family:monospace; font-size:10px;');
-    </script>
+    <section id="stack" class="section-reveal max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+      <div class="flex items-center gap-4 mb-10">
+        <p class="text-[11px] uppercase tracking-[0.22em] text-white/45">Stack & Skills</p>
+        <div class="h-px flex-1 metal-line"></div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="premium-surface rounded-[2.25rem] border border-white/10 p-7 sm:p-8 card-hover">
+          <h3 class="text-xl font-semibold tracking-[-0.03em]">Backend</h3>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">Java</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">Spring Boot</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">PHP</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">MVC</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">PDO</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">Node.js</span>
+          </div>
+        </div>
+
+        <div class="premium-surface rounded-[2.25rem] border border-white/10 p-7 sm:p-8 card-hover">
+          <h3 class="text-xl font-semibold tracking-[-0.03em]">Frontend</h3>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">HTML</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">CSS</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">JavaScript</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">Tailwind CSS</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">React</span>
+          </div>
+        </div>
+
+        <div class="premium-surface rounded-[2.25rem] border border-white/10 p-7 sm:p-8 card-hover">
+          <h3 class="text-xl font-semibold tracking-[-0.03em]">Databases</h3>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">MySQL</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">PostgreSQL</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">SQLite</span>
+          </div>
+        </div>
+
+        <div class="premium-surface rounded-[2.25rem] border border-white/10 p-7 sm:p-8 card-hover">
+          <h3 class="text-xl font-semibold tracking-[-0.03em]">Core Engineering Skills</h3>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">REST APIs</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">RBAC</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">Pagination</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">Caching</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">Clean Architecture</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">Database Design</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">Performance Optimization</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">Git</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">Backend Development</span>
+            <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm">System Design</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section-reveal max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+      <div class="flex items-center gap-4 mb-10">
+        <p class="text-[11px] uppercase tracking-[0.22em] text-white/45">Projects</p>
+        <div class="h-px flex-1 metal-line"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <article class="premium-surface rounded-[2.25rem] border border-white/10 p-6 sm:p-7 card-hover">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-xl font-semibold tracking-[-0.03em]">Airconditioning E-Commerce Platform</h3>
+            <span class="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] text-white/75">Completed</span>
+          </div>
+          <p class="mt-4 text-slate-400 leading-7">Full-stack HVAC marketplace with inventory management and service booking workflows for airconditioning-related business operations.</p>
+          <p class="mt-5 text-xs text-white/45">PHP · MySQL · JavaScript</p>
+        </article>
+
+        <article class="premium-surface rounded-[2.25rem] border border-white/10 p-6 sm:p-7 card-hover">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-xl font-semibold tracking-[-0.03em]">School Website + Admin Dashboard</h3>
+            <span class="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] text-white/75">Completed</span>
+          </div>
+          <p class="mt-4 text-slate-400 leading-7">Full website and admin system featuring RBAC, caching, analytics, dashboard modules, and operational content management.</p>
+          <p class="mt-5 text-xs text-white/45">PHP MVC · MySQL · Tailwind CSS · JavaScript</p>
+        </article>
+
+        <article class="premium-surface rounded-[2.25rem] border border-white/10 p-6 sm:p-7 card-hover">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-xl font-semibold tracking-[-0.03em]">TYPEDASH</h3>
+            <span class="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] text-white/75">Completed</span>
+          </div>
+          <p class="mt-4 text-slate-400 leading-7">Typing speed test application with WPM tracking, leaderboard functionality, and performance analytics.</p>
+          <p class="mt-5 text-xs text-white/45">Java · Spring Boot · MySQL</p>
+        </article>
+
+        <article class="premium-surface rounded-[2.25rem] border border-white/10 p-6 sm:p-7 card-hover">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-xl font-semibold tracking-[-0.03em]">MITOLOHIYA</h3>
+            <span class="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] text-white/75">Completed</span>
+          </div>
+          <p class="mt-4 text-slate-400 leading-7">Unity-based 2D turn-based card game inspired by Filipino mythology, focused on gameplay systems and battle flow.</p>
+          <p class="mt-5 text-xs text-white/45">C# · Unity</p>
+        </article>
+
+        <article class="premium-surface rounded-[2.25rem] border border-white/10 p-6 sm:p-7 card-hover">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-xl font-semibold tracking-[-0.03em]">VYBE</h3>
+            <span class="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] text-white/75">In Progress</span>
+          </div>
+          <p class="mt-4 text-slate-400 leading-7">Music web application with recommendation-driven direction, dashboard views, and future monetization potential.</p>
+          <p class="mt-5 text-xs text-white/45">Spring Boot · MySQL · JavaScript</p>
+        </article>
+
+        <article class="premium-surface rounded-[2.25rem] border border-white/10 p-6 sm:p-7 card-hover">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-xl font-semibold tracking-[-0.03em]">Airconditioning Controller (ESP32)</h3>
+            <span class="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] text-white/75">In Progress</span>
+          </div>
+          <p class="mt-4 text-slate-400 leading-7">Web and IoT-integrated system for controlling airconditioning unit state and temperature using ESP32-based hardware interaction.</p>
+          <p class="mt-5 text-xs text-white/45">Spring Boot · C++/Arduino · ESP32 · JavaScript</p>
+        </article>
+
+        <article class="premium-surface rounded-[2.25rem] border border-white/10 p-6 sm:p-7 card-hover md:col-span-2 xl:col-span-1">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-xl font-semibold tracking-[-0.03em]">Verdant Siege</h3>
+            <span class="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] text-white/75">In Progress</span>
+          </div>
+          <p class="mt-4 text-slate-400 leading-7">Multiplayer tower defense game backed by real-time systems, planned online features, and scalable backend architecture.</p>
+          <p class="mt-5 text-xs text-white/45">Spring Boot · React · PostgreSQL · WebSockets · Redis · Docker</p>
+        </article>
+
+        <article class="premium-surface rounded-[2.25rem] border border-white/10 p-6 sm:p-7 card-hover md:col-span-2 xl:col-span-2">
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-xl font-semibold tracking-[-0.03em]">Multi-Tenant SaaS Backend</h3>
+            <span class="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] text-white/75">In Progress</span>
+          </div>
+          <p class="mt-4 text-slate-400 leading-7">Secure backend platform with tenant handling, authentication, CRUD workflows, and architecture designed for scalable multi-tenant usage patterns.</p>
+          <p class="mt-5 text-xs text-white/45">Spring Boot · PostgreSQL</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section-reveal max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+      <div class="premium-surface rounded-[2.5rem] border border-white/10 p-8 sm:p-10 lg:p-12 shadow-premium">
+        <p class="text-[11px] uppercase tracking-[0.22em] text-white/45">Contact</p>
+        <h2 class="mt-4 text-3xl sm:text-4xl lg:text-[2.7rem] font-semibold tracking-[-0.05em] max-w-3xl text-balance">Let’s build something clean, scalable, and production-ready.</h2>
+        <p class="mt-4 text-slate-400 max-w-2xl leading-8 text-balance">Open to roles, collaborations, and serious engineering opportunities. Replace the placeholders below with your live contact details.</p>
+
+        <div class="mt-8 grid md:grid-cols-3 gap-4">
+          <a href="#" class="rounded-[1.6rem] border border-white/10 bg-white/[0.03] p-5 card-hover block">
+            <div class="text-[11px] uppercase tracking-[0.18em] text-white/40">Email</div>
+            <div class="mt-3 text-slate-200">your.email@example.com</div>
+          </a>
+          <a href="#" class="rounded-[1.6rem] border border-white/10 bg-white/[0.03] p-5 card-hover block">
+            <div class="text-[11px] uppercase tracking-[0.18em] text-white/40">GitHub</div>
+            <div class="mt-3 text-slate-200">github.com/yourusername</div>
+          </a>
+          <a href="#" class="rounded-[1.6rem] border border-white/10 bg-white/[0.03] p-5 card-hover block">
+            <div class="text-[11px] uppercase tracking-[0.18em] text-white/40">LinkedIn</div>
+            <div class="mt-3 text-slate-200">linkedin.com/in/yourusername</div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/[0.06] py-8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-sm text-white/40">
+      <p>© 2026 Nathaniel Coronacion. Built with pure HTML, Tailwind CSS, and vanilla JavaScript.</p>
+      <p>Designed with a restrained premium aesthetic.</p>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.section-reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => {
+      if (!el.classList.contains('visible')) observer.observe(el);
+    });
+
+    const menuButton = document.getElementById('menuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    menuButton?.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const setActiveNav = () => {
+      let current = 'about';
+      sections.forEach(section => {
+        const top = window.scrollY;
+        const offset = section.offsetTop - 140;
+        const height = section.offsetHeight;
+        if (top >= offset && top < offset + height) current = section.getAttribute('id');
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active', 'text-white');
+        if (link.getAttribute('href') === `#${current}`) link.classList.add('active', 'text-white');
+      });
+    };
+
+    window.addEventListener('scroll', setActiveNav, { passive: true });
+    window.addEventListener('load', setActiveNav);
+  </script>
 </body>
 </html>
