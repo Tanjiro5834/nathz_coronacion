@@ -441,3 +441,23 @@ serviceModalOverlay.addEventListener('click', e => {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && serviceModalOverlay.classList.contains('open')) closeService();
 });
+
+// Ensure services and policies sections are observed for scroll reveal
+const servicesSection = document.getElementById('services');
+const policiesSection = document.getElementById('policies');
+
+if (servicesSection) {
+  const serviceReveals = servicesSection.querySelectorAll('.reveal');
+  serviceReveals.forEach(el => observer.observe(el));
+}
+
+if (policiesSection) {
+  const policyReveals = policiesSection.querySelectorAll('.reveal');
+  policyReveals.forEach(el => observer.observe(el));
+}
+
+// Optional: Add staggered delay for service cards based on index
+const serviceCards = document.querySelectorAll('.service-card');
+serviceCards.forEach((card, index) => {
+  card.style.setProperty('--order', index);
+});
