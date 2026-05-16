@@ -470,3 +470,180 @@ const serviceCards = document.querySelectorAll('.service-card');
 serviceCards.forEach((card, index) => {
   card.style.setProperty('--order', index);
 });
+/* ═══════════════════════════════════════════
+   PROFESSIONAL SERVICES MODAL
+═══════════════════════════════════════════ */
+const serviceData = {
+  capstone: {
+    icon: '🎓',
+    title: 'Capstone / Thesis Development',
+    price: '₱8,000',
+    description: 'I build complete capstone and thesis systems from scratch — fully functional, properly documented, and aligned with academic requirements. Whether it\'s a web system, desktop app, or a mixed platform, I handle the full SDLC: from requirements analysis and ERD design to implementation, testing, and documentation.',
+    includes: [
+      'Full system development (web, desktop, or hybrid)',
+      'Entity-Relationship Diagram (ERD) and database design',
+      'Complete SDLC documentation (Iterative Waterfall or Agile)',
+      'User roles and access control (RBAC)',
+      'Admin dashboard and reporting features',
+      'Source code with clean MVC architecture',
+      'Deployment-ready build and setup guide',
+      'Revision support during defense preparation',
+    ],
+    terms: [
+      { key: 'Downpayment', val: '50% before work begins' },
+      { key: 'Balance', val: '50% upon delivery' },
+      { key: 'Timeline', val: '3 – 6 weeks depending on scope' },
+      { key: 'Revisions', val: '2 rounds of minor revisions free' },
+      { key: 'Ownership', val: 'Full source code transferred on final payment' },
+      { key: 'Rush Fee', val: '+30% for under 2-week turnaround' },
+    ],
+    note: 'Documentation includes system proposal, technical specifications, test plans, and user manual. Scope is finalized before development starts to avoid scope creep.',
+  },
+  game: {
+    icon: '🎮',
+    title: 'Game Development',
+    price: '₱5,000',
+    description: 'I develop 2D and 3D games using Unity, LibGDX (Java), or PyGame. From casual single-player games to real-time multiplayer systems with leaderboards and matchmaking — I architect the game systems, implement the mechanics, and deliver a polished build.',
+    includes: [
+      '2D or 3D game development (Unity / LibGDX / PyGame)',
+      'Game mechanics, physics, and collision systems',
+      'Player progression, scoring, and leaderboard',
+      'UI/UX: menus, HUD, game over/win screens',
+      'Real-time multiplayer support (if required)',
+      'Sound integration and basic animations',
+      'Packaged build (Windows executable or web build)',
+      'Source project files included',
+    ],
+    terms: [
+      { key: 'Downpayment', val: '50% before work begins' },
+      { key: 'Balance', val: '50% upon delivery of build' },
+      { key: 'Timeline', val: '2 – 5 weeks depending on complexity' },
+      { key: 'Revisions', val: '2 rounds of gameplay tweaks included' },
+      { key: 'Platform', val: 'Windows / Web / Android (scope-dependent)' },
+      { key: 'Rush Fee', val: '+30% for under 10-day turnaround' },
+    ],
+    note: 'Multiplayer, AI opponents, procedural generation, or advanced physics each add to the base price. A detailed scope discussion is done before any commitment.',
+  },
+  web: {
+    icon: '🌐',
+    title: 'Web Development',
+    price: '₱6,000',
+    description: 'I build full-stack web systems — from REST API backends with Spring Boot or PHP MVC, to complete platforms with admin dashboards, authentication, payment integration, and frontend UIs. Every system is built with clean architecture, security best practices, and scalability in mind.',
+    includes: [
+      'Full-stack web system (backend + frontend)',
+      'REST API design and implementation',
+      'Database design, migrations, and optimization',
+      'JWT authentication and role-based access control',
+      'Admin dashboard with CRUD and reporting',
+      'Third-party integrations (payment, SMS, email, etc.)',
+      'Security: CSRF protection, input sanitization, HTTPS',
+      'Deployment-ready with Nginx/Apache configuration',
+    ],
+    terms: [
+      { key: 'Downpayment', val: '50% before work begins' },
+      { key: 'Balance', val: '50% upon final delivery' },
+      { key: 'Timeline', val: '3 – 8 weeks depending on features' },
+      { key: 'Revisions', val: '2 rounds of UI/UX revisions included' },
+      { key: 'Hosting', val: 'Client provides hosting; setup assistance included' },
+      { key: 'Rush Fee', val: '+30% for under 2-week turnaround' },
+    ],
+    note: 'Additional modules (e.g. real-time features via WebSocket, IoT integration, mobile API) are scoped and priced separately. A feature list is agreed upon before development begins.',
+  },
+  desktop: {
+    icon: '🖥️',
+    title: 'Desktop App Development',
+    price: '₱5,000',
+    description: 'I build cross-platform desktop applications using Java Swing/FX, Electron.js, WinForms (C#), or Tkinter (Python). From internal business tools and POS systems to inventory management and operational dashboards — I deliver functional, user-friendly desktop software.',
+    includes: [
+      'Desktop application with full UI (Java / Electron / C# / Python)',
+      'Database integration (SQLite, MySQL, or MS SQL)',
+      'User authentication and role management',
+      'CRUD operations and data management screens',
+      'Report generation and data export (PDF/Excel)',
+      'Installer/packaged executable for Windows',
+      'Source code with documentation',
+      'Basic user manual included',
+    ],
+    terms: [
+      { key: 'Downpayment', val: '50% before work begins' },
+      { key: 'Balance', val: '50% upon delivery' },
+      { key: 'Timeline', val: '2 – 5 weeks depending on scope' },
+      { key: 'Revisions', val: '2 rounds of UI revisions included' },
+      { key: 'Platform', val: 'Windows-first; cross-platform on request' },
+      { key: 'Rush Fee', val: '+30% for under 10-day turnaround' },
+    ],
+    note: 'Hardware integrations (barcode scanners, printers, RFID, etc.) and network/server syncing features are scoped separately and may affect pricing.',
+  },
+};
+
+function openServiceModal(key) {
+  const data = serviceData[key];
+  if (!data) return;
+
+  const termsHTML = data.terms.map(t => `
+    <div class="svc-term-item">
+      <div class="svc-term-key">${t.key}</div>
+      <div class="svc-term-val">${t.val}</div>
+    </div>
+  `).join('');
+
+  const includesHTML = data.includes.map(i => `<li>${i}</li>`).join('');
+
+  document.getElementById('svc-modal-inner').innerHTML = `
+    <div class="svc-modal-header">
+      <div class="svc-modal-icon">${data.icon}</div>
+      <div class="svc-modal-title">${data.title}</div>
+      <div class="svc-modal-price-row">
+        <span class="svc-modal-price-label">Starting at</span>
+        <span class="svc-modal-price">${data.price}</span>
+      </div>
+    </div>
+
+    <div class="svc-section">
+      <div class="svc-section-label">Overview</div>
+      <p>${data.description}</p>
+    </div>
+
+    <div class="svc-section">
+      <div class="svc-section-label">What's Included</div>
+      <ul class="svc-list">${includesHTML}</ul>
+    </div>
+
+    <div class="svc-section">
+      <div class="svc-section-label">Terms & Timelines</div>
+      <div class="svc-terms-grid">${termsHTML}</div>
+    </div>
+
+    <div class="svc-section">
+      <div class="svc-section-label">Important Notes</div>
+      <p>${data.note}</p>
+    </div>
+
+    <div class="svc-modal-footer">
+      <a href="mailto:nathanielcoronacion3@gmail.com?subject=Inquiry: ${encodeURIComponent(data.title)}" class="svc-cta">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1 5l6 4 6-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Get in Touch
+      </a>
+    </div>
+  `;
+
+  const overlay = document.getElementById('svc-modal-overlay');
+  overlay.setAttribute('aria-hidden', 'false');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSvcModal() {
+  const overlay = document.getElementById('svc-modal-overlay');
+  overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('svc-modal-close').addEventListener('click', closeSvcModal);
+document.getElementById('svc-modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeSvcModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeSvcModal();
+});
