@@ -647,3 +647,193 @@ document.getElementById('svc-modal-overlay').addEventListener('click', function(
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeSvcModal();
 });
+
+// ═══════════════════════ TECH STACK MODAL DATA (Improved) ════════════════════
+const techData = {
+  // Programming Languages
+  java: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/java.svg",
+    title: "Java", 
+    desc: "A robust, object-oriented programming language known for its performance, reliability, and vast ecosystem. My primary language for building enterprise-grade backend systems.",
+    useCase: "Spring Boot microservices, high-performance APIs, desktop applications, and real-time game servers where stability and scalability are critical." 
+  },
+  php: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/php.svg",
+    title: "PHP", 
+    desc: "A mature server-side scripting language excellent for rapid web development. I use it to build fast, maintainable monolithic and CMS-based applications.",
+    useCase: "School management systems, e-commerce platforms, custom CMS solutions, and traditional web applications requiring quick iteration." 
+  },
+  csharp: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/csharp.svg",
+    title: "C#", 
+    desc: "A modern, versatile language with excellent tooling and performance. My preferred choice for game development and Windows ecosystem applications.",
+    useCase: "Unity game development, Windows desktop tools, enterprise applications, and backend services within the .NET ecosystem." 
+  },
+  cpp: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/cplusplus.svg",
+    title: "C++", 
+    desc: "A high-performance systems programming language offering fine-grained control over memory and execution.",
+    useCase: "Performance-critical components, game engines, real-time systems, and low-level infrastructure software." 
+  },
+  javascript: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/javascript.svg",
+    title: "JavaScript", 
+    desc: "The language of the web. I use vanilla JavaScript for lightweight, high-performance frontend interactions without heavy frameworks.",
+    useCase: "Interactive UIs, API clients, real-time features, browser-based tools, and enhancing user experience across web applications." 
+  },
+  python: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/python.svg",
+    title: "Python", 
+    desc: "A clean, expressive language with powerful libraries. Ideal for rapid development, data processing, and automation.",
+    useCase: "AI/ML prototypes, data analysis, automation scripts, backend utilities, and educational game development with PyGame." 
+  },
+
+  // Backend Frameworks
+  springboot: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/springboot.svg",
+    title: "Spring Boot", 
+    desc: "The gold standard for building production-ready Java applications. Simplifies configuration while providing powerful enterprise features.",
+    useCase: "RESTful microservices, scalable backend APIs, secure enterprise systems, and complex business logic applications." 
+  },
+  nodejs: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/nodedotjs.svg",
+    title: "Node.js", 
+    desc: "A runtime environment that enables JavaScript on the server. Excellent for I/O-heavy and real-time applications.",
+    useCase: "Real-time dashboards, WebSocket servers, API gateways, and high-concurrency backend services." 
+  },
+
+  // Databases
+  postgresql: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/postgresql.svg",
+    title: "PostgreSQL", 
+    desc: "A powerful, open-source relational database with advanced features and excellent reliability.",
+    useCase: "Complex applications requiring ACID compliance, JSON storage, full-text search, and geospatial capabilities." 
+  },
+  mysql: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/mysql.svg",
+    title: "MySQL", 
+    desc: "A widely-used, fast, and reliable relational database system.",
+    useCase: "Traditional web applications, content management systems, and projects where broad hosting compatibility is needed." 
+  },
+  sqlite: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/sqlite.svg",
+    title: "SQLite", 
+    desc: "A lightweight, serverless, embedded database engine — zero configuration required.",
+    useCase: "Desktop applications, mobile apps, embedded systems, and local data storage." 
+  },
+  mssql: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/microsoftsqlserver.svg",
+    title: "MS SQL Server", 
+    desc: "Microsoft's enterprise-grade relational database with strong integration into the Windows ecosystem.",
+    useCase: "Corporate applications, data warehouses, and systems deeply integrated with Microsoft technologies." 
+  },
+
+  // DevOps & Cloud
+  aws: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/amazonaws.svg",
+    title: "AWS", 
+    desc: "The world's most comprehensive cloud platform. I leverage it to build scalable, secure, and cost-efficient infrastructure.",
+    useCase: "Cloud hosting, serverless architectures, S3 storage, RDS databases, and automated CI/CD pipelines." 
+  },
+  docker: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/docker.svg",
+    title: "Docker", 
+    desc: "Industry-standard containerization platform that ensures consistency across development and production.",
+    useCase: "Containerizing applications, microservices architecture, reproducible environments, and streamlined deployments." 
+  },
+  git: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/git.svg",
+    title: "Git", 
+    desc: "The leading distributed version control system used by developers worldwide.",
+    useCase: "Source code versioning, team collaboration, branching strategies, and maintaining project history." 
+  },
+  githubactions: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/githubactions.svg",
+    title: "GitHub Actions", 
+    desc: "Powerful CI/CD platform integrated directly into GitHub repositories.",
+    useCase: "Automated testing, building, linting, and deployment workflows with full GitHub ecosystem integration." 
+  },
+  kubernetes: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/kubernetes.svg",
+    title: "Kubernetes", 
+    desc: "The de facto standard for container orchestration and managing large-scale deployments.",
+    useCase: "Orchestrating containerized microservices, auto-scaling, service discovery, and production-grade deployments." 
+  },
+  linux: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/linux.svg",
+    title: "Linux", 
+    desc: "The foundation of modern server infrastructure and development environments.",
+    useCase: "Server administration, development workstations, cloud instances, and building robust backend systems." 
+  },
+  nginx: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/nginx.svg",
+    title: "Nginx", 
+    desc: "High-performance, lightweight web server and reverse proxy.",
+    useCase: "Load balancing, SSL termination, static content serving, and acting as an API gateway." 
+  },
+
+  // Game & Desktop
+  unity: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/unity.svg",
+    title: "Unity", 
+    desc: "A complete real-time 3D and 2D development platform used by millions of creators.",
+    useCase: "2D/3D game development, interactive simulations, turn-based strategy games, and real-time multiplayer experiences." 
+  },
+  electron: { 
+    logoUrl: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/electron.svg",
+    title: "Electron.js", 
+    desc: "Build cross-platform desktop applications using web technologies (HTML, CSS, JavaScript).",
+    useCase: "Cross-platform desktop tools, internal business applications, and hybrid web/desktop solutions." 
+  }
+};
+
+const techModalOverlay = document.getElementById('tech-modal-overlay');
+const techModalTitle = document.getElementById('tech-modal-title');
+const techModalLogo = document.getElementById('tech-modal-logo');
+const techModalBody = document.getElementById('tech-modal-body');
+const techModalClose = document.getElementById('tech-modal-close');
+
+function openTechModal(techKey) {
+  const data = techData[techKey];
+  if (!data) return;
+  
+  // Use real logo image
+  techModalLogo.innerHTML = `
+    <img src="${data.logoUrl}" 
+         alt="${data.title}" 
+         style="width: 100px; height: 100px; object-fit: contain; filter: brightness(1.05);">
+  `;
+  
+  techModalTitle.textContent = data.title;
+  techModalBody.innerHTML = `
+    <p>${data.desc}</p>
+    <div class="use-case">
+      <strong>📌 Use Case:</strong> ${data.useCase}
+    </div>
+  `;
+  
+  techModalOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeTechModal() {
+  techModalOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Add click handlers to all stack items
+document.querySelectorAll('.stack-item').forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const techKey = item.dataset.tech;
+    if (techKey) openTechModal(techKey);
+  });
+});
+
+techModalClose.addEventListener('click', closeTechModal);
+techModalOverlay.addEventListener('click', (e) => {
+  if (e.target === techModalOverlay) closeTechModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && techModalOverlay.classList.contains('open')) closeTechModal();
+});
