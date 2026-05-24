@@ -21,7 +21,7 @@
     #a78bfa 50%,
     #38bdf8 100%
   );
-  --font-display: "Inter", Tahoma, Geneva, Verdana, sans-serif;
+  --font-display: "SF Mono", Tahoma, Geneva, Verdana, sans-serif;
   --font-mono: "SF Mono", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -288,7 +288,7 @@ section {
 }
 
 .hero-title-accent {
-  background: linear-gradient(135deg, #a855f7, #eab308);
+  background: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2828,12 +2828,12 @@ html.light .mobile-nav {
 #services .service-card {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 0px;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 0;
-  transition: border-color 0.25s, background 0.25s, transform 0.25s;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
   text-align: left;
 }
 #services .service-card:hover {
@@ -2912,6 +2912,7 @@ html.light .mobile-nav {
 #svc-modal-overlay {
   position: fixed;
   inset: 0;
+  top: 64px;
   background: rgba(8,10,15,0.88);
   backdrop-filter: blur(20px);
   display: flex;
@@ -2934,7 +2935,7 @@ html.light .mobile-nav {
   border-radius: 12px;
   max-width: 680px;
   width: 100%;
-  max-height: 88vh;
+  max-height: calc(88vh - 64px);
   overflow-y: auto;
   position: relative;
   transform: scale(0.95) translateY(12px);
