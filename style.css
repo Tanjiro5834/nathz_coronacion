@@ -42,8 +42,8 @@ html {
 body {
   background: var(--bg);
   color: var(--text-primary);
-  font-size: 2rem;
-  font-family: var(--font-display);
+  font-size: 1rem;
+  font-family: var(--font-sans);
   overflow-x: hidden;
   line-height: 1.6;
 }
@@ -577,12 +577,12 @@ section {
   ══════════════════════════════════════════════════════════════ */
 .timeline {
   position: relative;
-  padding-left: 2rem;
+  padding-left: 1.5rem;
 }
 .timeline::before {
   content: "";
   position: absolute;
-  left: 0;
+  left: -1.85rem;
   top: 0;
   bottom: 0;
   width: 1px;
@@ -609,10 +609,11 @@ section {
 
 .timeline-period {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: var(--text-muted);
   letter-spacing: 0.1em;
   margin-bottom: 0.4rem;
+  word-break: break-word;
 }
 
 .timeline-role {
@@ -2926,6 +2927,14 @@ html.light .mobile-nav {
   transition: opacity 0.3s ease;
   padding: 1.5rem;
 }
+
+@media (max-width: 600px) {
+  .svc-terms-grid { grid-template-columns: 1fr; }
+  #svc-modal-inner { padding: 1.75rem 1.25rem; }
+  #svc-modal-overlay { top: 0; padding: 0.75rem; }
+  #svc-modal { max-height: 95vh; border-radius: 8px; }
+}
+
 #svc-modal-overlay.open {
   opacity: 1;
   pointer-events: auto;
@@ -3055,7 +3064,7 @@ html.light .mobile-nav {
 
 .svc-terms-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 1rem;
 }
 .svc-term-item {
