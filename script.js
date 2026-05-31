@@ -837,3 +837,32 @@ techModalOverlay.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && techModalOverlay.classList.contains('open')) closeTechModal();
 });
+
+// Auto-update copyright year
+function updateCopyrightYear() {
+  const yearSpan = document.getElementById('copyright-year');
+  if (yearSpan) {
+    const currentYear = new Date().getFullYear();
+    yearSpan.textContent = currentYear;
+  }
+}
+
+// Run immediately
+updateCopyrightYear();
+
+// Optional: Check again at midnight (in case page stays open across year boundary)
+function scheduleMidnightUpdate() {
+  const now = new Date();
+  const night = new Date();
+  night.setHours(24, 0, 0, 0); // midnight tonight
+  const msUntilMidnight = night - now;
+  
+  if (msUntilMidnight > 0) {
+    setTimeout(() => {
+      updateCopyrightYear();
+      // Re-schedule for next midnight (in case page stays open for days)
+      scheduleMidnightUpdate();
+    }, msUntilMidnight);
+  }
+}
+scheduleMidnightUpdate();
