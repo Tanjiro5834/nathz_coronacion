@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap');
 :root {
   --bg: #080a0f;
   --bg-secondary: #0d1117;
@@ -23,7 +23,7 @@
     #38bdf8 100%
   );
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'Roboto', 'Courier New', 'Courier', monospace;
+  --font-mono: 'Geist Mono', 'Courier New', 'Courier', monospace;
 }
 
 *,
