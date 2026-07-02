@@ -14,7 +14,7 @@ toggle.addEventListener("click", () => {
 const serviceData = [
   {
     name: "Capstone / Thesis Development",
-    price: "From ₱15,000",
+    price: "From ₱20,000",
     details: [
       { label: "Timeline", value: "3–6 weeks" },
       { label: "Downpayment", value: "50% upfront" },
@@ -54,7 +54,7 @@ const serviceData = [
   },
   {
     name: "Web Development",
-    price: "From ₱10,000",
+    price: "From ₱20,000",
     details: [
       { label: "Timeline", value: "2–5 weeks" },
       { label: "Downpayment", value: "50% upfront" },
@@ -74,7 +74,7 @@ const serviceData = [
   },
   {
     name: "Game Development",
-    price: "From ₱8,000",
+    price: "From ₱10,000",
     details: [
       { label: "Timeline", value: "3–6 weeks" },
       { label: "Downpayment", value: "50% upfront" },
@@ -93,7 +93,7 @@ const serviceData = [
   },
   {
     name: "Desktop App Development",
-    price: "From ₱8,000",
+    price: "From ₱10,000",
     details: [
       { label: "Timeline", value: "2–5 weeks" },
       { label: "Downpayment", value: "50% upfront" },
