@@ -33,7 +33,7 @@ const serviceData = [
     ]
   },
   {
-    name: "Custom Software Development",
+    name: "Mobile Development",
     price: "From ₱15,000",
     details: [
       { label: "Timeline", value: "4–8 weeks" },
