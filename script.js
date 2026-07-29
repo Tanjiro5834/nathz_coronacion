@@ -98,8 +98,8 @@ const experience = [
     period: ["June 2023", "Present"],
     type: "Freelance",
     company: "Self-Employed",
-    role: "Freelance Full Stack Developer",
-    desc: "Experienced software developer with 3 years of freelancing experience. Built 10+ applications — from thesis projects to production software for businesses and students, across web, desktop, game, and mobile development.",
+    role: "Freelance Software Developer",
+    desc: "3 years of freelancing experience. Built 10+ applications for SMBs and diverse clients — across web, desktop, game, and mobile development.",
     bullets: [
       "Delivered end-to-end projects independently: requirements gathering, architecture, development, deployment, and client handoff.",
       "Offered services in web, game, desktop app, and mobile development",
@@ -128,7 +128,7 @@ const experience = [
     type: "Internship",
     company: "The Thomas Aquinas Institute of Learning",
     role: "Backend Developer",
-    desc: "Backend-focused developer on a Catholic school's public website and internal admin dashboard, working as one of two developers on the team.",
+    desc: "Developed a Catholic school's public website and internal admin dashboard, working as one of two developers on the team.",
     bullets: [
       "Built a school's public-facing website with internal dashboard",
       "Implemented REST APIs, CRUD, RBAC, and authentication",
@@ -136,12 +136,10 @@ const experience = [
       "Handled large datasets using pagination via backend",
       "Implemented file-based caching, cutting cache response time from 19.5ms to 0.68ms.",
       "Designed the MySQL schema with proper indexing, collapsing a 19-query join into 1.",
-      "Architected usign MVC and Monolith",
-      "Collaborated with a frontend developer for frontend integration, design, and version control",
-      "Utilize modern AI tools such as Claude and Gemini for UI generation and bug fixes",
-      "Implemented responsive, mobile-first UIs with HTML/CSS/JS.",
+      "Architected usign MVC and Monolith.",
+      "Collaborated with a frontend developer for frontend integration, design, and version control.",
       "Handled Node.js file-system integration for internal tooling.",
-      "Documented the SDLC using Iterative Waterfall Model"
+      "Documented the SDLC using Iterative Waterfall Model."
     ],
     stack: ["HTML", "CSS", "Tailwind", "JavaScript", "PHP 8.2", "MySQL", "Node.js", "Git"],
   },
