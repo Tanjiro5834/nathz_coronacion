@@ -223,6 +223,18 @@ const projects = [
     stack: ["HTML5", "CSS3", "PHP", "MySQL", "JavaScript"],
     github: "https://github.com/Tanjiro5834/sjfs-accounting-system",
   },
+
+  {
+    status: "wip",
+    statusLabel: "In Progress",
+    name: "Typing Game",
+    category: ["web"],
+    desc: "A full-stack typing speed game with real-time WPM/accuracy tracking, leaderboards, and personal stats, inspired by Monkeytype.",
+    why: "Wanted to build a real-time competitive game with a custom typing engine and a proper API-first backend, separate from my usual CRUD-heavy business apps.",
+    whyStack: "Vanilla JS for a lightweight, dependency-free typing engine on the frontend; Spring Boot + JPA/Hibernate + MySQL for a clean, scalable REST API backend.",
+    stack: ["Java", "Spring Boot", "MySQL", "JavaScript"],
+    github: "https://github.com/Tanjiro5834/typinggame",
+  },
 ];
 
 const skills = [
