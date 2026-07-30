@@ -161,7 +161,7 @@ const projects = [
   {
     status: "wip",
     statusLabel: "In progress",
-    name: "BladeBound",
+    name: "Bladebound",
     category: ["game", "desktop"],
     desc: "Solo-developed first-person melee combat game with squad-based arena fights.",
     why: "I wanted to prove I could take a game from architecture to a playable build entirely on my own — combat systems, state management, and scene architecture — as a deliberate secondary lane alongside backend work.",
@@ -232,7 +232,7 @@ const projects = [
     desc: "A full-stack typing speed game with real-time WPM/accuracy tracking, leaderboards, and personal stats, inspired by Monkeytype.",
     why: "Wanted to build a real-time competitive game with a custom typing engine and a proper API-first backend, separate from my usual CRUD-heavy business apps.",
     whyStack: "Vanilla JS for a lightweight, dependency-free typing engine on the frontend; Spring Boot + JPA/Hibernate + MySQL for a clean, scalable REST API backend.",
-    stack: ["Java", "Spring Boot", "MySQL", "JavaScript"],
+    stack: ["Java", "Spring Boot", "MySQL", "HTML", "CSS", "JavaScript"],
     github: "https://github.com/Tanjiro5834/typinggame",
   },
 ];
@@ -260,7 +260,7 @@ const services = [
       { label: "Revisions", value: "3 free · ₱500/extra" },
       { label: "Delivery", value: "Source + docs" },
     ],
-    stack: ["Java", "Spring Boot", "PHP", "MySQL", "PostgreSQL", "HTML/CSS/JS"],
+    stack: ["Spring Boot", "PHP", "Laravel", "MySQL", "PostgreSQL", "HTML5", "CSS", "JavaScript", "React.js"],
     terms: [
       "50% downpayment required before development starts.",
       "3 free revision rounds. Additional revisions at ₱500 each.",
@@ -279,7 +279,7 @@ const services = [
       { label: "Timeline", value: "4–8 weeks" },
       { label: "Downpayment", value: "50% upfront" },
       { label: "Revisions", value: "3 free · ₱500/extra" },
-      { label: "Delivery", value: "Source + docs" },
+      { label: "Delivery", value: "Apk/File + Source" },
     ],
     stack: ["Java", "Spring Boot", "PHP", "MySQL", "PostgreSQL", "JavaScript", "Docker"],
     terms: [
@@ -302,7 +302,7 @@ const services = [
       { label: "Revisions", value: "3 free · ₱500/extra" },
       { label: "Delivery", value: "Deployed + source" },
     ],
-    stack: ["PHP", "MySQL", "PostgreSQL", "HTML/CSS", "JavaScript", "Spring Boot", "Tailwind"],
+    stack: ["PHP", "MySQL", "PostgreSQL", "HTML", "CSS", "JavaScript", "Spring Boot", "Tailwind"],
     terms: [
       "50% downpayment required before development starts.",
       "3 free revision rounds. Additional revisions at ₱500 each.",
@@ -323,7 +323,7 @@ const services = [
       { label: "Revisions", value: "2 free · ₱750/extra" },
       { label: "Delivery", value: "Build + source" },
     ],
-    stack: ["Unity (C#)", "LibGDX (Java)", "PyGame", "C++"],
+    stack: ["Unity (C#)", "LibGDX", "PyGame", "Unreal Engine"],
     terms: [
       "50% downpayment required before development starts.",
       "2 free revision rounds. Additional revisions at ₱750 each.",

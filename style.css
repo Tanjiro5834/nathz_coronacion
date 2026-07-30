@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Caveat:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
 :root {
   --bg: #000000;
   --bg-2: #111111;
@@ -16,7 +18,9 @@
   --card-bg: #1c1c1e;
   --toggle-bg: #2c2c2e;
   --toggle-knob: #f5f5f7;
-  --font: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Fraunces", serif;
+  --font-script: "Caveat", cursive;
+  --font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", "SF Mono", SFMono-Regular, ui-monospace, Menlo, Consolas, monospace;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -115,8 +119,9 @@ nav {
   background: rgba(255, 255, 255, 0.72);
 }
 .nav-name {
-  font-size: 14px;
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--text);
   text-decoration: none;
@@ -267,9 +272,12 @@ section:last-of-type {
   background: var(--accent);
 }
 .hero-name {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
   font-size: clamp(38px, 11vw, 80px);
   font-weight: 600;
-  letter-spacing: -0.04em;
+  font-style: italic;
+  letter-spacing: -0.02em;
   line-height: 1.05;
   color: var(--text);
   margin-bottom: 14px;
@@ -353,6 +361,15 @@ section:last-of-type {
   }
 }
 
+/* ── SCRIPT ACCENT (playful touch — use sparingly, 1-3 words max) ── */
+.script-accent {
+  font-family: var(--font-script);
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 1.15em;
+  letter-spacing: 0.01em;
+}
+
 /* ── SECTION LABELS ── */
 .section-label {
   font-size: 12px;
@@ -363,9 +380,11 @@ section:last-of-type {
   margin-bottom: 32px;
 }
 .section-title {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
   font-size: clamp(26px, 6vw, 40px);
   font-weight: 600;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   line-height: 1.1;
   color: var(--text);
   margin-bottom: 16px;
@@ -399,9 +418,10 @@ section:last-of-type {
   background: var(--bg-2);
 }
 .stat-num {
+  font-family: var(--font-display);
   font-size: 28px;
   font-weight: 600;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   color: var(--text);
   display: block;
   font-variant-numeric: tabular-nums;
@@ -459,6 +479,7 @@ section:last-of-type {
   text-align: center;
 }
 .gh-num {
+  font-family: var(--font-display);
   font-size: 20px;
   font-weight: 600;
   color: var(--text);
@@ -572,9 +593,10 @@ section:last-of-type {
   gap: 12px;
 }
 .exp-role {
+  font-family: var(--font-display);
   font-size: 17px;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   color: var(--text);
   line-height: 1.25;
 }
@@ -747,9 +769,10 @@ section:last-of-type {
   color: var(--text-3);
 }
 .project-name {
+  font-family: var(--font-display);
   font-size: 17px;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   color: var(--text);
   margin-bottom: 8px;
   line-height: 1.2;
@@ -891,6 +914,7 @@ section:last-of-type {
   flex-shrink: 0;
 }
 .service-price {
+  font-family: var(--font-display);
   font-size: 15px;
   font-weight: 600;
   color: var(--text);
@@ -1034,7 +1058,7 @@ footer a:hover {
   display: flex; justify-content: space-between;
   align-items: flex-start; margin-bottom: 8px; gap: 12px;
 }
-.modal-title { font-size: 19px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
+.modal-title { font-family: var(--font-display); font-size: 19px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
 .modal-close {
   width: 32px; height: 32px; border-radius: 50%;
   background: var(--bg-3); border: none; cursor: pointer;
@@ -1047,7 +1071,7 @@ footer a:hover {
 .modal-price-row {
   display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
 }
-.modal-price { font-size: 20px; font-weight: 500; color: var(--text); }
+.modal-price { font-family: var(--font-display); font-size: 20px; font-weight: 500; color: var(--text); }
 .modal-badge {
   font-size: 11px; padding: 3px 10px; border-radius: 20px;
   background: rgba(48, 209, 88, 0.12); color: var(--green);
