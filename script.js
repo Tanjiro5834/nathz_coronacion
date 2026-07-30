@@ -79,7 +79,7 @@ const ICONS = {
 function iconUrl(name) {
   const slug = ICONS[name];
   if (!slug) return null;
-  return `https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${slug}.svg`;
+  return `https://cdn.simpleicons.org/${slug}`;
 }
 
 function techTag(name, variant = "tag") {
@@ -87,7 +87,7 @@ function techTag(name, variant = "tag") {
   const cls =
     variant === "tag" ? "tag" : variant === "stack" ? "tech-tag" : "modal-stack-tag";
   if (url) {
-    return `<span class="${cls}"><img src="${url}" alt="" loading="lazy">${name}</span>`;
+    return `<span class="${cls} icon-only" title="${name}"><img src="${url}" alt="${name}" loading="lazy"></span>`;
   }
   return `<span class="${cls}">${name}</span>`;
 }
@@ -106,7 +106,7 @@ const experience = [
       "Maintained a strong focus on clean architecture and security best practices across every engagement.",
       "Worked across multiple domains and stacks depending on client needs, adapting quickly to new requirements.",
     ],
-    stack: ["Spring Boot", "PHP", "PostgreSQL", "MySQL", "JavaScript", "HTML", "CSS", "Laravel", "Node.js", "React", "React Native", "Unity", "PHP", "Java", "ESP32", "Arduino", "C/C++", "Java Swing/FX"],
+    stack: ["Spring Boot", "PHP", "PostgreSQL", "MySQL", "JavaScript", "HTML", "Tailwind", "Laravel", "Node.js", "React", "React Native", "Unity", "PHP", "Java", "ESP32", "Arduino", "C/C++", "Java Swing/FX"],
   },
   {
     period: ["May 2026", "July 2026"],
@@ -121,7 +121,7 @@ const experience = [
       "Used MVC pattern and Monolith for software architecture",
       "Collaborated with team lead, frontend and senior developers for tasks, frontend integration, and project management"
     ],
-    stack: ["Java", "Spring Boot", "PostgreSQL", "Postman", "Git"],
+    stack: ["Spring Boot", "PostgreSQL", "Postman", "Git"],
   },
   {
     period: ["February 2026", "April 2026"],
@@ -141,7 +141,7 @@ const experience = [
       "Handled Node.js file-system integration for internal tooling.",
       "Documented the SDLC using Iterative Waterfall Model."
     ],
-    stack: ["HTML", "CSS", "Tailwind", "JavaScript", "PHP 8.2", "MySQL", "Node.js", "Git"],
+    stack: ["HTML", "Tailwind", "JavaScript", "PHP 8.2", "MySQL", "Node.js", "Git"],
   },
 ];
 
@@ -154,7 +154,7 @@ const projects = [
     desc: "Full-stack HVAC marketplace with inventory, service booking, and admin dashboard.",
     why: "I built this to bring his ordering and service-booking process online — replacing manual phone bookings with a real e-commerce flow and an admin dashboard for online presence, better sales, and advertising.",
     whyStack: "PHP + MySQL for a lightweight, easy-to-host backend a small business can afford to maintain. Vanilla HTML/CSS/JS on the frontend to keep the footprint small and avoid unnecessary build tooling for a site of this scale.",
-    stack: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL", "Git"],
+    stack: ["HTML5", "Tailwind", "JavaScript", "PHP", "MySQL", "Git"],
     github: "https://github.com/Tanjiro5834/aircon_website",
     live: "https://coronacionservices.com",
   },
@@ -166,7 +166,7 @@ const projects = [
     desc: "Solo-developed first-person melee combat game with squad-based arena fights.",
     why: "I wanted to prove I could take a game from architecture to a playable build entirely on my own — combat systems, state management, and scene architecture — as a deliberate secondary lane alongside backend work.",
     whyStack: "Unity/C# gave me the fastest path to a working 3D combat prototype with strong tooling for physics and animation, while ScriptableObjects let me build a modular, data-driven weapon system without hardcoding stats.",
-    stack: ["Unity", "C#", "Git"],
+    stack: ["Unity", "Git"],
     github: "https://github.com/Tanjiro5834",
   },
   {
@@ -177,7 +177,7 @@ const projects = [
     desc: "Travel planning platform with hierarchical itinerary management, JWT auth, and admin CMS.",
     why: "I wanted a project that exercised production-style backend concerns end to end — versioned schema migrations, proper auth, and a real admin layer — outside of a client contract, as a personal architecture exercise.",
     whyStack: "Spring Boot + PostgreSQL for a robust, typed backend, with Flyway to practice disciplined, versioned schema migrations the way I would on a real production team.",
-    stack: ["Spring Boot", "PostgreSQL", "Flyway", "HTML", "CSS", "JavaScript", "Docker"],
+    stack: ["Spring Boot", "PostgreSQL", "Flyway", "HTML", "Tailwind", "JavaScript", "Docker"],
     github: "https://github.com/Tanjiro5834/travi",
   },
   {
@@ -188,7 +188,7 @@ const projects = [
     desc: "AI-driven e-learning platform for out-of-school youth with multi-role JWT auth and gamification.",
     why: "This was my thesis project — I wanted to address a real problem (access to structured learning for out-of-school youth) using an AI tutor rather than just static content, while also learning to integrate a third-party LLM API into a Spring Boot backend.",
     whyStack: "Spring Boot for a secure, role-based backend (student/teacher/admin), MySQL for straightforward relational data, and the Groq API for fast, low-cost AI tutoring responses without hosting my own model.",
-    stack: ["Spring Boot", "HTML", "CSS", "JavaScript", "MySQL", "Groq API"],
+    stack: ["Spring Boot", "HTML", "Tailwind", "JavaScript", "MySQL", "Groq API"],
     github: "https://github.com/Tanjiro5834/bibo-elearning",
   },
   {
@@ -199,7 +199,7 @@ const projects = [
     desc: "Turn-based 2D card game built in Unity inspired by Filipino mythology.",
     why: "I wanted to combine my interest in game development with Filipino cultural storytelling — turning local mythology into an actual playable card-combat system instead of a purely academic thesis document.",
     whyStack: "Unity was the natural choice for 2D card-game mechanics, animation, and UI, with strong asset and version-control tooling for a small solo/duo team.",
-    stack: ["C#", "Unity/Unity Version Control"],
+    stack: ["Unity"],
   },
   {
     status: "wip",
@@ -220,7 +220,7 @@ const projects = [
     desc: "A multi-campus cash flow monitoring system for a school network, handling collections, disbursements, and bank reconciliation with role-based access control.",
     why: "The school needed a way to track cash flow across multiple campuses in real time, with proper audit trails and reconciliation against bank statements, replacing manual/disconnected tracking.",
     whyStack: "PHP MVC with a service-repository pattern for clean separation of business logic from data access; PostgreSQL for reliable relational integrity across multi-campus data; deployed on Hostinger for cost-effective production hosting.",
-    stack: ["HTML5", "CSS3", "PHP", "MySQL", "JavaScript"],
+    stack: ["HTML5", "Tailwind", "JavaScript", "PHP", "MySQL"],
     github: "https://github.com/Tanjiro5834/sjfs-accounting-system",
   },
 
@@ -239,10 +239,10 @@ const projects = [
 
 const skills = [
   { group: "Programming", items: ["Java", "PHP", "JavaScript", "C#", "C/C++", "Python"] },
-  { group: "Frontend", items: ["HTML5", "CSS3", "JavaScript (ES6+)", "React.js"] },
-  { group: "Backend", items: ["Spring Boot", "PHP 8.2", "Laravel", "Node.js"] },
+  { group: "Frontend", items: ["HTML5", "Tailwind", "JavaScript (ES6+)", "React.js"] },
+  { group: "Backend", items: ["Spring Boot", "PHP", "Laravel", "Node.js"] },
   { group: "Database", items: ["PostgreSQL", "MySQL", "Redis", "SQLite"] },
-  { group: "Desktop Development", items: ["Java Swing / JavaFX", "Winforms", "Tkinter", "Electron.js"] },
+  { group: "Desktop Development", items: ["Java Swing / JavaFX", "Tkinter", "Electron.js"] },
   { group: "Game Development", items: ["Unity", "Unreal Engine", "Java Swing", "PyGame"] },
   { group: "Mobile Development", items: ["React Native", "Flutter", "Android Studio"] },
   { group: "DevOps", items: ["Git", "GitHub / GitHub Actions", "Docker"] },
@@ -252,15 +252,15 @@ const skills = [
 const services = [
   {
     name: "Capstone / Thesis Development",
-    desc: "Full-stack with complete documentation, ERD, SDLC",
+    desc: "Get the full project with complete documentation, ERD, and SDLC. See more details.",
     price: "From ₱20,000",
     details: [
-      { label: "Timeline", value: "3–6 weeks" },
+      { label: "Timeline", value: "3–7 weeks" },
       { label: "Downpayment", value: "50% upfront" },
       { label: "Revisions", value: "3 free · ₱500/extra" },
       { label: "Delivery", value: "Source + docs" },
     ],
-    stack: ["Spring Boot", "PHP", "Laravel", "MySQL", "PostgreSQL", "HTML5", "CSS", "JavaScript", "React.js"],
+    stack: ["Spring Boot", "PHP", "Laravel", "MySQL", "PostgreSQL", "HTML5", "Tailwind", "JavaScript", "React.js"],
     terms: [
       "50% downpayment required before development starts.",
       "3 free revision rounds. Additional revisions at ₱500 each.",
@@ -273,7 +273,7 @@ const services = [
   },
   {
     name: "Mobile Development",
-    desc: "Mobile development with complete documentation, ERD, SDLC",
+    desc: "Bring your mobile app to life with this complete package, including SDLC, ERD, and documentation.",
     price: "From ₱15,000",
     details: [
       { label: "Timeline", value: "4–8 weeks" },
@@ -294,7 +294,7 @@ const services = [
   },
   {
     name: "Web Development",
-    desc: "Full-stack REST APIs, dashboards, e-commerce, CMS",
+    desc: "Need a website for your business, a booking system, e-commerce, SaaS, or CMS? Check this out.",
     price: "From ₱20,000",
     details: [
       { label: "Timeline", value: "2–5 weeks" },
@@ -302,7 +302,7 @@ const services = [
       { label: "Revisions", value: "3 free · ₱500/extra" },
       { label: "Delivery", value: "Deployed + source" },
     ],
-    stack: ["PHP", "MySQL", "PostgreSQL", "HTML", "CSS", "JavaScript", "Spring Boot", "Tailwind"],
+    stack: ["PHP", "Laravel", "Node.js", "MySQL", "PostgreSQL", "HTML", "Tailwind", "JavaScript", "Spring Boot"],
     terms: [
       "50% downpayment required before development starts.",
       "3 free revision rounds. Additional revisions at ₱500 each.",
@@ -315,7 +315,7 @@ const services = [
   },
   {
     name: "Game Development",
-    desc: "2D/3D — Unity, LibGDX, PyGame",
+    desc: "Have a game in mind? Let's bring it to life. I do game development using various technologies.",
     price: "From ₱10,000",
     details: [
       { label: "Timeline", value: "3–6 weeks" },
@@ -323,7 +323,7 @@ const services = [
       { label: "Revisions", value: "2 free · ₱750/extra" },
       { label: "Delivery", value: "Build + source" },
     ],
-    stack: ["Unity (C#)", "LibGDX", "PyGame", "Unreal Engine"],
+    stack: ["Unity", "Java", "PyGame", "Unreal Engine"],
     terms: [
       "50% downpayment required before development starts.",
       "2 free revision rounds. Additional revisions at ₱750 each.",
@@ -335,7 +335,7 @@ const services = [
   },
   {
     name: "Desktop App Development",
-    desc: "Java Swing/FX, Electron.js, WinForms, Tkinter",
+    desc: "Get the exe file and full source code, guide, and documentation.",
     price: "From ₱10,000",
     details: [
       { label: "Timeline", value: "2–5 weeks" },
@@ -343,7 +343,7 @@ const services = [
       { label: "Revisions", value: "3 free · ₱500/extra" },
       { label: "Delivery", value: "Installer + source" },
     ],
-    stack: ["Java Swing/FX", "Electron.js", "WinForms (C#)", "Tkinter (Python)", "SQLite", "MySQL"],
+    stack: ["Java Swing/FX", "Electron.js", "Tkinter (Python)", "SQLite", "MySQL"],
     terms: [
       "50% downpayment required before development starts.",
       "3 free revision rounds. Additional revisions at ₱500 each.",
@@ -355,7 +355,6 @@ const services = [
   },
 ];
 
-/* ══════════════ RENDER: EXPERIENCE (accordion) ══════════════ */
 const expList = document.getElementById("expList");
 expList.innerHTML = experience
   .map(
@@ -557,9 +556,9 @@ skillsGrid.innerHTML = skills
       ${g.items
         .map((item) => {
           const url = iconUrl(item);
-          return `<span class="skill-item">${
-            url ? `<img src="${url}" alt="" loading="lazy">` : ""
-          }${item}</span>`;
+          return url
+            ? `<span class="skill-item icon-only" title="${item}"><img src="${url}" alt="${item}" loading="lazy"></span>`
+            : `<span class="skill-item">${item}</span>`;
         })
         .join("")}
     </div>
