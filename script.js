@@ -112,7 +112,7 @@ const experience = [
     period: ["May 2026", "July 2026"],
     type: "Freelance",
     company: "Lumnaire",
-    role: "Backend Developer",
+    role: "Software Engineer",
     desc: "Worked on Trevix as a backend developer, a multi-tenant property management SaaS. Architected as a Spring Boot monolith (MVC), collaborating with the team lead and frontend developers on tickets and integration.",
     bullets: [
       "Built REST APIs, CRUD operations, and RBAC using Spring Boot.",
@@ -188,7 +188,7 @@ const projects = [
     desc: "AI-driven e-learning platform for out-of-school youth with multi-role JWT auth and gamification.",
     why: "This was my thesis project — I wanted to address a real problem (access to structured learning for out-of-school youth) using an AI tutor rather than just static content, while also learning to integrate a third-party LLM API into a Spring Boot backend.",
     whyStack: "Spring Boot for a secure, role-based backend (student/teacher/admin), MySQL for straightforward relational data, and the Groq API for fast, low-cost AI tutoring responses without hosting my own model.",
-    stack: ["Spring Boot", "HTML", "Tailwind", "JavaScript", "MySQL", "Groq API"],
+    stack: ["Spring Boot", "HTML", "Tailwind", "JavaScript", "MySQL"],
     github: "https://github.com/Tanjiro5834/bibo-elearning",
   },
   {
@@ -232,7 +232,7 @@ const projects = [
     desc: "A full-stack typing speed game with real-time WPM/accuracy tracking, leaderboards, and personal stats, inspired by Monkeytype.",
     why: "Wanted to build a real-time competitive game with a custom typing engine and a proper API-first backend, separate from my usual CRUD-heavy business apps.",
     whyStack: "Vanilla JS for a lightweight, dependency-free typing engine on the frontend; Spring Boot + JPA/Hibernate + MySQL for a clean, scalable REST API backend.",
-    stack: ["Java", "Spring Boot", "MySQL", "HTML", "CSS", "JavaScript"],
+    stack: ["Java", "Spring Boot", "MySQL", "HTML", "Tailwind", "JavaScript"],
     github: "https://github.com/Tanjiro5834/typinggame",
   },
 ];
