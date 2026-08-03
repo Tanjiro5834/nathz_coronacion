@@ -154,7 +154,7 @@ const projects = [
     desc: "Full-stack HVAC marketplace with inventory, service booking, and admin dashboard.",
     why: "I built this to bring his ordering and service-booking process online — replacing manual phone bookings with a real e-commerce flow and an admin dashboard for online presence, better sales, and advertising.",
     whyStack: "PHP + MySQL for a lightweight, easy-to-host backend a small business can afford to maintain. Vanilla HTML/CSS/JS on the frontend to keep the footprint small and avoid unnecessary build tooling for a site of this scale.",
-    stack: ["HTML5", "Tailwind", "JavaScript", "PHP", "MySQL", "Git"],
+    stack: ["HTML5", "Tailwind", "JavaScript", "PHP", "MySQL"],
     github: "https://github.com/Tanjiro5834/aircon_website",
     live: "https://coronacionservices.com",
   },
@@ -177,7 +177,7 @@ const projects = [
     desc: "Travel planning platform with hierarchical itinerary management, JWT auth, and admin CMS.",
     why: "I wanted a project that exercised production-style backend concerns end to end — versioned schema migrations, proper auth, and a real admin layer — outside of a client contract, as a personal architecture exercise.",
     whyStack: "Spring Boot + PostgreSQL for a robust, typed backend, with Flyway to practice disciplined, versioned schema migrations the way I would on a real production team.",
-    stack: ["Spring Boot", "PostgreSQL", "Flyway", "HTML", "Tailwind", "JavaScript", "Docker"],
+    stack: ["Spring Boot", "PostgreSQL", "Flyway", "HTML5", "Tailwind", "JavaScript", "Docker"],
     github: "https://github.com/Tanjiro5834/travi",
   },
   {
@@ -188,7 +188,7 @@ const projects = [
     desc: "AI-driven e-learning platform for out-of-school youth with multi-role JWT auth and gamification.",
     why: "This was my thesis project — I wanted to address a real problem (access to structured learning for out-of-school youth) using an AI tutor rather than just static content, while also learning to integrate a third-party LLM API into a Spring Boot backend.",
     whyStack: "Spring Boot for a secure, role-based backend (student/teacher/admin), MySQL for straightforward relational data, and the Groq API for fast, low-cost AI tutoring responses without hosting my own model.",
-    stack: ["Spring Boot", "HTML", "Tailwind", "JavaScript", "MySQL"],
+    stack: ["Spring Boot", "HTML5", "Tailwind", "JavaScript", "MySQL"],
     github: "https://github.com/Tanjiro5834/bibo-elearning",
   },
   {
