@@ -98,7 +98,7 @@ const experience = [
     period: ["June 2023", "Present"],
     type: "Freelance",
     company: "Self-Employed",
-    role: "Freelance Software Developer",
+    role: "Freelance Software Engineer",
     desc: "3 years of freelancing experience. Built 10+ applications for SMBs and diverse clients — across web, desktop, game, and mobile development.",
     bullets: [
       "Delivered end-to-end projects independently: requirements gathering, architecture, development, deployment, and client handoff.",
@@ -112,7 +112,7 @@ const experience = [
     period: ["May 2026", "July 2026"],
     type: "Freelance",
     company: "Lumnaire",
-    role: "Software Engineer",
+    role: "Java Software Engineer",
     desc: "Worked on Trevix as a backend developer, a multi-tenant property management SaaS. Architected as a Spring Boot monolith (MVC), collaborating with the team lead and frontend developers on tickets and integration.",
     bullets: [
       "Built REST APIs, CRUD operations, and RBAC using Spring Boot.",
