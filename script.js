@@ -28,8 +28,8 @@ mobileMenu.querySelectorAll("a").forEach((a) => {
 /* ══════════════ TECH ICON MAP (Simple Icons CDN) ══════════════ */
 // slug reference: https://simpleicons.org
 const ICONS = {
-  "HTML5": "html5",
-  "HTML": "html5",
+  "HTML": "HTML",
+  "HTML": "HTML",
   "CSS3": "css3",
   "CSS": "css3",
   "JavaScript": "javascript",
@@ -77,9 +77,7 @@ const ICONS = {
 };
 
 function iconUrl(name) {
-  const slug = ICONS[name];
-  if (!slug) return null;
-  return `https://cdn.simpleicons.org/${slug}`;
+  return null; // icons disabled — plain text tags only
 }
 
 function techTag(name, variant = "tag") {
@@ -98,7 +96,7 @@ const experience = [
     period: ["June 2023", "Present"],
     type: "Freelance",
     company: "Self-Employed",
-    role: "Freelance Software Engineer",
+    role: "Freelance Software Developer",
     desc: "3 years of freelancing experience. Built 10+ applications for SMBs and diverse clients — across web, desktop, game, and mobile development.",
     bullets: [
       "Delivered end-to-end projects independently: requirements gathering, architecture, development, deployment, and client handoff.",
@@ -106,13 +104,13 @@ const experience = [
       "Maintained a strong focus on clean architecture and security best practices across every engagement.",
       "Worked across multiple domains and stacks depending on client needs, adapting quickly to new requirements.",
     ],
-    stack: ["Spring Boot", "PHP", "PostgreSQL", "MySQL", "JavaScript", "HTML", "Tailwind", "Laravel", "Node.js", "React", "React Native", "Unity", "PHP", "Java", "ESP32", "Arduino", "C/C++", "Java Swing/FX"],
+    stack: ["Spring Boot", "PHP", "PostgreSQL", "MySQL", "JavaScript", "HTML", "CSS", "Laravel", "Node.js", "React", "React Native", "Unity", "PHP", "Java", "ESP32", "Arduino", "C/C++", "Java Swing/FX"],
   },
   {
     period: ["May 2026", "July 2026"],
     type: "Freelance",
     company: "Lumnaire",
-    role: "Java Software Engineer",
+    role: "Java Engineer",
     desc: "Worked on Trevix as a backend developer, a multi-tenant property management SaaS. Architected as a Spring Boot monolith (MVC), collaborating with the team lead and frontend developers on tickets and integration.",
     bullets: [
       "Built REST APIs, CRUD operations, and RBAC using Spring Boot.",
@@ -141,7 +139,7 @@ const experience = [
       "Handled Node.js file-system integration for internal tooling.",
       "Documented the SDLC using Iterative Waterfall Model."
     ],
-    stack: ["HTML", "Tailwind", "JavaScript", "PHP 8.2", "MySQL", "Node.js", "Git"],
+    stack: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "Node.js", "Git"],
   },
 ];
 
@@ -154,7 +152,7 @@ const projects = [
     desc: "Full-stack HVAC marketplace with inventory, service booking, and admin dashboard.",
     why: "I built this to bring his ordering and service-booking process online — replacing manual phone bookings with a real e-commerce flow and an admin dashboard for online presence, better sales, and advertising.",
     whyStack: "PHP + MySQL for a lightweight, easy-to-host backend a small business can afford to maintain. Vanilla HTML/CSS/JS on the frontend to keep the footprint small and avoid unnecessary build tooling for a site of this scale.",
-    stack: ["HTML5", "Tailwind", "JavaScript", "PHP", "MySQL"],
+    stack: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
     github: "https://github.com/Tanjiro5834/aircon_website",
     live: "https://coronacionservices.com",
   },
@@ -177,7 +175,7 @@ const projects = [
     desc: "Travel planning platform with hierarchical itinerary management, JWT auth, and admin CMS.",
     why: "I wanted a project that exercised production-style backend concerns end to end — versioned schema migrations, proper auth, and a real admin layer — outside of a client contract, as a personal architecture exercise.",
     whyStack: "Spring Boot + PostgreSQL for a robust, typed backend, with Flyway to practice disciplined, versioned schema migrations the way I would on a real production team.",
-    stack: ["Spring Boot", "PostgreSQL", "Flyway", "HTML5", "Tailwind", "JavaScript", "Docker"],
+    stack: ["Spring Boot", "PostgreSQL", "Flyway", "HTML", "CSS", "JavaScript", "Docker"],
     github: "https://github.com/Tanjiro5834/travi",
   },
   {
@@ -188,7 +186,7 @@ const projects = [
     desc: "AI-driven e-learning platform for out-of-school youth with multi-role JWT auth and gamification.",
     why: "This was my thesis project — I wanted to address a real problem (access to structured learning for out-of-school youth) using an AI tutor rather than just static content, while also learning to integrate a third-party LLM API into a Spring Boot backend.",
     whyStack: "Spring Boot for a secure, role-based backend (student/teacher/admin), MySQL for straightforward relational data, and the Groq API for fast, low-cost AI tutoring responses without hosting my own model.",
-    stack: ["Spring Boot", "HTML5", "Tailwind", "JavaScript", "MySQL"],
+    stack: ["Spring Boot", "HTML", "CSS", "JavaScript", "MySQL"],
     github: "https://github.com/Tanjiro5834/bibo-elearning",
   },
   {
@@ -213,14 +211,14 @@ const projects = [
     github: "https://github.com/Tanjiro5834",
   },
   {
-    status: "completed",
-    statusLabel: "Deployed",
+    status: "live",
+    statusLabel: "Live",
     name: "SJFS Cash Flow Monitoring System",
     category: ["web"],
     desc: "A multi-campus cash flow monitoring system for a school network, handling collections, disbursements, and bank reconciliation with role-based access control.",
     why: "The school needed a way to track cash flow across multiple campuses in real time, with proper audit trails and reconciliation against bank statements, replacing manual/disconnected tracking.",
     whyStack: "PHP MVC with a service-repository pattern for clean separation of business logic from data access; PostgreSQL for reliable relational integrity across multi-campus data; deployed on Hostinger for cost-effective production hosting.",
-    stack: ["HTML5", "Tailwind", "JavaScript", "PHP", "MySQL"],
+    stack: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
     github: "https://github.com/Tanjiro5834/sjfs-accounting-system",
   },
 
@@ -232,14 +230,84 @@ const projects = [
     desc: "A full-stack typing speed game with real-time WPM/accuracy tracking, leaderboards, and personal stats, inspired by Monkeytype.",
     why: "Wanted to build a real-time competitive game with a custom typing engine and a proper API-first backend, separate from my usual CRUD-heavy business apps.",
     whyStack: "Vanilla JS for a lightweight, dependency-free typing engine on the frontend; Spring Boot + JPA/Hibernate + MySQL for a clean, scalable REST API backend.",
-    stack: ["Java", "Spring Boot", "MySQL", "HTML", "Tailwind", "JavaScript"],
+    stack: ["Spring Boot", "MySQL", "HTML", "CSS", "JavaScript"],
     github: "https://github.com/Tanjiro5834/typinggame",
+  },
+  {
+    status: "wip",
+    statusLabel: "In Progress",
+    name: "Library Management System",
+    category: ["web"],
+    desc: "Full-stack library management system with cataloging, checkout, and admin dashboard.",
+    why: "I built this to digitize the library's operations — replacing manual card-based tracking with a digital system for easier management and improved user experience.",
+    whyStack: "Spring Boot+ MySQL for a robust, typed backend; Vanilla HTML/CSS/JS on the frontend to keep the footprint small and avoid unnecessary build tooling for a site of this scale.",
+    stack: ["HTML", "CSS", "JavaScript", "Spring Boot", "MySQL"],
+    github: "https://github.com/Tanjiro5834/library-management-system",
+  },
+  {
+    status: "wip",
+    statusLabel: "Completed",
+    name: "The Thomas Aquinas Institute of Learning Website & Internal Admin Dashboard",
+    category: ["web"],
+    desc: "A comprehensive website and internal admin dashboard for a learning institution.",
+    why: "Developed as part of my OJT requirement — a responsive website for the institute while also providing an efficient internal admin system for managing courses, students, and faculty.",
+    whyStack: "PHP + MySQL for a robust backend; HTML/CSS/JS for a dynamic frontend; Tailwind CSS for responsive design.",
+    stack: ["PHP", "MySQL", "HTML", "CSS", "JavaScript", "Tailwind CSS"],
+    github: "https://github.com/Tanjiro5834/thomas_aquinas",
+  },
+
+  {
+    status: "completed",
+    statusLabel: "Completed",
+    name: "St. Thomas Aquinas Student Utility App (Desktop)",
+    category: ["desktop"],
+    desc: "Offline desktop app for managing student Tardy Slips and Gate Passes, built for single-PC school office use.",
+    why: "Built as a companion tool to the institute's web system — front-office staff needed a fast, fully offline app to log tardiness and issue gate passes without depending on internet access.",
+    whyStack: "Electron for the native desktop shell and IPC; Node.js on the backend with local JSON file storage via the fs module — no DB server needed for single-PC deployment.",
+    stack: ["Node.js", "Electron"],
+    github: "https://github.com/Tanjiro5834/utility-apps",
+  },
+
+  {
+    status: "paused",
+    statusLabel: "On Hold",
+    name: "Trevix — Property Management System",
+    category: ["web", "backend"],
+    desc: "Multi-tenant SaaS platform for property management with role-based access, IoT-driven access control, and integrated payments.",
+    why: "Served as sole backend developer at Lumnaire, building the system from the ground up — RBAC across five distinct roles, MQTT integration for RFID door events, payment webhooks, and push notifications for a multi-tenant client base.",
+    whyStack: "Spring Boot for a modular, testable backend with strong security defaults; PostgreSQL for reliable multi-tenant relational data; JWT for stateless auth across roles; MQTT for real-time IoT/RFID door event handling.",
+    stack: ["Java", "Spring Boot", "PostgreSQL", "Git"],
+    github: null,
+  },
+
+  {
+    status: "active",
+    statusLabel: "Completed",
+    name: "ExamiQ — AI-Assisted Exam & Analytics Platform",
+    category: ["web", "backend"],
+    desc: "Web-based exam platform with an admin dashboard for question management, per-student performance analytics, and aggregate failure analysis, plus an AI tutor layer that tags questions by concept for mistake-driven review.",
+    why: "Built solo end-to-end — question bank CRUD, student exam history tracking, and a failure-analysis engine that aggregates mistakes by topic to surface weak areas, backed by concept-tagged questions ('isosceles-angle', 'derivative-power-rule') that feed an AI tutor for targeted remediation.",
+    whyStack: "PHP for a lightweight, dependency-free backend fast to iterate on solo; MySQL for structured relational storage of questions, students, and exam attempts; vanilla JS + Chart.js for dependency-light data visualization (performance trends, confidence-vs-performance, topic failure rates) without a frontend framework.",
+    stack: ["PHP", "MySQL", "JavaScript", "Chart.js"],
+    github: "https://github.com/Tanjiro5834/ExamiQ",
+  },
+
+  {
+    status: "completed",
+    statusLabel: "Completed",
+    name: "Chess — LAN Multiplayer Chess Game",
+    category: ["desktop", "game"],
+    desc: "Two-player chess game over LAN with a client-server architecture, in-game chat, move logging in algebraic notation, and a built-in AI opponent for solo play.",
+    why: "Built as a Java desktop project to practice socket programming and game-state synchronization — designed a client-server model for LAN multiplayer, in-game chat, and full move history logging (e.g. b3), plus a bot opponent for single-player mode.",
+    whyStack: "Java Swing for a self-contained desktop GUI with no external runtime dependencies; raw sockets for direct client-server communication over LAN, giving full control over move sync and chat without relying on a third-party networking library.",
+    stack: ["Java Swing", "Sockets"],
+    github: "https://github.com/Tanjiro5834/Chess",
   },
 ];
 
 const skills = [
   { group: "Programming", items: ["Java", "PHP", "JavaScript", "C#", "C/C++", "Python"] },
-  { group: "Frontend", items: ["HTML5", "Tailwind", "JavaScript (ES6+)", "React.js"] },
+  { group: "Frontend", items: ["HTML", "CSS", "JavaScript (ES6+)", "React.js"] },
   { group: "Backend", items: ["Spring Boot", "PHP", "Laravel", "Node.js"] },
   { group: "Database", items: ["PostgreSQL", "MySQL", "Redis", "SQLite"] },
   { group: "Desktop Development", items: ["Java Swing / JavaFX", "Tkinter", "Electron.js"] },
@@ -260,7 +328,7 @@ const services = [
       { label: "Revisions", value: "3 free · ₱500/extra" },
       { label: "Delivery", value: "Source + docs" },
     ],
-    stack: ["Spring Boot", "PHP", "Laravel", "MySQL", "PostgreSQL", "HTML5", "Tailwind", "JavaScript", "React.js"],
+    stack: ["Spring Boot", "PHP", "Laravel", "MySQL", "PostgreSQL", "HTML", "CSS", "JavaScript", "React.js"],
     terms: [
       "50% downpayment required before development starts.",
       "3 free revision rounds. Additional revisions at ₱500 each.",
@@ -302,7 +370,7 @@ const services = [
       { label: "Revisions", value: "3 free · ₱500/extra" },
       { label: "Delivery", value: "Deployed + source" },
     ],
-    stack: ["PHP", "Laravel", "Node.js", "MySQL", "PostgreSQL", "HTML", "Tailwind", "JavaScript", "Spring Boot"],
+    stack: ["PHP", "Laravel", "Node.js", "MySQL", "PostgreSQL", "HTML", "CSS", "JavaScript", "Spring Boot"],
     terms: [
       "50% downpayment required before development starts.",
       "3 free revision rounds. Additional revisions at ₱500 each.",
