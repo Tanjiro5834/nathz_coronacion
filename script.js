@@ -96,15 +96,29 @@ const experience = [
     period: ["June 2023", "Present"],
     type: "Freelance",
     company: "Self-Employed",
-    role: "Senior Software Developer",
+    role: "Freelance Senior Software Developer",
     desc: "3 years of freelancing experience. Built 10+ production systems for SMBs and diverse clients — across web, desktop, game, mobile, and embedded systems development.",
     bullets: [
-      "Delivered end-to-end projects independently: requirements gathering, architecture, development, deployment, and client handoff.",
+      " Delivered 14+ production software projects across web, desktop, and game development as an independent freelancer, maintaining a 98% client satisfaction rating across 32 client respondents",
       "Offered services across web, game, desktop app, mobile, and embedded systems development.",
       "Maintained a strong focus on clean architecture and security best practices across every engagement.",
       "Worked across multiple domains and stacks depending on client needs, adapting quickly to new requirements.",
     ],
     stack: ["Spring Boot", "PHP", "PostgreSQL", "MySQL", "JavaScript", "HTML", "CSS", "Laravel", "Node.js", "React", "React Native", "Unity", "PHP", "Java", "ESP32", "Arduino", "C/C++", "Java Swing/FX"],
+  },
+  {
+    period: ["May 2026", "July 2026"],
+    type: "Part-time",
+    company: "Lumnaire",
+    role: "Backend Developer",
+    desc: "Sole backend developer of a property management SaaS called Trevix.",
+    bullets: [
+      "Engineered the entire backend independently as sole backend developer, implementing model, repository, service, controller, and DTO (request/response) layers using Spring Boot.",
+      "Designed and maintained the PostgreSQL database schema supporting core property management data flows.",
+      "Validated all API endpoints via Postman, ensuring contract correctness before frontend integration.",
+      "Collaborated with senior developer and frontend developer to manage task delegation and integrate backend services with the client-facing application.",
+    ],
+    stack: ["Spring Boot", "PostgreSQL", "Git"],
   },
   {
     period: ["February 2026", "April 2026"],
@@ -125,6 +139,19 @@ const experience = [
       "Documented and authored the SDLC using Iterative Waterfall Model."
     ],
     stack: ["PHP", "MySQL", "Node.js", "Git"],
+  },
+  {
+    period: ["June 2025", "Jan 2026"],
+    type: "Part-time",
+    company: "Coronacion Services",
+    role: "Software Developer",
+    desc: "Developed an e-commerce web platform for an HVAC and refrigeration services.",
+    bullets: [
+      "Architected and delivered a production e-commerce platform from the ground up using custom PHP backend with a layered architecture (controller-service-repository pattern), deployed live on Hostinger.",
+      "Owned the full development lifecycle — requirements gathering, database design, backend logic, and deployment — as sole developer on the engagement.",
+      "Designed the system to support real customer-facing transactions for an active HVAC business, translating operational business needs into functional e-commerce features.",
+    ],
+    stack: ["HTML5", "CSS3", "JavaScript (ES6+)", "PHP", "MySQL", "WSL"],
   },
 ];
 
