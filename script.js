@@ -96,8 +96,8 @@ const experience = [
     period: ["June 2023", "Present"],
     type: "Freelance",
     company: "Self-Employed",
-    role: "Freelance Software Engineer",
-    desc: "3 years of freelancing experience. Built 10+ applications for SMBs and diverse clients — across web, desktop, game, mobile, and embedded systems development.",
+    role: "Senior Software Developer",
+    desc: "3 years of freelancing experience. Built 10+ production systems for SMBs and diverse clients — across web, desktop, game, mobile, and embedded systems development.",
     bullets: [
       "Delivered end-to-end projects independently: requirements gathering, architecture, development, deployment, and client handoff.",
       "Offered services across web, game, desktop app, mobile, and embedded systems development.",
@@ -110,7 +110,7 @@ const experience = [
     period: ["February 2026", "April 2026"],
     type: "Internship",
     company: "The Thomas Aquinas Institute of Learning",
-    role: "Full Stack Developer Intern",
+    role: "Backend Developer",
     desc: "Developed a Catholic school's public website and internal admin dashboard, working as one of two developers on the team.",
     bullets: [
       "Built a full-stack school's public-facing website with internal admin CMS.",
@@ -122,10 +122,9 @@ const experience = [
       "Architected the system using Monolithic approach.",
       "Collaborated with a frontend developer for frontend integration, design, and version control.",
       "Handled Node.js file-system integration for a desktop app internal tooling; packaged using Electron.",
-      "Designed and implemented mobile-first user interfaces using HTML5, CSS3, and Native JavaScript.",
       "Documented and authored the SDLC using Iterative Waterfall Model."
     ],
-    stack: ["HTML", "CSS", "JavaScript (ES6+)", "PHP", "MySQL", "Node.js", "Git"],
+    stack: ["PHP", "MySQL", "Node.js", "Git"],
   },
 ];
 
