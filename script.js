@@ -31,13 +31,12 @@ function techTag(name, variant = "tag") {
   return `<span class="${cls}">${name}</span>`;
 }
 
-/* ══════════════ DATA ══════════════ */
 const experience = [
   {
     period: ["June 2023", "Present"],
     type: "Freelance",
     company: "Self-Employed",
-    role: "Senior Software Developer",
+    role: "Freelance Senior Software Developer",
     desc: "3 years of freelancing experience. Built 14+ production backend and full-stack systems for SMBs and diverse clients, with a backend-first focus across every engagement.",
     bullets: [
       "Delivered 14+ production software projects as an independent freelancer, maintaining a 98% client satisfaction rating across 32 client respondents",
@@ -45,13 +44,13 @@ const experience = [
       "Maintained a strong focus on clean architecture and security best practices across every engagement.",
       "Worked across Spring Boot, PHP, and Node.js backends depending on client needs, adapting quickly to new requirements.",
     ],
-    stack: ["Spring Boot", "PHP", "PostgreSQL", "MySQL", "JavaScript", "HTML", "CSS", "Laravel", "Node.js", "React", "React Native", "Java"],
+    stack: ["Spring Boot",  "Java", "PHP", "PostgreSQL", "MySQL", "SQLite", "HTML", "CSS", "JavaScript", "React"],
   },
   {
     period: ["May 2026", "July 2026"],
     type: "Part-time",
     company: "Lumnaire",
-    role: "Backend Developer",
+    role: "Back End Developer",
     desc: "Sole backend developer of a property management SaaS called Trevix.",
     bullets: [
       "Engineered the entire backend independently as sole backend developer, implementing model, repository, service, controller, and DTO (request/response) layers using Spring Boot.",
@@ -65,7 +64,7 @@ const experience = [
     period: ["February 2026", "April 2026"],
     type: "Internship",
     company: "The Thomas Aquinas Institute of Learning",
-    role: "Backend Developer",
+    role: "Back End Developer",
     desc: "Developed a Catholic school's public website and internal admin dashboard, working as one of two developers on the team.",
     bullets: [
       "Built a full-stack school's public-facing website with internal admin CMS.",
@@ -92,7 +91,7 @@ const experience = [
       "Owned the full development lifecycle — requirements gathering, database design, backend logic, and deployment — as sole developer on the engagement.",
       "Designed the system to support real customer-facing transactions for an active HVAC business, translating operational business needs into functional e-commerce features.",
     ],
-    stack: ["HTML5", "CSS3", "JavaScript (ES6+)", "PHP", "MySQL", "WSL"],
+    stack: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "WSL"],
   },
 ];
 
@@ -205,11 +204,35 @@ const sideProjects = [
 ];
 
 const skills = [
-  { group: "Backend", items: ["Spring Boot", "PHP", "Laravel", "Node.js", "Java"] },
-  { group: "Database", items: ["PostgreSQL", "MySQL", "SQLite"] },
-  { group: "Frontend", items: ["JavaScript (ES6+)", "HTML", "CSS", "React.js"] },
-  { group: "Full Stack Extras", items: ["React Native", "Unity", "Java Swing"] },
-  { group: "DevOps & Tools", items: ["Git", "GitHub Actions", "Docker", "Postman"] },
+  { group: "Backend", items: [
+    { name: "Spring Boot", icon: "springboot", color: "6DB33F" },
+    { name: "PHP", icon: "php", color: "777BB4" },
+    { name: "Laravel", icon: "laravel", color: "FF2D20" },
+    { name: "Node.js", icon: "nodedotjs", color: "5FA04E" },
+    { name: "Java", icon: "openjdk", color: "437291" },
+  ]},
+  { group: "Database", items: [
+    { name: "PostgreSQL", icon: "postgresql", color: "4169E1" },
+    { name: "MySQL", icon: "mysql", color: "4479A1" },
+    { name: "SQLite", icon: "sqlite", color: "003B57" },
+  ]},
+  { group: "Frontend", items: [
+    { name: "JavaScript (ES6+)", icon: "javascript", color: "F7DF1E" },
+    { name: "HTML", icon: "html5", color: "E34F26" },
+    { name: "CSS", icon: "css3", color: "1572B6" },
+    { name: "React.js", icon: "react", color: "61DAFB" },
+  ]},
+  { group: "Full Stack Extras", items: [
+    { name: "React Native", icon: "react", color: "61DAFB" },
+    { name: "Unity", icon: "unity", color: "000000" },
+    { name: "Java Swing", icon: "openjdk", color: "437291" },
+  ]},
+  { group: "DevOps & Tools", items: [
+    { name: "Git", icon: "git", color: "F05032" },
+    { name: "GitHub Actions", icon: "githubactions", color: "2088FF" },
+    { name: "Docker", icon: "docker", color: "2496ED" },
+    { name: "Postman", icon: "postman", color: "FF6C37" },
+  ]},
 ];
 
 const services = [
@@ -549,7 +572,7 @@ skillsGrid.innerHTML = skills
   <div class="skill-group">
     <div class="skill-group-name">${g.group}</div>
     <div class="skill-list">
-      ${g.items.map((item) => `<span class="skill-item">${item}</span>`).join("")}
+      ${g.items.map((item) => `<span class="skill-item"><img class="skill-icon" src="https://cdn.simpleicons.org/${item.icon}/${item.color}" alt="" loading="lazy" />${item.name}</span>`).join("")}
     </div>
   </div>
 `

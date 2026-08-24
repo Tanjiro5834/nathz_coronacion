@@ -1,23 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Dancing+Script:wght@500;600;700&display=swap');
 
 :root {
-  --bg: #0C0E0D;
-  --bg-2: #141613;
-  --bg-3: #1C1F1B;
-  --border: rgba(240, 237, 228, 0.09);
-  --border-strong: rgba(240, 237, 228, 0.18);
-  --text: #F0EDE4;
-  --text-2: #A8AD9F;
-  --text-3: #6B7268;
-  --pine: #4A7A63;
-  --pine-hover: #5B8E73;
+  --bg: #0B0710;
+  --bg-2: #150E1F;
+  --bg-3: #1F1530;
+  --border: rgba(230, 220, 245, 0.09);
+  --border-strong: rgba(230, 220, 245, 0.18);
+  --text: #F1ECFA;
+  --text-2: #AB9FC4;
+  --text-3: #71678A;
+  --pine: #9B6BE0;
+  --pine-hover: #B085F0;
   --ochre: #C9A66B;
   --red: #C4695A;
-  --tag-bg: rgba(240, 237, 228, 0.05);
-  --tag-text: #A8AD9F;
-  --card-bg: #141613;
-  --toggle-bg: #1C1F1B;
-  --toggle-knob: #F0EDE4;
+  --tag-bg: rgba(230, 220, 245, 0.05);
+  --tag-text: #AB9FC4;
+  --card-bg: #150E1F;
+  --toggle-bg: #1F1530;
+  --toggle-knob: #F1ECFA;
   --font-display: "Space Grotesk", sans-serif;
   --font: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", "SF Mono", SFMono-Regular, ui-monospace, Menlo, Consolas, monospace;
@@ -25,23 +25,23 @@
 }
 
 [data-theme="light"] {
-  --bg: #F5F3EC;
-  --bg-2: #ECE9DE;
-  --bg-3: #E1DDCE;
-  --border: rgba(20, 22, 19, 0.09);
-  --border-strong: rgba(20, 22, 19, 0.18);
-  --text: #14160F;
-  --text-2: #5B5F52;
-  --text-3: #8A8F7E;
-  --pine: #3D6650;
-  --pine-hover: #325541;
+  --bg: #FBFAFE;
+  --bg-2: #F1EDFA;
+  --bg-3: #E7DFF6;
+  --border: rgba(43, 20, 74, 0.09);
+  --border-strong: rgba(43, 20, 74, 0.18);
+  --text: #211433;
+  --text-2: #665A80;
+  --text-3: #9187A8;
+  --pine: #7C3FDB;
+  --pine-hover: #6A2FC2;
   --ochre: #9C7A3E;
   --red: #A3493C;
-  --tag-bg: rgba(20, 22, 19, 0.05);
-  --tag-text: #5B5F52;
-  --card-bg: #ECE9DE;
-  --toggle-bg: #E1DDCE;
-  --toggle-knob: #14160F;
+  --tag-bg: rgba(43, 20, 74, 0.05);
+  --tag-text: #665A80;
+  --card-bg: #F1EDFA;
+  --toggle-bg: #E7DFF6;
+  --toggle-knob: #211433;
 }
 
 *, *::before, *::after {
@@ -65,11 +65,6 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font);
   background: var(--bg);
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 48px 48px;
-  background-attachment: fixed;
   color: var(--text);
   font-size: 16px;
   line-height: 1.6;
@@ -263,18 +258,13 @@ section:last-of-type { border-bottom: none; }
 }
 
 .hero-role {
-  font-family: var(--font-mono);
-  font-size: clamp(14px, 3.6vw, 18px);
-  font-weight: 400;
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(20px, 5vw, 26px);
+  font-weight: 600;
   letter-spacing: 0;
   color: var(--text-2);
   margin-bottom: 28px;
-  line-height: 1.7;
-  padding: 16px 18px;
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-left: 2px solid var(--pine);
-  border-radius: 4px;
+  line-height: 1.5;
   max-width: 480px;
 }
 .hero-role-sub {
@@ -736,7 +726,11 @@ section:last-of-type { border-bottom: none; }
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 6px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
+.skill-icon { width: 16px; height: 16px; flex-shrink: 0; object-fit: contain; }
 .skill-item.icon-only { padding: 6px; }
 .skill-item.icon-only img { width: 18px; height: 18px; }
 
