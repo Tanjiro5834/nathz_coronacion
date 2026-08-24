@@ -80,19 +80,6 @@ const experience = [
     ],
     stack: ["PHP", "MySQL", "Node.js", "Git"],
   },
-  {
-    period: ["June 2025", "Jan 2026"],
-    type: "Part-time",
-    company: "Coronacion Services",
-    role: "Full Stack Developer",
-    desc: "Developed an e-commerce web platform for an HVAC and refrigeration services.",
-    bullets: [
-      "Architected and delivered a production e-commerce platform from the ground up using custom PHP backend with a layered architecture (controller-service-repository pattern), deployed live on Hostinger.",
-      "Owned the full development lifecycle — requirements gathering, database design, backend logic, and deployment — as sole developer on the engagement.",
-      "Designed the system to support real customer-facing transactions for an active HVAC business, translating operational business needs into functional e-commerce features.",
-    ],
-    stack: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "WSL"],
-  },
 ];
 
 const projects = [
