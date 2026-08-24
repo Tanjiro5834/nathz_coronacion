@@ -29,51 +29,34 @@ mobileMenu.querySelectorAll("a").forEach((a) => {
 // slug reference: https://simpleicons.org
 const ICONS = {
   "HTML": "HTML",
-  "HTML": "HTML",
   "CSS3": "css3",
   "CSS": "css3",
   "JavaScript": "javascript",
   "JavaScript (ES6+)": "javascript",
-  "Electron.js": "javascript",
   "PHP": "php",
   "Core PHP": "php",
   "MySQL": "mysql",
   "PostgreSQL": "postgresql",
   "SQLite": "sqlite",
-  "Redis": "redis",
   "Git": "git",
   "GitHub": "github",
-  "GitHub / GitHub Actions": "github",
+  "GitHub Actions": "github",
   "Docker": "docker",
   "Unity": "unity",
-  "Unity/Unity Version Control": "unity",
   "Java": "openjdk",
   "Java Swing": "openjdk",
   "Spring Boot": "springboot",
   "Flyway": "flyway",
   "Laravel": "laravel",
   "React.js": "react",
+  "React": "react",
   "React Native": "react",
-  "Vue.js": "vuedotjs",
-  "TypeScript": "typescript",
-  "Dexie.js": "javascript",
   "Node.js": "nodedotjs",
-  "C/C++": "cplusplus",
-  "Python": "python",
-  "PyGame": "python",
-  "Java Swing / JavaFX": "openjdk",
-  "Java Swing/FX": "openjdk",
-  "Tkinter": "python",
-  "Tkinter (Python)": "python",
-  "Unreal Engine": "unrealengine",
-  "LibGDX (Java)": "openjdk",
-  "Flutter": "flutter",
-  "Android Studio": "androidstudio",
-  "Electron.js": "electron",
   "Tailwind": "tailwindcss",
+  "Tailwind CSS": "tailwindcss",
   "Postman": "postman",
-  "phpMyAdmin": "phpmyadmin",
-  "DBeaver": "dbeaver",
+  "Chart.js": "chartdotjs",
+  "Socket Programming": "socketdotio",
 };
 
 function iconUrl(name) {
@@ -96,15 +79,15 @@ const experience = [
     period: ["June 2023", "Present"],
     type: "Freelance",
     company: "Self-Employed",
-    role: "Freelance Senior Software Developer",
-    desc: "3 years of freelancing experience. Built 10+ production systems for SMBs and diverse clients — across web, desktop, game, mobile, and embedded systems development.",
+    role: "Senior Software Developer",
+    desc: "3 years of freelancing experience. Built 14+ production backend and full-stack systems for SMBs and diverse clients, with a backend-first focus across every engagement.",
     bullets: [
-      " Delivered 14+ production software projects across web, desktop, and game development as an independent freelancer, maintaining a 98% client satisfaction rating across 32 client respondents",
-      "Offered services across web, game, desktop app, mobile, and embedded systems development.",
+      "Delivered 14+ production software projects as an independent freelancer, maintaining a 98% client satisfaction rating across 32 client respondents",
+      "Led backend architecture on every engagement — API design, database schema, and layered application structure.",
       "Maintained a strong focus on clean architecture and security best practices across every engagement.",
-      "Worked across multiple domains and stacks depending on client needs, adapting quickly to new requirements.",
+      "Worked across Spring Boot, PHP, and Node.js backends depending on client needs, adapting quickly to new requirements.",
     ],
-    stack: ["Spring Boot", "PHP", "PostgreSQL", "MySQL", "JavaScript", "HTML", "CSS", "Laravel", "Node.js", "React", "React Native", "Unity", "PHP", "Java", "ESP32", "Arduino", "C/C++", "Java Swing/FX"],
+    stack: ["Spring Boot", "PHP", "PostgreSQL", "MySQL", "JavaScript", "HTML", "CSS", "Laravel", "Node.js", "React", "React Native", "Java"],
   },
   {
     period: ["May 2026", "July 2026"],
@@ -144,7 +127,7 @@ const experience = [
     period: ["June 2025", "Jan 2026"],
     type: "Part-time",
     company: "Coronacion Services",
-    role: "Software Developer",
+    role: "Web Developer",
     desc: "Developed an e-commerce web platform for an HVAC and refrigeration services.",
     bullets: [
       "Architected and delivered a production e-commerce platform from the ground up using custom PHP backend with a layered architecture (controller-service-repository pattern), deployed live on Hostinger.",
@@ -157,6 +140,28 @@ const experience = [
 
 const projects = [
   {
+    status: "paused",
+    statusLabel: "On Hold",
+    name: "Trevix — Property Management System",
+    category: ["web", "backend"],
+    desc: "Multi-tenant SaaS platform for property management with role-based access, IoT-driven access control, and integrated payments.",
+    why: "Served as sole backend developer at Lumnaire, building the system from the ground up — RBAC across five distinct roles, MQTT integration for RFID door events, payment webhooks, and push notifications for a multi-tenant client base.",
+    whyStack: "Spring Boot for a modular, testable backend with strong security defaults; PostgreSQL for reliable multi-tenant relational data; JWT for stateless auth across roles; MQTT for real-time IoT/RFID door event handling.",
+    stack: ["Java", "Spring Boot", "PostgreSQL", "Git"],
+    github: null,
+  },
+  {
+    status: "live",
+    statusLabel: "Live",
+    name: "Cash Flow Monitoring System",
+    category: ["web"],
+    desc: "A multi-campus cash flow monitoring system for a school network, handling collections, disbursements, and bank reconciliation with role-based access control.",
+    why: "The school needed a way to track cash flow across multiple campuses in real time, with proper audit trails and reconciliation against bank statements, replacing manual/disconnected tracking.",
+    whyStack: "PHP MVC with a service-repository pattern for clean separation of business logic from data access; PostgreSQL for reliable relational integrity across multi-campus data; deployed on Hostinger for cost-effective production hosting.",
+    stack: ["HTML", "CSS", "JavaScript (ES6+)", "PHP", "MySQL"],
+    github: "https://github.com/Tanjiro5834/sjfs-accounting-system",
+  },
+  {
     status: "live",
     statusLabel: "Live",
     name: "HVAC E-Commerce Platform",
@@ -167,17 +172,6 @@ const projects = [
     stack: ["HTML", "CSS", "JavaScript (ES6+)", "PHP", "MySQL"],
     github: "https://github.com/Tanjiro5834/aircon_website",
     live: "https://coronacionservices.com",
-  },
-  {
-    status: "wip",
-    statusLabel: "In progress",
-    name: "Bladebound",
-    category: ["game", "desktop"],
-    desc: "Solo-developed first-person melee combat game with squad-based arena fights.",
-    why: "I wanted to prove I could take a game from architecture to a playable build entirely on my own — combat systems, state management, and scene architecture — as a deliberate secondary lane alongside backend work.",
-    whyStack: "Unity/C# gave me the fastest path to a working 3D combat prototype with strong tooling for physics and animation, while ScriptableObjects let me build a modular, data-driven weapon system without hardcoding stats.",
-    stack: ["Unity", "Git"],
-    github: "https://github.com/Tanjiro5834",
   },
   {
     status: "done",
@@ -203,39 +197,6 @@ const projects = [
   },
   {
     status: "wip",
-    statusLabel: "Completed",
-    name: "Mitolohiya (Thesis)",
-    category: ["game", "desktop"],
-    desc: "Turn-based 2D card game built in Unity inspired by Filipino mythology.",
-    why: "I wanted to combine my interest in game development with Filipino cultural storytelling — turning local mythology into an actual playable card-combat system instead of a purely academic thesis document.",
-    whyStack: "Unity was the natural choice for 2D card-game mechanics, animation, and UI, with strong asset and version-control tooling for a small solo/duo team.",
-    stack: ["Unity"],
-  },
-  {
-    status: "wip",
-    statusLabel: "Completed",
-    name: "Suki",
-    category: ["desktop", "mobile", "mobile/web"],
-    desc: "A desktop, web, and mobile application for tracking customer credit (utang) for sari-sari stores.",
-    why: "Sari-sari store owners in the Philippines track customer credit (utang) on paper notebooks. I wanted to build something that solves this for real small-business owners, working offline-first since store WiFi/data is often unreliable.",
-    whyStack: "JDBC + SQLite for offline-first backend; Java Swing for frontend that keeps working without a connection.",
-    stack: ["Java Swing", "JDBC", "SQLite"],
-    github: "https://github.com/Tanjiro5834/suki-pos",
-  },
-  {
-    status: "live",
-    statusLabel: "Live",
-    name: "Cash Flow Monitoring System",
-    category: ["web"],
-    desc: "A multi-campus cash flow monitoring system for a school network, handling collections, disbursements, and bank reconciliation with role-based access control.",
-    why: "The school needed a way to track cash flow across multiple campuses in real time, with proper audit trails and reconciliation against bank statements, replacing manual/disconnected tracking.",
-    whyStack: "PHP MVC with a service-repository pattern for clean separation of business logic from data access; PostgreSQL for reliable relational integrity across multi-campus data; deployed on Hostinger for cost-effective production hosting.",
-    stack: ["HTML", "CSS", "JavaScript (ES6+)", "PHP", "MySQL"],
-    github: "https://github.com/Tanjiro5834/sjfs-accounting-system",
-  },
-
-  {
-    status: "wip",
     statusLabel: "In Progress",
     name: "Typing Game",
     category: ["web"],
@@ -244,17 +205,6 @@ const projects = [
     whyStack: "Vanilla JS for a lightweight, dependency-free typing engine on the frontend; Spring Boot + JPA/Hibernate + MySQL for a clean, scalable REST API backend.",
     stack: ["Spring Boot", "MySQL", "HTML", "CSS", "JavaScript (ES6+)"],
     github: "https://github.com/Tanjiro5834/typinggame",
-  },
-  {
-    status: "wip",
-    statusLabel: "In Progress",
-    name: "Library Management System",
-    category: ["web"],
-    desc: "Full-stack library management system with cataloging, checkout, and admin dashboard.",
-    why: "I built this to digitize the library's operations — replacing manual card-based tracking with a digital system for easier management and improved user experience.",
-    whyStack: "Spring Boot+ MySQL for a robust, typed backend; Vanilla HTML/CSS/JS on the frontend to keep the footprint small and avoid unnecessary build tooling for a site of this scale.",
-    stack: ["HTML", "CSS", "JavaScript (ES6+)", "Spring Boot", "MySQL"],
-    github: "https://github.com/Tanjiro5834/library-management-system",
   },
   {
     status: "wip",
@@ -267,66 +217,41 @@ const projects = [
     stack: ["PHP", "MySQL", "HTML", "CSS", "JavaScript (ES6+)", "Tailwind CSS"],
     github: "https://github.com/Tanjiro5834/thomas_aquinas",
   },
+];
 
+const sideProjects = [
   {
-    status: "completed",
-    statusLabel: "Completed",
-    name: "St. Thomas Aquinas Student Utility App (Desktop)",
-    category: ["desktop"],
-    desc: "Offline desktop app for managing student Tardy Slips and Gate Passes, built for single-PC school office use.",
-    why: "Built as a companion tool to the institute's web system — front-office staff needed a fast, fully offline app to log tardiness and issue gate passes without depending on internet access.",
-    whyStack: "Electron for the native desktop shell and IPC; Node.js on the backend with local JSON file storage via the fs module — no DB server needed for single-PC deployment.",
-    stack: ["Node.js", "Electron"],
-    github: "https://github.com/Tanjiro5834/utility-apps",
+    name: "Bladebound",
+    desc: "Solo first-person melee combat game — Unity/C#, ScriptableObject-driven weapon system.",
+    stack: ["Unity"],
+    github: "https://github.com/Tanjiro5834",
   },
-
   {
-    status: "paused",
-    statusLabel: "On Hold",
-    name: "Trevix — Property Management System",
-    category: ["web", "backend"],
-    desc: "Multi-tenant SaaS platform for property management with role-based access, IoT-driven access control, and integrated payments.",
-    why: "Served as sole backend developer at Lumnaire, building the system from the ground up — RBAC across five distinct roles, MQTT integration for RFID door events, payment webhooks, and push notifications for a multi-tenant client base.",
-    whyStack: "Spring Boot for a modular, testable backend with strong security defaults; PostgreSQL for reliable multi-tenant relational data; JWT for stateless auth across roles; MQTT for real-time IoT/RFID door event handling.",
-    stack: ["Java", "Spring Boot", "PostgreSQL", "Git"],
+    name: "Mitolohiya (Thesis)",
+    desc: "Turn-based 2D card game in Unity, built around Filipino mythology.",
+    stack: ["Unity"],
     github: null,
   },
-
   {
-    status: "active",
-    statusLabel: "Completed",
-    name: "ExamiQ — AI-Assisted Exam & Analytics Platform",
-    category: ["web", "backend"],
-    desc: "Web-based exam platform with an admin dashboard for question management, per-student performance analytics, and aggregate failure analysis, plus an AI tutor layer that tags questions by concept for mistake-driven review.",
-    why: "Built solo end-to-end — question bank CRUD, student exam history tracking, and a failure-analysis engine that aggregates mistakes by topic to surface weak areas, backed by concept-tagged questions ('isosceles-angle', 'derivative-power-rule') that feed an AI tutor for targeted remediation.",
-    whyStack: "PHP for a lightweight, dependency-free backend fast to iterate on solo; MySQL for structured relational storage of questions, students, and exam attempts; vanilla JS + Chart.js for dependency-light data visualization (performance trends, confidence-vs-performance, topic failure rates) without a frontend framework.",
-    stack: ["PHP", "MySQL", "JavaScript (ES6+)", "Chart.js"],
-    github: "https://github.com/Tanjiro5834/ExamiQ",
+    name: "Suki",
+    desc: "Offline-first credit tracker (utang) for sari-sari stores — desktop/web/mobile.",
+    stack: ["Java Swing", "SQLite"],
+    github: "https://github.com/Tanjiro5834/suki-pos",
   },
-
   {
-    status: "completed",
-    statusLabel: "Completed",
-    name: "Chess — LAN Multiplayer Chess Game",
-    category: ["desktop", "game"],
-    desc: "Two-player chess game over LAN with a client-server architecture, in-game chat, move logging in algebraic notation, and a built-in AI opponent for solo play.",
-    why: "Built as a Java desktop project to practice socket programming and game-state synchronization — designed a client-server model for LAN multiplayer, in-game chat, and full move history logging (e.g. b3), plus a bot opponent for single-player mode.",
-    whyStack: "Java Swing for a self-contained desktop GUI with no external runtime dependencies; raw sockets for direct client-server communication over LAN, giving full control over move sync and chat without relying on a third-party networking library.",
+    name: "Chess — LAN Multiplayer",
+    desc: "Client-server chess over LAN with socket programming and a built-in AI opponent.",
     stack: ["Java Swing", "Socket Programming"],
     github: "https://github.com/Tanjiro5834/Chess",
   },
 ];
 
 const skills = [
-  { group: "Programming", items: ["Java", "PHP", "JavaScript", "C#", "C/C++"] },
-  { group: "Frontend", items: ["HTML", "CSS", "JavaScript (ES6+)", "React.js"] },
-  { group: "Backend", items: ["Spring Boot", "PHP", "Laravel", "Node.js"] },
-  { group: "Database", items: ["PostgreSQL", "MySQL", "Redis", "SQLite"] },
-  { group: "Desktop Development", items: ["Java Swing / JavaFX", "Tkinter", "Electron.js"] },
-  { group: "Game Development", items: ["Unity", "Unreal Engine", "Java Swing", "PyGame"] },
-  { group: "Mobile Development", items: ["React Native", "Flutter", "Android Studio"] },
-  { group: "DevOps", items: ["Git", "GitHub / GitHub Actions", "Docker"] },
-  { group: "Tools", items: ["Postman", "phpMyAdmin", "DBeaver"] },
+  { group: "Backend", items: ["Spring Boot", "PHP", "Laravel", "Node.js", "Java"] },
+  { group: "Database", items: ["PostgreSQL", "MySQL", "SQLite"] },
+  { group: "Frontend", items: ["JavaScript (ES6+)", "HTML", "CSS", "React.js"] },
+  { group: "Full Stack Extras", items: ["React Native", "Unity", "Java Swing"] },
+  { group: "DevOps & Tools", items: ["Git", "GitHub Actions", "Docker", "Postman"] },
 ];
 
 const services = [
@@ -346,27 +271,6 @@ const services = [
       "3 free revision rounds. Additional revisions at ₱500 each.",
       "Final payment due before source code handoff.",
       "Includes ERD, SDLC documentation, and deployment guide.",
-      "Client must provide complete requirements before kickoff.",
-      "Scope changes after kickoff may affect timeline and price.",
-      "No refunds once development has begun.",
-    ],
-  },
-  {
-    name: "Mobile Development",
-    desc: "Bring your mobile app to life with this complete package, including SDLC, ERD, and documentation.",
-    price: "From ₱15,000",
-    details: [
-      { label: "Timeline", value: "4–8 weeks" },
-      { label: "Downpayment", value: "50% upfront" },
-      { label: "Revisions", value: "3 free · ₱500/extra" },
-      { label: "Delivery", value: "Apk/File + Source" },
-    ],
-    stack: ["Java", "Spring Boot", "PHP", "MySQL", "PostgreSQL", "JavaScript", "Docker"],
-    terms: [
-      "50% downpayment required before development starts.",
-      "3 free revision rounds. Additional revisions at ₱500 each.",
-      "Final payment due before source code handoff.",
-      "Includes full documentation: ERD, architecture, and user manual.",
       "Client must provide complete requirements before kickoff.",
       "Scope changes after kickoff may affect timeline and price.",
       "No refunds once development has begun.",
@@ -394,22 +298,23 @@ const services = [
     ],
   },
   {
-    name: "Game Development",
-    desc: "Have a game in mind? Let's bring it to life. I do game development using various technologies.",
-    price: "From ₱10,000",
+    name: "Mobile Development",
+    desc: "Bring your mobile app to life with this complete package, including SDLC, ERD, and documentation.",
+    price: "From ₱15,000",
     details: [
-      { label: "Timeline", value: "3–6 weeks" },
+      { label: "Timeline", value: "4–8 weeks" },
       { label: "Downpayment", value: "50% upfront" },
-      { label: "Revisions", value: "2 free · ₱750/extra" },
-      { label: "Delivery", value: "Build + source" },
+      { label: "Revisions", value: "3 free · ₱500/extra" },
+      { label: "Delivery", value: "Apk/File + Source" },
     ],
-    stack: ["Unity", "Java", "PyGame", "Unreal Engine"],
+    stack: ["Java", "Spring Boot", "PHP", "MySQL", "PostgreSQL", "JavaScript"],
     terms: [
       "50% downpayment required before development starts.",
-      "2 free revision rounds. Additional revisions at ₱750 each.",
-      "Art assets and audio must be provided by the client unless agreed.",
-      "Final payment due before build or source code handoff.",
-      "Game design document (GDD) must be agreed upon before kickoff.",
+      "3 free revision rounds. Additional revisions at ₱500 each.",
+      "Final payment due before source code handoff.",
+      "Includes full documentation: ERD, architecture, and user manual.",
+      "Client must provide complete requirements before kickoff.",
+      "Scope changes after kickoff may affect timeline and price.",
       "No refunds once development has begun.",
     ],
   },
@@ -423,7 +328,7 @@ const services = [
       { label: "Revisions", value: "3 free · ₱500/extra" },
       { label: "Delivery", value: "Installer + source" },
     ],
-    stack: ["Java Swing/FX", "Electron.js", "Tkinter (Python)", "SQLite", "MySQL"],
+    stack: ["Java Swing", "SQLite", "MySQL"],
     terms: [
       "50% downpayment required before development starts.",
       "3 free revision rounds. Additional revisions at ₱500 each.",
@@ -483,10 +388,8 @@ expList.querySelectorAll(".exp-trigger").forEach((btn) => {
 const PROJECT_FILTERS = [
   { key: "all", label: "All" },
   { key: "web", label: "Web" },
+  { key: "backend", label: "Backend" },
   { key: "desktop", label: "Desktop" },
-  { key: "mobile/web", label: "Mobile/Web" },
-  { key: "game", label: "Game" },
-  { key: "mobile", label: "Mobile" },
 ];
 
 let activeFilter = "all";
@@ -541,6 +444,22 @@ function renderProjects() {
 
 renderFilterBar();
 renderProjects();
+
+/* ══════════════ RENDER: SIDE PROJECTS (compact, demoted) ══════════════ */
+const sideProjectsList = document.getElementById("sideProjectsList");
+sideProjectsList.innerHTML = sideProjects
+  .map(
+    (p) => `
+  <div class="side-project-row">
+    <div>
+      <span class="side-project-name">${p.name}</span>
+      <span class="side-project-desc">${p.desc}</span>
+    </div>
+    <div class="side-project-tags">${p.stack.map((s) => techTag(s, "tag")).join("")}</div>
+  </div>
+`
+  )
+  .join("");
 
 // Project modal — injected once
 document.body.insertAdjacentHTML(
