@@ -25,51 +25,9 @@ mobileMenu.querySelectorAll("a").forEach((a) => {
   });
 });
 
-/* ══════════════ TECH ICON MAP (Simple Icons CDN) ══════════════ */
-// slug reference: https://simpleicons.org
-const ICONS = {
-  "HTML": "HTML",
-  "CSS3": "css3",
-  "CSS": "css3",
-  "JavaScript": "javascript",
-  "JavaScript (ES6+)": "javascript",
-  "PHP": "php",
-  "Core PHP": "php",
-  "MySQL": "mysql",
-  "PostgreSQL": "postgresql",
-  "SQLite": "sqlite",
-  "Git": "git",
-  "GitHub": "github",
-  "GitHub Actions": "github",
-  "Docker": "docker",
-  "Unity": "unity",
-  "Java": "openjdk",
-  "Java Swing": "openjdk",
-  "Spring Boot": "springboot",
-  "Flyway": "flyway",
-  "Laravel": "laravel",
-  "React.js": "react",
-  "React": "react",
-  "React Native": "react",
-  "Node.js": "nodedotjs",
-  "Tailwind": "tailwindcss",
-  "Tailwind CSS": "tailwindcss",
-  "Postman": "postman",
-  "Chart.js": "chartdotjs",
-  "Socket Programming": "socketdotio",
-};
-
-function iconUrl(name) {
-  return null; // icons disabled — plain text tags only
-}
-
+/* ══════════════ TECH TAGS (plain text) ══════════════ */
 function techTag(name, variant = "tag") {
-  const url = iconUrl(name);
-  const cls =
-    variant === "tag" ? "tag" : variant === "stack" ? "tech-tag" : "modal-stack-tag";
-  if (url) {
-    return `<span class="${cls} icon-only" title="${name}"><img src="${url}" alt="${name}" loading="lazy"></span>`;
-  }
+  const cls = variant === "modal" ? "modal-stack-tag" : "tag";
   return `<span class="${cls}">${name}</span>`;
 }
 
@@ -127,7 +85,7 @@ const experience = [
     period: ["June 2025", "Jan 2026"],
     type: "Part-time",
     company: "Coronacion Services",
-    role: "Web Developer",
+    role: "Full Stack Developer",
     desc: "Developed an e-commerce web platform for an HVAC and refrigeration services.",
     bullets: [
       "Architected and delivered a production e-commerce platform from the ground up using custom PHP backend with a layered architecture (controller-service-repository pattern), deployed live on Hostinger.",
@@ -393,6 +351,8 @@ const PROJECT_FILTERS = [
 ];
 
 let activeFilter = "all";
+let currentPage = 1;
+const PROJECTS_PER_PAGE = 2;
 const projectsGrid = document.getElementById("projectsGrid");
 const projectsFilterBar = document.getElementById("projectsFilterBar");
 
@@ -405,6 +365,7 @@ function renderFilterBar() {
   projectsFilterBar.querySelectorAll(".filter-pill").forEach((btn) => {
     btn.addEventListener("click", () => {
       activeFilter = btn.dataset.filter;
+      currentPage = 1;
       renderFilterBar();
       renderProjects();
     });
@@ -422,7 +383,12 @@ function renderProjects() {
     return;
   }
 
-  projectsGrid.innerHTML = filtered
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PROJECTS_PER_PAGE));
+  currentPage = Math.min(currentPage, totalPages);
+  const start = (currentPage - 1) * PROJECTS_PER_PAGE;
+  const pageItems = filtered.slice(start, start + PROJECTS_PER_PAGE);
+
+  const cardsHtml = pageItems
     .map((p) => {
       const realIndex = projects.indexOf(p);
       return `
@@ -437,9 +403,40 @@ function renderProjects() {
     })
     .join("");
 
+  const pagerHtml =
+    totalPages > 1
+      ? `
+    <div class="projects-pager" id="projectsPager">
+      <button class="pager-btn" id="pagerPrev" ${currentPage === 1 ? "disabled" : ""} aria-label="Previous page">←</button>
+      <span class="pager-status">${String(currentPage).padStart(2, "0")} / ${String(totalPages).padStart(2, "0")}</span>
+      <button class="pager-btn" id="pagerNext" ${currentPage === totalPages ? "disabled" : ""} aria-label="Next page">→</button>
+    </div>
+  `
+      : "";
+
+  projectsGrid.innerHTML = cardsHtml;
+  const existingPager = document.getElementById("projectsPager");
+  if (existingPager) existingPager.remove();
+  projectsGrid.insertAdjacentHTML("afterend", pagerHtml);
+
   projectsGrid.querySelectorAll(".project-card").forEach((el) => {
     el.addEventListener("click", () => openProjectModal(Number(el.dataset.index)));
   });
+
+  const prevBtn = document.getElementById("pagerPrev");
+  const nextBtn = document.getElementById("pagerNext");
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      currentPage--;
+      renderProjects();
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      currentPage++;
+      renderProjects();
+    });
+  }
 }
 
 renderFilterBar();
@@ -552,14 +549,7 @@ skillsGrid.innerHTML = skills
   <div class="skill-group">
     <div class="skill-group-name">${g.group}</div>
     <div class="skill-list">
-      ${g.items
-        .map((item) => {
-          const url = iconUrl(item);
-          return url
-            ? `<span class="skill-item icon-only" title="${item}"><img src="${url}" alt="${item}" loading="lazy"></span>`
-            : `<span class="skill-item">${item}</span>`;
-        })
-        .join("")}
+      ${g.items.map((item) => `<span class="skill-item">${item}</span>`).join("")}
     </div>
   </div>
 `
